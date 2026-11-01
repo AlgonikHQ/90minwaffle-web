@@ -1,0 +1,281 @@
+/* NMWTHEME_20261017: site-wide navy + cyan theme, loaded last on every page.
+   Colours only through the shared colour settings; side panels (.desktop-layout / .sidebar-column / .main-column) untouched; phones keep their layout. */
+html:not([data-theme="light"]){
+  --bg:#070b16!important;--bg-elev:#0a1020!important;--bg-card:#0a1020!important;--bg-card-hover:#0e1628!important;
+  --card-bg:#0a1020!important;--card-border:rgba(34,211,238,.28)!important;
+  --accent:#22d3ee!important;--accent-dim:rgba(34,211,238,.14)!important;--accent-cyan:#22d3ee!important;
+  --border:rgba(34,211,238,.16)!important;--border-strong:rgba(34,211,238,.34)!important;--line:rgba(34,211,238,.16)!important;
+  --text:#e6edf6!important;--text-muted:#a9b8c9!important;--text-dim:#8aa0b8!important;--mut:#8aa0b8!important}
+html[data-theme="light"]{--accent:#0891b2!important;--accent-dim:rgba(8,145,178,.12)!important;--accent-cyan:#0891b2!important}
+html:not([data-theme="light"]) body{background-color:#070b16!important;
+  background-image:linear-gradient(rgba(34,211,238,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.035) 1px,transparent 1px)!important;background-size:44px 44px!important}
+html:not([data-theme="light"]) .card,html:not([data-theme="light"]) .sidebar-card{border-color:rgba(34,211,238,.28)!important;box-shadow:0 0 18px rgba(34,211,238,.06),0 6px 20px rgba(0,0,0,.25)!important}
+html:not([data-theme="light"]) .sidebar-heading,html:not([data-theme="light"]) .section-label{color:#22d3ee!important}
+.poll-option:hover{background:rgba(34,211,238,.12)!important}
+@media (hover:hover){html:not([data-theme="light"]) .card:hover{border-color:rgba(34,211,238,.55)!important}}
+@media (min-width:1100px){
+  :root{--nmw-col:1180px!important}
+  main.page,.page{max-width:1180px!important}
+  .pc{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:18px;align-items:start;grid-auto-flow:row dense}
+  .pc>*{grid-column:1/-1}
+  .pc>section.card:not(.hero):not(.sq){grid-column:auto}
+}
+/* NMWTHEME search (search.js draws its own panel) */
+#nmws-overlay{background:rgba(3,7,18,.86)!important;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#nmws-box{background:#0a1020!important;border:1px solid rgba(34,211,238,.35)!important;border-radius:18px!important;box-shadow:0 0 30px rgba(34,211,238,.12),0 20px 50px rgba(0,0,0,.6)!important}
+#nmws-bar,#nmws-input-wrap{background:#111a2e!important;border:1px solid rgba(34,211,238,.3)!important;border-radius:12px!important}
+#nmws-input-wrap:focus-within,#nmws-bar:focus-within{border-color:#22d3ee!important;box-shadow:0 0 0 3px rgba(34,211,238,.18)!important}
+#nmws-input{background:transparent!important;color:#e6edf6!important}#nmws-input::placeholder{color:#8aa0b8!important}
+#nmws-input-icon{color:#22d3ee!important}
+#nmws-close{background:#111a2e!important;border:1px solid rgba(34,211,238,.3)!important;color:#8aa0b8!important}
+#nmws-results,#nmws-list,.nmws-list{background:transparent!important}
+.nmws-pill,.nmws-chip,.nmws-hint-pill{background:#111a2e!important;border:1px solid rgba(34,211,238,.25)!important;color:#c9d6e3!important}
+.nmws-pill-active{background:rgba(34,211,238,.15)!important;border-color:#22d3ee!important;color:#22d3ee!important}
+.nmws-item{border-bottom:1px solid rgba(34,211,238,.08)!important}
+.nmws-item:hover,.nmws-item-selected{background:rgba(34,211,238,.10)!important}
+.nmws-name{color:#e6edf6!important}.nmws-sub,.nmws-empty,.nmws-empty-hint,.nmws-trending-label{color:#8aa0b8!important}
+.nmws-live{color:#a3e635!important}.nmws-spinner{border-top-color:#22d3ee!important}
+.gs-trigger{background:#111a2e!important;border:1px solid rgba(34,211,238,.3)!important;color:#8aa0b8!important}
+
+/* NMWTHEME nav: desktop More menu, navy phone bar, no top nav inside the match sheet */
+@media (min-width:1024px){
+#dnav .dn-more{position:relative;display:flex;align-items:center}
+#dnav .dn-more-btn{background:none;border:0;color:var(--text-muted,#a9b8c9);font:inherit;font-weight:600;font-size:.9rem;padding:0 14px;height:100%;cursor:pointer}
+#dnav .dn-more-btn:hover,#dnav .dn-more.open .dn-more-btn{color:#22d3ee}
+#dnav .dn-menu{display:none;position:absolute;top:100%;left:0;min-width:540px;grid-template-columns:1fr 1.5fr;gap:6px 18px;padding:16px;background:#0a1020;border:1px solid rgba(34,211,238,.35);border-radius:16px;box-shadow:0 0 30px rgba(34,211,238,.12),0 20px 50px rgba(0,0,0,.6);z-index:1100}
+#dnav .dn-more.open .dn-menu,#dnav .dn-more:hover .dn-menu{display:grid}
+#dnav .dn-h{color:#22d3ee;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0 0 6px}
+#dnav .dn-menu a{display:block!important;height:auto!important;padding:7px 10px!important;border-radius:10px;color:#e6edf6!important;text-decoration:none;font-weight:600;font-size:.88rem}
+#dnav .dn-menu a::after{display:none!important}#dnav .dn-menu a:hover{background:rgba(34,211,238,.1);color:#22d3ee!important}
+#dnav .dn-feeds{display:grid;grid-template-columns:1fr 1fr;gap:0 6px;align-content:start}#dnav .dn-feeds .dn-h{grid-column:1/-1}
+}
+nav.bottom-nav[data-m]{background:rgba(7,11,22,.94)!important;border-top:1px solid rgba(34,211,238,.18)!important}
+html.nmw-embed #dnav{display:none!important}html.nmw-embed body{padding-top:0!important}
+
+/* BRANDCSS_20261017 */
+.nmw-brand{display:inline-flex;align-items:center;gap:1px;font-size:20px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.01em;vertical-align:middle}.nmw-brand b{color:#fff;font-weight:800}.nmw-brand i{color:#22d3ee;font-weight:700}.nmw-beta{margin-left:8px;font-size:10px;font-style:normal;font-weight:800;letter-spacing:.12em;padding:2px 7px;border-radius:6px;color:#22d3ee;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3)}
+
+  .nmw-brand{display:flex;align-items:baseline;gap:0;margin-right:24px;text-decoration:none;color:var(--text,#F2F2F0);white-space:nowrap}
+  .nmw-brand b{font-weight:900;font-size:20px;letter-spacing:-.02em}
+  .nmw-brand i{font-weight:400;font-style:italic;font-size:20px;color:var(--accent,#3DDC84)}
+  .nmw-beta{align-self:center;margin-left:8px;font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:2px 6px;border-radius:4px;background:rgba(61,220,132,.1);color:var(--accent,#3DDC84)}
+.header a:has(.nmw-brand){text-decoration:none}
+/* A11Y3_20261021 touch targets */
+.sidebar-more,#bet-of-day-more,.nf-rec,main.main-column a[href="/edges/"][style*="0.72rem"]{min-height:24px!important;padding:4px 0!important;box-sizing:border-box!important}
+#botd-links a,#edges-updated a,.disclaimer a,.nf-legal a{padding:5px 0!important}
+#mw-feature-strip button{min-height:24px!important;padding:4px 8px!important}
+/* A11Y3B_20261021 feature-strip icon colour */
+#mw-feature-strip a{color:#e6edf6}
+/* QC_SMALLPHONE_20261024: nothing runs off a 320px phone */
+@media (max-width:360px){header.fxh{gap:8px;padding:0 10px}header.fxh>*{min-width:0}header.fxh h1,header.fxh h2,header.fxh .fxh-title,header.fxh .fxh-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}header.fxh .fxh-badge{flex-shrink:0;padding:3px 6px}.bottom-nav .nav-item{min-width:0;font-size:10px}.bottom-nav .nav-item span,.bottom-nav .nav-item small{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+/* QC_ME_CLS_20261024: the Me page keeps still while it loads - room is held for today's list, and the footer starts below the screen */
+#page[data-mh-tab]{min-height:100vh}#mh-today #mh-list:empty{min-height:200px}#mh-next:empty{min-height:60px}
+
+/* A11Y_TAP_20261024: standalone links and buttons get a tap area of at least 24px. Padding + equal negative margin, so nothing moves. */
+a.header-logo-link,a.nf-logo,a.fxh-back,a.header-back,.hv2-h a,.hv2-mc a,.hv2-card a,a.hv2-chip,.hv2-legal a,.wk2-pk a,a.th-tl,a.pc-tap,a.er-prev,a.team,.sq2-fresh a,.sq2-acc-b a,.ed-note a,.fq2-report a,.fq2-box a,.row-team a,.a2-acc-b a.more,a.mh-link,.warn a,div.note a,div.m>a,div.x>a{padding-top:5px;padding-bottom:5px;margin-top:-5px;margin-bottom:-5px}
+details>summary{min-height:24px;padding-top:4px;padding-bottom:4px;box-sizing:border-box}
+.nf-legal a,a.nf-rec,.disclaimer a,.th-panel a,.hv2-legal a,body.has-mn>div>a,main.page > div > a:not([class]),.hiw-fold p>a,.page.hiw li>a{padding-top:6px;padding-bottom:6px;margin-top:-6px;margin-bottom:-6px}
+a.hv2-chip,header.header>a,main.main-column>div>a{min-height:24px;box-sizing:border-box}body.has-mn>div>button{min-width:24px;min-height:24px}
+/* A11Y_TAP2_20261024 */
+
+/* CALM_20261030: calmer palette site-wide (feedback: harsh cyan on black, hard-to-read grey text) */
+:root{--bg:#0B1220!important;--bg-card:#111A2E!important;--card-bg:#111A2E!important;--bg-elev:#14203A!important;--bg-card-hover:#16233F!important;
+--text:#E8EDF5!important;--text-muted:#B8C3D3!important;--text-dim:#A9B4C6!important;--mut:#A9B4C6!important;
+--border:#1E2A44!important;--line:#1E2A44!important;--card-border:#22304D!important;--border-strong:#2A3756!important}
+html,body{background:#0B1220!important;color:#E8EDF5}
+[style*="color:#94a3b8"],[style*="color: #94a3b8"],[style*="color:#8aa0b8"],[style*="color: #8aa0b8"],[style*="color:#64748b"],[style*="color: #64748b"]{color:#A9B4C6!important}
+@media (max-width:600px){body{font-size:16px}}
+/* CALM2_20261030: match the dark-mode rule's own selector so the calm palette wins (no grid, softer navy) */
+html:not([data-theme="light"]),html:not([data-theme="light"]) body{--bg:#0B1220!important;--bg-card:#111A2E!important;--card-bg:#111A2E!important;--bg-elev:#14203A!important;--bg-card-hover:#16233F!important;
+--text:#E8EDF5!important;--text-muted:#B8C3D3!important;--text-dim:#A9B4C6!important;--mut:#A9B4C6!important;
+--border:#1E2A44!important;--line:#1E2A44!important;--card-border:#22304D!important;--border-strong:#2A3756!important}
+html:not([data-theme="light"]) body{background:#0B1220!important;background-color:#0B1220!important;background-image:none!important}
+
+/* VT_20261030: smooth fade between pages instead of a white flash (Chrome/Edge/Safari 18.2+). Off for reduced-motion users. */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:.18s}}
+
+/* PRESS_20261030: instant pressed feedback on phone nav taps */
+.nav-item,.mn-grid a{-webkit-tap-highlight-color:transparent;transition:transform .08s ease,opacity .08s ease}
+.nav-item:active,.mn-grid a:active{transform:scale(.92);opacity:.7}
+
+/* TEXTFLOOR_20261030: Reddit feedback - text too small to read. Min 12px for reading text, 11px for pills/badges; more room on phones. Delete this block to undo. */
+#ed-sidebar .sidebar-heading{font-size:12px!important}
+#mhHome .mh-lt{font-size:12px!important}
+#mhHome .mh-qa a{font-size:12px!important}
+#mn-sheet .mn-h{font-size:12px!important}
+#mwHero .hh-vs{font-size:12px!important}
+.action-btn{font-size:12px!important}
+.bar-lbl{font-size:12px!important}
+.bottom-nav .nav-item{font-size:12px!important}
+.bottom-nav .nav-item span{font-size:12px!important}
+.cat-section-title{font-size:12px!important}
+.cat-see-all{font-size:12px!important}
+.club-league{font-size:12px!important}
+.conf-count{font-size:12px!important}
+.conf-hdr{font-size:12px!important}
+.ct-label{font-size:12px!important}
+.disclaimer{font-size:12px!important}
+.fav-meta{font-size:12px!important}
+.fiq-h span{font-size:12px!important}
+.fiq-ini{font-size:12px!important}
+.footer-mini{font-size:12px!important}
+.fq2-ctiles span{font-size:12px!important}
+.fq2-g2 span{font-size:12px!important}
+.fq2-g3 span{font-size:12px!important}
+.fq2-lab{font-size:12px!important}
+.fq2-lab small{font-size:12px!important}
+.fq2-rt small{font-size:12px!important}
+.fq2-rv small{font-size:12px!important}
+.fq2-season small{font-size:12px!important}
+.header-wordmark-sub{font-size:12px!important}
+.hist-lbls span{font-size:12px!important}
+.hv2-club .hv2-d{font-size:12px!important}
+.hv2-cta span{font-size:12px!important}
+.hv2-d{font-size:12px!important}
+.hv2-gm{font-size:12px!important}
+.hv2-gt{font-size:12px!important}
+.hv2-legal{font-size:12px!important}
+.hv2-tiles span{font-size:12px!important}
+.hv3-bd{font-size:12px!important}
+.kelly-label{font-size:12px!important}
+.kelly-note{font-size:12px!important}
+.legend{font-size:12px!important}
+.lmp-edge-hdr{font-size:12px!important}
+.lmp-edge-layers{font-size:12px!important}
+.lmp-evt-min{font-size:12px!important}
+.lmp-lineup-form{font-size:12px!important}
+.lmp-lineup-p{font-size:12px!important}
+.lmp-lineup-sub{font-size:12px!important}
+.lmp-section-title{font-size:12px!important}
+.lmp-statrow-label{font-size:12px!important}
+.m-ring-h{font-size:12px!important}
+.match-ko{font-size:12px!important}
+.mf-d{font-size:12px!important}
+.mf-lbl{font-size:12px!important}
+.mf-nodata{font-size:12px!important}
+.mkt-roi-label{font-size:12px!important}
+.mkt-roi-sub{font-size:12px!important}
+.mkt-roi-val{font-size:12px!important}
+.mkt-stats{font-size:12px!important}
+.mt-d{font-size:12px!important}
+.mt-k{font-size:12px!important}
+.mt-sub{font-size:12px!important}
+.mt-w{font-size:12px!important}
+.nation-sub{font-size:12px!important}
+.nation-wc{font-size:12px!important}
+.nav .nav-item span{font-size:12px!important}
+.nav-item{font-size:12px!important}
+.nav-item span{font-size:12px!important}
+.nav-item.tournament-active span{font-size:12px!important}
+.page-title-bar{font-size:12px!important}
+.player-search-count{font-size:12px!important}
+.poll-bar-lbl{font-size:12px!important}
+.poll-total{font-size:12px!important}
+.profile-uid{font-size:12px!important}
+.progress-lbl{font-size:12px!important}
+.provenance{font-size:12px!important}
+.prow-stat span{font-size:12px!important}
+.reasoning-title{font-size:12px!important}
+.refresh-bar{font-size:12px!important}
+.rk-few{font-size:12px!important}
+.row-sub{font-size:12px!important}
+.row-val-sub{font-size:12px!important}
+.score-bar-lbl{font-size:12px!important}
+.sec-hdr{font-size:12px!important}
+.section-label{font-size:12px!important}
+.settle-note{font-size:12px!important}
+.sq2-k{font-size:12px!important}
+.sq2-mk small{font-size:12px!important}
+.sq2-rm small{font-size:12px!important}
+.sq2-tip-h{font-size:12px!important}
+.sq3-tbl small{font-size:12px!important}
+.sq3-tbl thead th{font-size:12px!important}
+.stand-table th{font-size:12px!important}
+.stat-box-lbl{font-size:12px!important}
+.stat-card .stat-label{font-size:12px!important}
+.stat-lbl{font-size:12px!important}
+.th-kpi span{font-size:12px!important}
+.th-rep{font-size:12px!important}
+.th-tbl th{font-size:12px!important}
+.tip-ev{font-size:12px!important}
+.tip-fixture .vs{font-size:12px!important}
+.tip.builder-tip .builder-ribbon{font-size:12px!important}
+.tool-desc{font-size:12px!important}
+.tool-new{font-size:12px!important}
+.trophy-desc{font-size:12px!important}
+.wc-cell span{font-size:12px!important}
+.wk-meta{font-size:12px!important}
+.wk-sub{font-size:12px!important}
+#dnav .dn-beta{font-size:11px!important}
+#mwHero .hh-pill{font-size:11px!important}
+.chip{font-size:11px!important}
+.edge-chip{font-size:11px!important}
+.fq2-pill{font-size:11px!important}
+.header-badge{font-size:11px!important}
+.header-tagline{font-size:11px!important}
+.hv2-chip{font-size:11px!important}
+.hv2-tag{font-size:11px!important}
+.live-chip{font-size:11px!important}
+.lmp-live-pill{font-size:11px!important}
+.lpill-e{font-size:11px!important}
+.mkt-pill-name{font-size:11px!important}
+.mkt-pill-roi{font-size:11px!important}
+.mkt-pill-sub{font-size:11px!important}
+.mt-kind{font-size:11px!important}
+.nfpill{font-size:11px!important}
+.nmw-beta{font-size:11px!important}
+.page.hub-on .tool-tag{font-size:11px!important}
+.streak-badge{font-size:11px!important}
+.tagline-strip{font-size:11px!important}
+.th-tag{font-size:11px!important}
+.tip-score-pill{font-size:11px!important}
+.upcoming-badge{font-size:11px!important}
+.wk-chip{font-size:11px!important}
+.wk-tag{font-size:11px!important}
+[style*="font-size:0.58rem"]{font-size:12px!important}
+[style*="font-size: 0.58rem"]{font-size:12px!important}
+[style*="font-size:0.6rem"]{font-size:12px!important}
+[style*="font-size: 0.6rem"]{font-size:12px!important}
+[style*="font-size:0.62rem"]{font-size:12px!important}
+[style*="font-size: 0.62rem"]{font-size:12px!important}
+[style*="font-size:0.65rem"]{font-size:12px!important}
+[style*="font-size: 0.65rem"]{font-size:12px!important}
+[style*="font-size:0.66rem"]{font-size:12px!important}
+[style*="font-size: 0.66rem"]{font-size:12px!important}
+[style*="font-size:0.68rem"]{font-size:12px!important}
+[style*="font-size: 0.68rem"]{font-size:12px!important}
+[style*="font-size:0.72rem"]{font-size:12px!important}
+[style*="font-size: 0.72rem"]{font-size:12px!important}
+[style*="font-size:0.74rem"]{font-size:12px!important}
+[style*="font-size: 0.74rem"]{font-size:12px!important}
+[style*="font-size:.72rem"]{font-size:12px!important}
+[style*="font-size: .72rem"]{font-size:12px!important}
+[style*="font-size:.68rem"]{font-size:12px!important}
+[style*="font-size: .68rem"]{font-size:12px!important}
+[style*="font-size:.65rem"]{font-size:12px!important}
+[style*="font-size: .65rem"]{font-size:12px!important}
+[style*="font-size:9px"]{font-size:12px!important}
+[style*="font-size: 9px"]{font-size:12px!important}
+[style*="font-size:10px"]{font-size:12px!important}
+[style*="font-size: 10px"]{font-size:12px!important}
+[style*="font-size:11px"]{font-size:12px!important}
+[style*="font-size: 11px"]{font-size:12px!important}
+@media (max-width:600px){.card,.sidebar-card{padding:16px 18px!important}.card+.card,.sidebar-card+.sidebar-card{margin-top:14px}.card p,.sidebar-card p{line-height:1.55}}
+/* /TEXTFLOOR_20261030 */
+
+/* SHEETHIDE_20261030: phone More sheet is invisible unless open - it can never flash during page changes. Close still slides out, then hides. */
+body:not(.mn-open) #mn-sheet,body:not(.mn-open) .mn-backdrop,body:not(.mn-open) #mn-backdrop,body:not(.mn-open) .mn-scrim,body:not(.mn-open) #mn-scrim{visibility:hidden;transition:transform .28s ease,opacity .28s ease,visibility 0s linear .3s}
+body.mn-open #mn-sheet,body.mn-open .mn-backdrop,body.mn-open #mn-backdrop,body.mn-open .mn-scrim,body.mn-open #mn-scrim{visibility:visible;transition-delay:0s}
+
+/* APPFEEL_20261030: app-like page changes - header and bottom nav stay still, only the content fades (0.2s). */
+@media (prefers-reduced-motion:no-preference){::view-transition-old(root),::view-transition-new(root){animation-duration:.2s}.bottom-nav{view-transition-name:nmw-bnav}#dnav{view-transition-name:nmw-dnav}::view-transition-group(nmw-bnav),::view-transition-group(nmw-dnav){animation:none}::view-transition-old(nmw-bnav),::view-transition-old(nmw-dnav){display:none}::view-transition-new(nmw-bnav),::view-transition-new(nmw-dnav){animation:none}}
+
+/* BETA_OFF_20261030: sitewide badge off; honest tags only where data is still filling in */
+.dn-beta,.nmw-beta{display:none!important}
+.nmw-fill{display:inline-flex;align-items:center;margin:6px 0 10px;padding:3px 10px;border-radius:999px;border:1px solid rgba(34,211,238,.45);background:rgba(34,211,238,.08);color:#22d3ee;font-size:12px;font-weight:600;text-decoration:none}
+/* MEFILL_20261031: the Me page never shows the "data still filling in" badge - hiding it from first paint stops the 38px jump */
+html body:has(#page.me-two) a.nmw-fill, html body:has(#page.me-two) .nmw-fill{display:none}
+
+/* MCSETTLE_20261031: Matches page only - cards stay invisible until the live scripts stop reshaping them (2.5s fail-safe) */
+html:not(.mc-settled) body:has(#mc-comps) .mc-item{visibility:hidden;animation:mcShow 0s 3s forwards}
+@keyframes mcShow{to{visibility:visible}}
