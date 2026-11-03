@@ -15,6 +15,7 @@ Disallow: /trophy/
 Disallow: /leaderboard
 Disallow: /cdn-cgi/
 Disallow: /matches/?
+Disallow: /matches/match/?id=*:*
 Disallow: /club/?
 Disallow: /player/?
 
