@@ -2,6 +2,11 @@
 
 User-facing changes to [90minwaffle.co.uk](https://90minwaffle.co.uk), newest first. Live version: https://90minwaffle.co.uk/changelog/
 
+## 2026-11-06
+
+- Matches: the page heading and today's game count now show straight away, and the competition lists no longer jump about while the page loads.
+- Privacy policy updated: how we spot people creating lots of accounts to game the leaderboard, and a 90-day limit on those records.
+
 ## 2026-11-01
 
 - Live scores: stoppage time now shows as 45+ or 90+, and a game that stops updating (for example an abandoned match) no longer stays listed as live.
