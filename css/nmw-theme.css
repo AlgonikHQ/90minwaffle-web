@@ -279,3 +279,6 @@ html body:has(#page.me-two) a.nmw-fill, html body:has(#page.me-two) .nmw-fill{di
 /* MCSETTLE_20261031: Matches page only - cards stay invisible until the live scripts stop reshaping them (2.5s fail-safe) */
 html:not(.mc-settled) body:has(#mc-comps) .mc-item{visibility:hidden;animation:mcShow 0s 3s forwards}
 @keyframes mcShow{to{visibility:visible}}
+
+/* LGSETTLE_20261106: competition groups stay invisible until Matches has settled - stops them being pushed about (CLS 0.67 -> 0.01) */
+html:not(.mc-settled) body:has(#mc-comps) .nmw-lg{visibility:hidden;animation:mcShow 0s 3s forwards}
