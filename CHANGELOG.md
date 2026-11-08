@@ -2,6 +2,11 @@
 
 User-facing changes to [90minwaffle.co.uk](https://90minwaffle.co.uk), newest first. Live version: https://90minwaffle.co.uk/changelog/
 
+## 2026-11-07
+
+- StatIQ record checked against independent bookmaker prices (Football-Data.co.uk). 33 old tips with prices no bookmaker offered moved to exclusions with reasons. Record now 102-104, +14.08u, ROI +6.9% - see Corrections.
+- New weekly independent price check on every StatIQ tip, and the StatIQ page now rebuilds automatically whenever the record changes.
+
 ## 2026-11-06
 
 - Matches: the page heading and today's game count now show straight away, and the competition lists no longer jump about while the page loads.
