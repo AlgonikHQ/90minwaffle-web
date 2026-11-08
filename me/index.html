@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><script src="/js/nmw-auth.js?v=2"></script>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B0F0E" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)">
+<meta name="robots" content="noindex, nofollow">
+<title>Me — 90minWaffle</title>
+<meta name="description" content="Your 90minWaffle page: your account and settings.">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192-v2.png">
+<link rel="stylesheet" href="/css/nav-sidebar.css?v=8">
+<style>
+:root{
+  --bg:#0B0F0E;--bg-elev:#14191A;--bg-card:#181E20;--bg-card-hover:#1F2628;
+  --border:rgba(255,255,255,0.06);--border-strong:rgba(255,255,255,0.12);
+  --text:#F2F2F0;--text-muted:#9CA3A0;--text-dim:#5C6562;
+  --accent:#3DDC84;--accent-dim:rgba(61,220,132,0.15);
+  --blue:#22D3EE;--blue-dim:rgba(34,211,238,0.12);
+  --danger:#E5484D;--danger-dim:rgba(229,72,77,0.12);
+  --warn:#FACC15;--warn-dim:rgba(250,204,21,0.12);
+  --orange:#F97316;--orange-dim:rgba(249,115,22,0.12);
+  --header-h:72px;--nav-h:64px;--gap:12px;--radius:14px;
+}
+[data-theme="light"]{
+  --bg:#FAFAF9;--bg-elev:#FFFFFF;--bg-card:#FFFFFF;--bg-card-hover:#F5F5F4;
+  --border:rgba(0,0,0,0.06);--border-strong:rgba(0,0,0,0.12);
+  --text:#0B0F0E;--text-muted:#4F5552;--text-dim:#8B918E;
+  --accent:#16A34A;--accent-dim:rgba(22,163,74,0.12);
+  --blue:#0891B2;--blue-dim:rgba(8,145,178,0.10);
+  --danger:#DC2626;--danger-dim:rgba(220,38,38,0.08);
+  --warn:#CA8A04;--warn-dim:rgba(202,138,4,0.10);
+  --orange:#EA580C;--orange-dim:rgba(234,88,12,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}button,a,[onclick]{touch-action:manipulation;}
+html,body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;}
+body{min-height:100vh;padding-top:var(--header-h);padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));}
+.header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--bg-elev);border-bottom:1px solid var(--border);display:flex;flex-direction:column;align-items:stretch;justify-content:center;padding:6px 16px 4px;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}.header-row{display:flex;align-items:center;width:100%;gap:0;}.header-tagline{font-size:10px;color:var(--text-dim);letter-spacing:0.04em;text-align:center;width:100%;padding-top:2px;}
+.header-title{font-size:1rem;font-weight:700;flex:1;}
+.theme-toggle{width:36px;height:36px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.page{max-width:640px;margin:0 auto;padding:var(--gap);display:flex;flex-direction:column;gap:10px;}
+.sec-hdr{font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);padding:4px 2px 2px;}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+
+/* Profile Hero */
+.profile-hero{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center;}
+.profile-avatar{width:72px;height:72px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 12px;}
+.profile-username{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;}
+.profile-uid{font-size:0.65rem;color:var(--text-dim);font-family:monospace;margin-bottom:12px;}
+.profile-followed{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);border:1px solid rgba(61,220,132,0.3);border-radius:20px;padding:4px 12px;font-size:0.75rem;font-weight:600;color:var(--accent);}
+
+/* Stats Grid */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.stat-box{background:var(--bg-elev);border-radius:10px;padding:12px;text-align:center;}
+.stat-box-val{font-size:1.4rem;font-weight:800;}
+.stat-box-lbl{font-size:0.65rem;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;}
+.stat-box.accent .stat-box-val{color:var(--accent);}
+.stat-box.blue .stat-box-val{color:var(--blue);}
+.stat-box.warn .stat-box-val{color:var(--warn);}
+.stat-box.orange .stat-box-val{color:var(--orange);}
+
+/* Trophies */
+.trophy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.trophy-item{background:var(--bg-elev);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;}
+.trophy-icon{font-size:1.8rem;flex-shrink:0;}
+.trophy-name{font-size:0.78rem;font-weight:700;}
+.trophy-desc{font-size:0.65rem;color:var(--text-dim);margin-top:2px;}
+.trophy-locked{opacity:0.35;filter:grayscale(1);}
+.trophy-progress{margin-top:4px;}
+.progress-bar{height:3px;background:var(--border-strong);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.4s;}
+.progress-lbl{font-size:0.6rem;color:var(--text-dim);margin-top:2px;}
+
+/* Your Club card */
+.club-row{display:flex;align-items:center;gap:13px;}
+.club-badge{width:46px;height:46px;object-fit:contain;flex-shrink:0;}
+.club-name{font-size:1rem;font-weight:800;line-height:1.15;}
+.club-league{font-size:0.68rem;color:var(--text-muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;}
+.club-fixture{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted);line-height:1.5;}
+.club-fixture b{color:var(--text);font-weight:700;}
+.club-actions{display:flex;gap:8px;margin-top:13px;}
+.club-btn{flex:1;text-align:center;padding:9px;border-radius:10px;font-size:0.76rem;font-weight:700;text-decoration:none;cursor:pointer;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);}
+.club-btn.primary{background:var(--accent);color:#0B0F0E;border:none;}
+/* Closest Trophy card */
+.ct-row{display:flex;align-items:center;gap:13px;}
+.ct-icon{font-size:1.9rem;flex-shrink:0;}
+.ct-label{font-size:0.62rem;color:var(--accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+.ct-name{font-size:0.95rem;font-weight:800;margin-top:1px;}
+.ct-desc{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+
+/* Predictions */
+.pred-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.8rem;}
+.pred-row:last-child{border-bottom:none;}
+.pred-match{font-weight:600;flex:1;}
+.pred-pick{font-size:0.7rem;color:var(--text-muted);}
+.pred-result-w{color:var(--accent);font-weight:700;}
+.pred-result-p{color:var(--blue);font-weight:700;}
+
+/* Settings */
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+.setting-row:last-child{border-bottom:none;}
+.setting-label{font-size:0.85rem;font-weight:600;}
+.setting-value{font-size:0.75rem;color:var(--text-muted);}
+.setting-btn{background:var(--bg-elev);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:5px 12px;font-size:0.75rem;cursor:pointer;font-family:inherit;}
+.setting-btn:hover{border-color:var(--accent);color:var(--accent);}
+.setting-btn.danger{color:var(--danger);border-color:var(--danger-dim);}
+
+/* Honesty card */
+.honesty-card{background:var(--accent-dim);border:1px solid rgba(61,220,132,0.2);border-radius:var(--radius);padding:14px 16px;}
+.honesty-title{font-size:0.75rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.honesty-text{font-size:0.78rem;color:var(--text);line-height:1.6;}
+
+.empty-state{text-align:center;padding:20px;color:var(--text-dim);font-size:0.82rem;}
+.me-pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:4px 0 8px;margin-bottom:4px;}
+.me-pills::-webkit-scrollbar{display:none;}
+.me-pill{flex-shrink:0;padding:8px 16px;border-radius:20px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-muted);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.me-pill.active{background:var(--accent-dim);border-color:var(--accent);color:var(--accent);}
+.footer-mini{text-align:center;font-size:0.68rem;color:var(--text-dim);padding:16px 0 4px;}
+.fav-list{display:flex;flex-direction:column;gap:8px;}
+.fav-item{display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+.fav-icon{font-size:1.2rem;flex-shrink:0;}
+.fav-label{flex:1;font-size:0.88rem;font-weight:600;color:var(--text);}
+.fav-meta{font-size:0.72rem;color:var(--text-dim);text-transform:capitalize;margin-right:4px;}
+.fav-link{font-size:0.75rem;color:var(--accent);text-decoration:none;font-weight:600;padding:4px 8px;border:1px solid var(--accent);border-radius:8px;flex-shrink:0;}
+.fav-remove{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:0.85rem;padding:4px;flex-shrink:0;}
+.nav-item.tournament-active{color:#F97316;}.nav-item.tournament-active svg{width:24px;height:24px;}.nav-item.tournament-active span{font-size:0.72rem;font-weight:700;}.theme-toggle{visibility:hidden!important;margin-left:auto;pointer-events:none!important;}#restoreCodeInput::placeholder{color:var(--text-dim);opacity:.45;letter-spacing:.1em}
+#recoveryCodeDisplay:not(.rv){filter:blur(7px);cursor:pointer;user-select:none}
+</style>
+<style>
+.header-row{display:flex;align-items:center;width:100%;gap:0;}
+.header-center{flex:1;display:flex;justify-content:center;align-items:center;}
+
+
+
+.gs-trigger{margin-left:auto;flex-shrink:0;background:none!important;border:none!important;padding:6px!important;cursor:pointer!important;color:inherit!important;display:flex!important;align-items:center!important;-webkit-appearance:none!important;}
+.gs-trigger svg{stroke:currentColor!important;display:block!important;}
+.bottom-nav{padding-bottom:env(safe-area-inset-bottom,16px)!important;}
+.theme-toggle{visibility:hidden!important;margin-left:auto;pointer-events:none!important;}</style>
+<script defer src="/js/onboarding.js?v=20261021a"></script>
+<script defer src="https://analytics.90minwaffle.co.uk/script.js" data-website-id="2ec62a13-ba3c-44fa-b6a2-dccc3a1f3ecb"></script>
+<link rel="stylesheet" href="/css/theme.css?v=3"><link rel="stylesheet" href="/css/desktop-nav.css?v=9"><script src="/js/desktop-nav.js?v=21" defer></script><link rel="stylesheet" href="/css/me-clean.css?v=1"><script src="/js/me-clean.js?v=1" defer></script><link rel="stylesheet" href="/css/m-team.css?v=1">
+<script src="/js/m-team.js?v=1" defer></script>
+<script src="/js/scroll-keeper.js?v=3" defer></script><style id="me-noflash">#page>:not([data-mh-t]){visibility:hidden;animation:nmwShow 0s 2.5s forwards}@keyframes nmwShow{to{visibility:visible}}</style><script src="/js/me-tidy.js?v=026c6c08" defer></script><link rel="stylesheet" href="/css/nmw-theme.css?v=8"></head>
+<body>
+<h1 class="qf-h1" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">My 90minWaffle</h1><!--QUICKFIX_20261011-->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer" aria-label="Section navigation">
+  <div class="drawer-hdr"><span>Sections</span><button class="drawer-close" aria-label="Close" onclick="closeDrawer()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button></div>
+  <div id="drawerList"></div>
+</aside>
+<div class="header">
+  <div class="header-row">
+    <button class="burger-btn" id="burgerBtn" aria-label="Open menu" onclick="openDrawer()" style="background:none;border:none;color:inherit;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div class="header-center"><a href="/" class="header-logo-link"><span class="header-wordmark"><span class="header-wordmark-brand"><span class="header-wordmark-main">90Min</span><span class="header-wordmark-accent">Waffle</span></span></span></a><span class="staging-badge">BETA</span></div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  <button id="gsTrigger" class="gs-trigger" aria-label="Search" onclick="if(window.__gsOpen)window.__gsOpen();"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+  
+  </div>
+  <div class="header-tagline">My Profile</div>
+</div>
+
+<div class="page" id="page"><div class="empty-state">Setting up your page… Follow your club and the site builds around you: your next game, recent form and what the model thinks.</div><!-- ME_FIRST_20261107 --></div><script>window._nmwSocialPage=true;</script><script src="/js/team-badges.js?v=1"></script>
+<script defer src="/js/nav-sidebar.js?v=20261010b"></script>
+<script defer src="/js/tooltips.js?v=20261010c"></script>
+<script defer src="/js/search.js?v=20260617e"></script>
+<script src="/js/profile-sync.js?v=20261017e"></script>
+<script>
+/* toggleTheme defined below */
+(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+
+var POLL_API='';
+function mwEsc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function getLS(k,d){try{return localStorage.getItem(k)||d;}catch(e){return d;}}
+function setLS(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function getJSON(k,d){try{return JSON.parse(localStorage.getItem(k)||'null')||d;}catch(e){return d;}}
+function mwUuidFallback(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0,v=c==='x'?r:(r&0x3|0x8);return v.toString(16);});}
+function mwEnsureUid(){var u=getLS('nmw_uid','');if(u)return u;var nu=(window.crypto&&window.crypto.randomUUID)?window.crypto.randomUUID():mwUuidFallback();setLS('nmw_uid',nu);return nu;}
+mwEnsureUid();
+
+// ── Streak ──────────────────────────────────────────────────────────────────
+function mwStreak(){
+  var today=new Date().toISOString().slice(0,10);
+  var last=getLS('nmw_last_visit','');
+  var cur=parseInt(getLS('nmw_streak','0'))||0;
+  var prev=cur;
+  if(last!==today){
+    var y=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    cur=(last===y)?cur+1:1;
+    setLS('nmw_streak',cur);setLS('nmw_last_visit',today);
+    var lng=parseInt(getLS('nmw_longest_streak','0'))||0;
+    if(cur>lng)setLS('nmw_longest_streak',cur);
+    // Server-side streak recording + milestone push
+    var uid=getLS('nmw_uid','');
+    if(uid){
+      fetch(POLL_API+'/streak/update',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({uid:uid,streak:cur,prev_streak:prev})
+      }).catch(function(){});
+    }
+  }
+  return cur;
+}
+
+// ── Trophies ─────────────────────────────────────────────────────────────────
+var TROPHIES=[
+  // Common 1pt
+  {id:'first_visit',tier:'common',pts:1,icon:'&#x1F44B;',name:'First Visit',desc:'Opened 90minWaffle for the first time'},
+  {id:'follow_club',tier:'common',pts:1,icon:'&#x1F396;',name:'Follow a Club',desc:'Followed your first club'},
+  {id:'follow_country',tier:'common',pts:1,icon:'&#x1F30D;',name:'Follow a Country',desc:'Followed a national team'},
+  {id:'first_prediction',tier:'common',pts:1,icon:'&#x1F3AF;',name:'Bold Call',desc:'Made your first prediction'},
+  {id:'first_poll',tier:'common',pts:1,icon:'&#x1F5F3;',name:'First Poll Vote',desc:'Voted in a community poll'},
+  {id:'first_trivia',tier:'common',pts:1,icon:'&#x1F9E0;',name:'First Trivia',desc:'Attempted a trivia question'},
+  // Uncommon 5pt
+  {id:'streak_3',tier:'uncommon',pts:5,icon:'&#x1F525;',name:'On Fire',desc:'3-day visit streak'},
+  {id:'predictions_10',tier:'uncommon',pts:5,icon:'&#x1F4CA;',name:'10 Predictions',desc:'Made 10 predictions'},
+  {id:'correct_5',tier:'uncommon',pts:5,icon:'&#x2705;',name:'5 Correct',desc:'Got 5 predictions right'},
+  {id:'polls_5',tier:'uncommon',pts:5,icon:'&#x1F4AC;',name:'Poll Addict',desc:'Voted in 5 polls'},
+  {id:'guess_correct',tier:'uncommon',pts:5,icon:'&#x1F575;',name:'Who Is It?',desc:'Guessed the player correctly'},
+  {id:'follow_both',tier:'uncommon',pts:5,icon:'&#x1F91D;',name:'Club and Country',desc:'Following both a club and a country'},
+  // Rare 10pt
+  {id:'streak_7',tier:'rare',pts:10,icon:'&#x26A1;',name:'Week Warrior',desc:'7-day visit streak'},
+  {id:'predictions_50',tier:'rare',pts:10,icon:'&#x1F4DD;',name:'50 Predictions',desc:'Made 50 predictions'},
+  {id:'correct_25',tier:'rare',pts:10,icon:'&#x1F3C5;',name:'25 Correct',desc:'Got 25 predictions right'},
+  {id:'guess_correct_10',tier:'rare',pts:10,icon:'&#x1F9D0;',name:'Guess Master',desc:'Guessed correctly 10 times'},
+  {id:'perfect_week',tier:'rare',pts:10,icon:'&#x1F4C5;',name:'Perfect Week',desc:'Visited every day for a week'},
+  {id:'top_500',tier:'rare',pts:10,icon:'&#x1F4C8;',name:'Top 500',desc:'Ranked in top 500 predictions'},
+  // Elite 20pt
+  {id:'streak_30',tier:'elite',pts:20,icon:'&#x1F9F2;',name:'Iron Will',desc:'30-day streak'},
+  {id:'predictions_100',tier:'elite',pts:20,icon:'&#x1F4AF;',name:'100 Predictions',desc:'Made 100 predictions'},
+  {id:'accuracy_70',tier:'elite',pts:20,icon:'&#x1F3AF;',name:'Sharp Eye',desc:'70%+ accuracy over 20+ predictions'},
+  {id:'guess_elite_10',tier:'elite',pts:20,icon:'&#x1F451;',name:'Elite Guesser',desc:'Elite (clue 1) correct 10 days running'},
+  {id:'top_100_pred',tier:'elite',pts:20,icon:'&#x1F947;',name:'Top 100 Predictions',desc:'Ranked in top 100 by accuracy'},
+  {id:'top_100_trophy',tier:'elite',pts:20,icon:'&#x1F948;',name:'Top 100 Trophies',desc:'Ranked in top 100 by trophy points'},
+  // Legendary 50pt (hidden — names revealed on earn)
+  {id:'streak_365',tier:'legendary',pts:50,icon:'&#x1F4AB;',name:'365 Days',desc:'Visited 90minWaffle every day for a full year. Legendary.',hidden:true,revealName:'365 Days',revealDesc:'Visited every day for a full year. True legend.'},
+  {id:'perfect_month',tier:'legendary',pts:50,icon:'&#x1F315;',name:'Perfect Month',desc:'Visited every single day for a full month.',hidden:true,revealName:'Perfect Month',revealDesc:'Visited every single day for a full month.'},
+  {id:'predict_5nil',tier:'legendary',pts:50,icon:'&#x1F525;',name:'5-0 Prophet',desc:'Predicted a 5-0 result correctly.',hidden:true,revealName:'5-0 Prophet',revealDesc:'You predicted a 5-0 result correctly. Ruthless.'},
+  {id:'all_common',tier:'legendary',pts:50,icon:'&#x1F30C;',name:'Full House',desc:'Earned every Common trophy.',hidden:true,revealName:'Full House',revealDesc:'Earned every Common trophy. The grind is real.'},
+  {id:'top_10',tier:'legendary',pts:50,icon:'&#x1F31F;',name:'Top 10',desc:'Ranked in the top 10 on the leaderboard.',hidden:true,revealName:'Top 10',revealDesc:'Ranked in the global top 10. Elite.'},
+  {id:'christmas',tier:'legendary',pts:50,icon:'&#x1F384;',name:'Christmas Day',desc:'Visited 90minWaffle on Christmas Day.',hidden:true,revealName:'Christmas Day',revealDesc:'Visited on Christmas Day. Football never sleeps.'},
+  {id:'clue1_30',tier:'legendary',pts:50,icon:'&#x1F9E0;',name:'Mind Reader',desc:'Got the Guess the Player correct from clue 1 alone, 30 times.',hidden:true,revealName:'Mind Reader',revealDesc:'Guessed the player from clue 1 alone, 30 times.'},
+];
+var TIER_COLOURS={common:'#9CA3AF',uncommon:'#22D3EE',rare:'#A78BFA',elite:'#F97316',legendary:'#FFD700'};
+var TIER_LABELS={common:'Common',uncommon:'Uncommon',rare:'Rare',elite:'Elite',legendary:'Legendary'};
+
+function getEarnedTrophies(){return getJSON('nmw_trophies',[]);}
+function getTrophyPoints(){
+  var earned=getEarnedTrophies();
+  return TROPHIES.filter(function(t){return earned.indexOf(t.id)!==-1;}).reduce(function(s,t){return s+t.pts;},0);
+}
+var _toastQ=[];var _toastBusy=false;
+function mwTrophyToast(tr){_toastQ.push(tr);if(_toastQ.length>3)_toastQ=_toastQ.slice(-3);_toastNext();}
+function _toastNext(){
+  if(_toastBusy||!_toastQ.length)return;
+  _toastBusy=true;var tr=_toastQ.shift();
+  var t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--bg-elev);border:1px solid var(--accent);border-radius:12px;padding:10px 16px;z-index:9999;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:320px;opacity:0;transition:opacity 0.25s,transform 0.25s;';
+  var _tname=tr.hidden?(tr.revealName||tr.name):tr.name;
+  var _tdesc=tr.hidden?('&#x1F513; '+( tr.revealDesc||tr.desc)):tr.desc;
+  t.innerHTML='<span style="font-size:1.5rem">'+(tr.icon||'&#127942;')+'</span><div><div style="font-size:0.72rem;font-weight:700;color:var(--accent-yellow,#FACC15);margin-bottom:1px;">&#x1F3C6; Trophy Unlocked!</div><div style="font-size:0.82rem;font-weight:800;color:var(--accent)">'+_tname+'</div><div style="font-size:0.68rem;color:var(--text-muted)">'+_tdesc+'</div></div>';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';});
+  setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove();_toastBusy=false;_toastNext();},300);},2600);
+}
+function awardTrophy(id){
+  var earned=getEarnedTrophies();
+  if(earned.indexOf(id)===-1){
+    earned.push(id);
+    setLS('nmw_trophies',JSON.stringify(earned));
+    var tr=TROPHIES.find(function(t){return t.id===id;});
+    if(tr){
+      postLeaderboard();
+      mwTrophyToast(tr);
+      var uid=getLS('nmw_uid','');
+      if(uid){
+        fetch(POLL_API+'/trophy/unlock',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({uid:uid,trophy_id:id,trophy_name:tr.name||id,trophy_icon:tr.icon||'trophy'})
+        }).catch(function(){});
+      }
+    }
+  }
+}
+function checkTrophies(){
+  var streak=parseInt(getLS('nmw_streak','0'))||0;
+  var preds=getJSON('nmw_pred_log',[]);
+  var correct=preds.filter(function(p){return p.result==='W';}).length;
+  var polls=parseInt(getLS('nmw_poll_count','0'))||0;
+  var guessCorrect=parseInt(getLS('nmw_guess_correct_count','0'))||0;
+  var club=getLS('nmw_followed_team','');
+  var country=getLS('nmw_followed_country','');
+  // Auto-award based on state
+  awardTrophy('first_visit');
+  if(club)awardTrophy('follow_club');
+  if(country)awardTrophy('follow_country');
+  if(club&&country)awardTrophy('follow_both');
+  if(preds.length>=1)awardTrophy('first_prediction');
+  if(preds.length>=10)awardTrophy('predictions_10');
+  if(preds.length>=50)awardTrophy('predictions_50');
+  if(preds.length>=100)awardTrophy('predictions_100');
+  if(correct>=5)awardTrophy('correct_5');
+  if(correct>=25)awardTrophy('correct_25');
+  if(polls>=1)awardTrophy('first_poll');
+  if(polls>=5)awardTrophy('polls_5');
+  if(guessCorrect>=1)awardTrophy('guess_correct');
+  if(guessCorrect>=10)awardTrophy('guess_correct_10');
+  if(streak>=3)awardTrophy('streak_3');
+  if(streak>=7)awardTrophy('streak_7');
+  if(streak>=30)awardTrophy('streak_30');
+  if(streak>=365)awardTrophy('streak_365');
+  if(preds.length>=20&&correct/preds.length>=0.7)awardTrophy('accuracy_70');
+  // Perfect week — 7-day streak
+  if(streak>=7)awardTrophy('perfect_week');
+  // Guess elite 10 — check localStorage for elite guess count
+  var eliteGuess=parseInt(getLS('nmw_guess_elite_count','0'))||0;
+  if(eliteGuess>=10)awardTrophy('guess_elite_10');
+  // Top 500/100 checked via leaderboard rank stored locally
+  var myRank=parseInt(getLS('nmw_leaderboard_rank','0'))||0;
+  if(myRank>0&&myRank<=500)awardTrophy('top_500');
+  if(myRank>0&&myRank<=100)awardTrophy('top_100_trophy');
+  // All common
+  var commonIds=['first_visit','follow_club','follow_country','first_prediction','first_poll','first_trivia'];
+  var earned=getEarnedTrophies();
+  if(commonIds.every(function(id){return earned.indexOf(id)!==-1;}))awardTrophy('all_common');
+}
+
+function reconcileSettled(done){
+  fetch('/data/settled_predictions.json?'+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(s){
+      s=s||{};
+      var preds=getJSON('nmw_pred_log',[]);
+      var changed=false;
+      preds.forEach(function(p){
+        var e=s[p.poll_id];
+        if(!e||!e.result)return;
+        if(p.result===null||p.result===undefined||!p.score){
+          p.result=(String(e.result).toLowerCase()===String(p.pick||'').toLowerCase())?'W':'L';
+          p.score=e.score||'';
+          p.final=e.result;
+          changed=true;
+        }
+      });
+      if(changed)setLS('nmw_pred_log',JSON.stringify(preds));
+      if(done)done(changed);
+    })
+    .catch(function(){if(done)done(false);});
+}
+function postLeaderboard(){
+  var uid=getLS('nmw_uid','anon');
+  var name=getLS('nmw_username','Anonymous');
+  var preds=getJSON('nmw_pred_log',[]);
+  var correct=preds.filter(function(p){return p.result==='W';}).length;
+  fetch(POLL_API+'/leaderboard',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({uid:uid,name:name,predictions:preds.length,correct:correct,trophyPoints:getTrophyPoints()})
+  }).catch(function(){});
+}
+(function(){
+  function boot(){reconcileSettled(function(changed){if(changed&&typeof renderPage==='function'){try{renderPage();}catch(e){}}});}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',boot);}else{boot();}
+})();
+
+// ── Avatar upload ─────────────────────────────────────────────────────────────
+function mwAvatarUpload(){
+  var inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+  inp.onchange=function(ev){
+    var file=ev.target.files[0];if(!file)return;
+    var reader=new FileReader();
+    reader.onload=function(re){
+      var img=new Image();
+      img.onload=function(){
+        var canvas=document.createElement('canvas');canvas.width=150;canvas.height=150;
+        var ctx=canvas.getContext('2d');
+        var s=Math.min(img.width,img.height);
+        ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,150,150);
+        var b64=canvas.toDataURL('image/jpeg',0.85);
+        setLS('nmw_avatar_photo',b64);
+        var av=document.getElementById('me-avatar');
+        if(av){av.style.backgroundImage='url('+b64+')';av.style.backgroundSize='cover';av.style.backgroundPosition='center';av.innerHTML='';}
+      };img.src=re.target.result;
+    };reader.readAsDataURL(file);
+  };inp.click();
+}
+window.mwAvatarUpload=mwAvatarUpload;
+
+function mwExportData(){
+  try{var out={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf('nmw')===0)out[k]=localStorage.getItem(k);}
+  var blob=new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='90minwaffle-my-data.json';a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);},1000);}catch(e){}
+}
+window.mwExportData=mwExportData;
+
+// ── Render helpers ────────────────────────────────────────────────────────────
+function sectionHdr(label){return '<div class="sec-hdr">'+label+'</div>';}
+function card(content,extra){return '<div class="card'+(extra?' '+extra:'')+'">'+content+'</div>';}
+
+// ── Zone 1: Identity header ───────────────────────────────────────────────────
+function renderIdentity(streak){
+  var uname=getLS('nmw_username','FootballFan');
+  var photo=getLS('nmw_avatar_photo','');
+  var club=getLS('nmw_followed_team','');
+  var country=getLS('nmw_followed_country','');
+  var uid=getLS('nmw_uid','');
+  var avStyle=photo?'background-image:url('+photo+');background-size:cover;background-position:center;':'';
+  var chips='';
+  if(club)chips+='<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:var(--accent-dim);border:1px solid rgba(61,220,132,0.3);color:var(--accent);font-size:0.72rem;font-weight:700;">&#x26BD; '+mwEsc(club)+'</span>';
+  if(country)chips+='<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;background:var(--blue-dim);border:1px solid rgba(34,211,238,0.3);color:var(--blue);font-size:0.72rem;font-weight:700;">&#x1F30D; '+mwEsc(country)+'</span>';
+  return '<div class="profile-hero">'
+    +'<div id="me-avatar" onclick="mwAvatarUpload()" style="width:80px;height:80px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 10px;cursor:pointer;'+avStyle+'">'+(photo?'':'&#x26BD;')+'</div>'
+    +'<div style="font-size:0.68rem;color:var(--text-dim);margin-bottom:8px;">Tap avatar to change photo</div>'
+    +'<div class="profile-username">'+mwEsc(uname)+'</div>'
+    +''
+    +(chips?'<div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px;">'+chips+'</div>':'')
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;">'
+    +'<div class="stat-box accent"><div class="stat-box-val">'+streak+'</div><div class="stat-box-lbl">Day streak</div></div>'
+    +'<div class="stat-box warn"><div class="stat-box-val">'+getTrophyPoints()+'</div><div class="stat-box-lbl">Trophy Pts</div></div>'
+    +'<div class="stat-box blue"><div id="me-pred-count" class="stat-box-val">'+getJSON('nmw_pred_log',[]).length+'</div><div class="stat-box-lbl">Predictions</div></div>'
+    +'</div>'
+    +'</div>';
+}
+
+// ── Zone 2: Your Club + Country ───────────────────────────────────────────────
+function renderClubCountry(){
+  var club=getLS('nmw_followed_team','');
+  var country=getLS('nmw_followed_country','');
+  if(!club&&!country)return sectionHdr('Your Club & Country')+'<div class="card"><div class="empty-state">No club or country followed yet.<br><a href="/?ob=reset" style="color:var(--accent);font-weight:700;">Set them up</a></div></div>';
+  var html=sectionHdr('Your Club & Country');
+  if(club){
+    html+='<div class="card" id="me-club-card">'
+      +'<div class="club-row"><div style="width:46px;height:46px;border-radius:8px;background:var(--bg-elev);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;" id="me-club-badge">&#x26BD;</div>'
+      +'<div><div class="club-name">'+mwEsc(club)+'</div><div class="club-league" id="me-club-league">Loading...</div></div></div>'
+      +'<div class="club-fixture" id="me-club-fixture">Loading season stats...</div>'
+      +'<div class="club-actions"><button class="club-btn" onclick="if(confirm(\'Unfollow \'+\''+mwEsc(club)+'\'+\'?\')){{localStorage.removeItem(\'nmw_followed_team\');renderPage();}}">Unfollow</button>'
+      +'<a class="club-btn primary" href="/club/?slug='+(window._meClubSlug||_meSlug(club))+'">View Club</a></div>'
+      +'</div>';
+    // Async fill club details
+    setTimeout(function(){fillClubDetails(club);},100);
+  if(country){setTimeout(function(){getBadge(country,function(b){var img=document.getElementById("me-country-img");var fl=document.getElementById("me-country-flag");if(img&&b){img.src=b;img.style.display="block";if(fl)fl.style.display="none";}});},150);}
+  }
+  if(country){
+    html+='<div class="card" style="margin-top:0;">'
+      +'<div class="club-row"><div id="me-country-badge" style="width:46px;height:46px;border-radius:8px;overflow:hidden;background:var(--bg-elev);display:flex;align-items:center;justify-content:center;"><img id="me-country-img" style="width:100%;height:100%;object-fit:contain;display:none"><span id="me-country-flag" style="font-size:1.5rem;">&#x1F30D;</span></div>'
+      +'<div><div class="club-name">'+mwEsc(country)+'</div><div id="me-nation-meta" class="club-league">National Team</div></div></div>'
+      +'<div id="me-nation-fixture" style="padding:6px 0 2px"></div>'
+      +'<div class="club-actions"><button class="club-btn" onclick="if(confirm(\'Unfollow \'+\''+mwEsc(country)+'\'+\'?\')){{localStorage.removeItem(\'nmw_followed_country\');renderPage();}}">Unfollow</button>'
+      +'<a class="club-btn primary" href="/nations/team/'+_nSlug(country)+'/">View Nation</a></div>'
+      +'</div>';
+    setTimeout(function(){fillNationDetails(country);},150);
+  }
+  return html;
+}
+
+function _resolveClubSlug(name,cb){
+  function _s(n){return(n||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+  var ds=_s(name);
+  function _match(list){
+    var nl=name.toLowerCase();
+    var m=list.find(function(c){
+      return c.name.toLowerCase()===nl||(c.short_name&&c.short_name.toLowerCase()===nl)||c.slug===ds||c.slug===ds+'-fc'||c.slug===ds+'-afc';
+    });
+    return m?m.slug:ds;
+  }
+  if(window._clubsIndex){cb(_match(window._clubsIndex));return;}
+  fetch('/data/clubs/index.json?'+Date.now()).then(function(r){return r.json();}).then(function(d){
+    window._clubsIndex=d.clubs||d;cb(_match(window._clubsIndex));
+  }).catch(function(){cb(ds);});
+}
+function _meSlug(name){return(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+function mwKo(f,w){try{var d=new Date(f.kickoff_utc);if(isNaN(d))throw 0;return w==='d'?d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'Europe/London'}):d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'});}catch(e){return w==='d'?(f.date_label||''):(f.time_label||'');}}
+function fillClubDetails(club){
+  _resolveClubSlug(club,function(slug){
+  window._meClubSlug=slug;/*VIEWCLUB_FIX*/var _vb=document.querySelector('a.club-btn.primary');if(_vb)_vb.href='/club/?slug='+slug;
+  fetch('/data/clubs/'+slug+'.json?'+Date.now())
+  .then(function(r){if(!r.ok)throw new Error('not found');return r.json();})
+  .then(function(cd){
+    var bdg=document.getElementById('me-club-badge');
+    if(bdg&&cd.badge_url)bdg.innerHTML='<img src="'+mwEsc(cd.badge_url)+'" style="width:46px;height:46px;object-fit:contain;" onerror="this.style.display=\'none\'">';
+    var lg=document.getElementById('me-club-league');
+    if(lg)lg.textContent=(cd.league_name||cd.league_code||'');
+    var el=document.getElementById('me-club-fixture');
+    if(!el)return;
+    var nf=cd.next_fixture;
+    var last5=(cd.form&&cd.form.last5)||[];
+    var st=cd.season_stats||{};
+    var rr=cd.recent_results||[];
+    var pos=cd.standing&&cd.standing.position;
+    var dotMap={
+      W:'<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;background:rgba(61,220,132,0.15);color:#3DDC84">W</span>',
+      D:'<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;background:rgba(250,204,21,0.15);color:#FACC15">D</span>',
+      L:'<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;background:rgba(229,72,77,0.15);color:#E5484D">L</span>'
+    };
+    var dots=last5.map(function(r){return dotMap[r]||'';}).join('');var cur=cd.current;if(cur&&cur.position){pos=cur.position;if(cur.form&&cur.form.length){last5=cur.form;dots=last5.map(function(r){return dotMap[r]||'';}).join('');}st={season:2026,league_code:cur.league_code,played:cur.played,wins:cur.won,draws:cur.drawn,losses:cur.lost,goals_for:cur.gf,goals_ag:cur.ga,points:cur.points};}rr=rr.filter(function(x){return x.kickoff_utc&&x.kickoff_utc>='2026-07-01'&&x.status==='FINISHED';});
+    var html='';
+    if(st.season){
+      var gd=(st.goals_for||0)-(st.goals_ag||0);
+      var gdStr=(gd>=0?'+':'')+gd;
+      html+='<div style="font-size:0.68rem;color:var(--accent);font-weight:700;margin-bottom:6px">'+(cd.league_name||'')+(pos?' &middot; #'+pos:'')+' &middot; '+st.season+'/'+String(st.season+1).slice(2)+'</div>';
+    }
+    if(dots){
+      html+='<div style="display:flex;align-items:center;gap:4px;margin-bottom:8px"><span style="font-size:0.62rem;color:var(--text-dim);font-weight:600;min-width:32px">Form</span><div style="display:flex;gap:2px">'+dots+'</div></div>';
+    }
+    if(nf){
+      var isHome=nf.is_home;
+      var opp=isHome?nf.away:nf.home;
+      var venue=isHome?'vs':'@';
+      var comp=nf.competition||nf.league||'';
+      html+='<div style="padding:8px 0;border-top:1px solid var(--border);margin-bottom:6px">'
+        +'<div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-dim);margin-bottom:4px">Next fixture</div>'
+        +'<div style="font-size:0.85rem;font-weight:700;color:var(--text)">'+venue+' '+mwEsc(opp)+'</div>'
+        +'<div style="font-size:0.7rem;color:var(--text-dim);margin-top:2px">'+mwEsc(mwKo(nf,'d'))+' &middot; '+mwEsc(mwKo(nf,'t'))+(comp?' &middot; '+mwEsc(comp):'')+'</div>'
+        +'</div>';
+    } else {
+      html+='<div style="padding:6px 0;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-dim)">No fixture scheduled yet</div>';
+    }
+    if(rr.length){
+      var lr=rr[0];
+      var lrHome=lr.is_home;
+      var lrOpp=lrHome?lr.away:lr.home;
+      var lrScore=lrHome?(lr.home_score+'-'+lr.away_score):(lr.away_score+'-'+lr.home_score);
+      var myG=lrHome?lr.home_score:lr.away_score;
+      var opG=lrHome?lr.away_score:lr.home_score;
+      var lrRes=myG>opG?'W':myG<opG?'L':'D';
+      var resCol=lrRes==='W'?'#3DDC84':lrRes==='L'?'#E5484D':'#FACC15';
+      html+='<div style="font-size:0.72rem;color:var(--text-dim);padding-top:4px">Last: <b style="color:'+resCol+'">'+lrRes+'</b> '+lrScore+' '+mwEsc(lrHome?'vs ':'@ ')+mwEsc(lrOpp)+' <span style="color:var(--text-dim)">&middot; '+mwEsc(lr.date_label)+'</span></div>';
+    }
+    el.innerHTML=html;if(nf&&nf.kickoff_utc){var _sl=function(x){return String(x||'').replace(/\b(A?FC|CF)\b/gi,' ').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');};var _pu='/preview/'+_sl(nf.home)+'-vs-'+_sl(nf.away)+'-'+String(nf.kickoff_utc).slice(0,10)+'/';fetch(_pu,{method:'HEAD'}).then(function(r){if(r.ok&&!document.getElementById('me-pv-link')){var a=document.createElement('a');a.id='me-pv-link';a.href=_pu;a.textContent='Free model preview \u2192';a.style.cssText='display:inline-block;margin-top:8px;font-size:0.78rem;font-weight:700;color:var(--accent);text-decoration:none';el.appendChild(a);}}).catch(function(){});}
+  })
+  .catch(function(){
+    var el=document.getElementById('me-club-fixture');
+    if(el)el.textContent='Tap to view club page';
+  });
+  });
+}
+
+
+function _nSlug(n){return(n||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+function mwNNorm(s){return String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]/g,'');}
+function mwNationCurrent(country){
+  fetch('/data/nations_current.json?'+Math.floor(Date.now()/600000)).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d||!d.teams)return; var t=d.teams[mwNNorm(country)]; if(!t)return;
+    var meta=document.getElementById('me-nation-meta'); if(meta)meta.textContent=t.competition||'National team';
+    var el=document.getElementById('me-nation-fixture'); if(!el)return; var h='';
+    var nf=t.next;
+    if(nf){var home=mwNNorm(nf.home)===mwNNorm(country);var dt=new Date(nf.kickoff_utc);
+      h+='<div style="padding:8px 0;border-top:1px solid var(--border);margin-bottom:4px"><div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-dim);margin-bottom:4px">Next fixture</div>'
+       +'<div style="font-size:0.85rem;font-weight:700;color:var(--text)">'+(home?'vs ':'@ ')+mwEsc(home?nf.away:nf.home)+'</div>'
+       +'<div style="font-size:0.7rem;color:var(--text-dim);margin-top:2px">'+dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'Europe/London'})+' \u00b7 '+dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'})+(nf.competition?' \u00b7 '+mwEsc(nf.competition):'')+'</div></div>';
+    } else { h+='<div style="padding:6px 0;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-dim)">No international fixture scheduled yet</div>'; }
+    var f=t.form||[];
+    if(f.length){var C={W:['rgba(61,220,132,0.15)','#3DDC84'],D:['rgba(250,204,21,0.15)','#FACC15'],L:['rgba(229,72,77,0.15)','#E5484D']};
+      h+='<div style="display:flex;align-items:center;gap:4px;margin:6px 0"><span style="font-size:0.62rem;color:var(--text-dim);font-weight:600;min-width:32px">Form</span>'+f.map(function(x){var c=C[x]||C.D;return '<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:800;background:'+c[0]+';color:'+c[1]+'">'+x+'</span>';}).join('')+'</div>';}
+    var lr=t.last;
+    if(lr){var col=lr.result==='W'?'#3DDC84':lr.result==='L'?'#E5484D':'#FACC15';
+      h+='<div style="font-size:0.72rem;color:var(--text-dim);padding-top:4px">Last: <b style="color:'+col+'">'+lr.result+'</b> '+lr.score+' '+(lr.is_home?'vs ':'@ ')+mwEsc(lr.opponent)+' \u00b7 '+new Date(lr.kickoff_utc).toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'Europe/London'})+(lr.competition?' \u00b7 '+mwEsc(lr.competition):'')+'</div>';}
+    el.innerHTML=h;
+  }).catch(function(){});
+}
+function fillNationDetails(country){
+  var slug=_nSlug(country);
+  fetch('/api/nation?slug='+slug+'&t='+Date.now())
+  .then(function(r){return r.json();})
+  .then(function(nd){
+    if(nd.crest){var img=document.getElementById('me-country-img');var fl=document.getElementById('me-country-flag');if(img){img.src=nd.crest;img.style.display='block';if(fl)fl.style.display='none';}}
+    var meta=document.getElementById('me-nation-meta');
+    if(meta&&Date.now()>Date.parse('2026-07-20')){meta.textContent='National team';}else if(meta&&nd.group){var st=nd.standing||{};meta.textContent=nd.group+(st.played!=null?' \u00b7 '+st.won+'W '+st.drawn+'D '+st.lost+'L \u00b7 '+st.points+'pts':'');}
+    var el=document.getElementById('me-nation-fixture');
+    if(!el)return;
+    var html='';
+    var nf=nd.next_fixture;if(nf&&nf.kickoff_utc&&new Date(nf.kickoff_utc)<new Date())nf=null;
+    if(nf){
+      var isHome=nf.home===country;
+      var opp=isHome?nf.away:nf.home;
+      var venue=isHome?'vs':'@';
+      var dt=nf.kickoff_utc?new Date(nf.kickoff_utc):null;
+      var dtStr=dt?dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'Europe/London'})+' \u00b7 '+dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'}):'';
+      html+='<div style="padding:8px 0;border-top:1px solid var(--border);margin-bottom:4px"><div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-dim);margin-bottom:4px">Next fixture</div><div style="font-size:0.85rem;font-weight:700;color:var(--text)">'+venue+' '+opp+'</div>'+(dtStr?'<div style="font-size:0.7rem;color:var(--text-dim);margin-top:2px">'+dtStr+' \u00b7 WC 2026</div>':'')+'</div>';
+    }
+    var lr=nd.last_result;
+    if(lr){
+      var resCol=lr.result==='W'?'#3DDC84':lr.result==='L'?'#E5484D':'#FACC15';
+      var score=lr.home?(lr.team_goals+'-'+lr.opp_goals):(lr.opp_goals+'-'+lr.team_goals);
+      var venue2=lr.home?'vs':'@';
+      var lrDt=lr.kickoff_utc?new Date(lr.kickoff_utc).toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'Europe/London'}):'';
+      html+='<div style="font-size:0.72rem;color:var(--text-dim);padding-top:4px">Last: <b style="color:'+resCol+'">'+lr.result+'</b> '+score+' '+venue2+' '+lr.opponent+(lrDt?' \u00b7 '+lrDt:'')+'</div>';
+    }
+    el.innerHTML=html||'<div style="font-size:0.72rem;color:var(--text-dim);padding:4px 0">Next international fixture not announced yet</div>';mwNationCurrent(country);
+  })
+  .catch(function(){});
+}
+
+// ── Zone 3: Today in Football ──────────────────────────────────────────────────
+function renderTodayInFootball(eng){
+  var html=sectionHdr('Today in Football');
+  if(!eng){return html+'<div class="card"><div class="empty-state">Loading...</div></div>';}
+  // On this day
+  var otd=eng.on_this_day||[];
+  if(otd.length){
+    var pick=otd[Math.floor(Math.random()*otd.length)];
+    html+='<div class="card" style="border-left:3px solid var(--accent);">'
+      +'<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:6px;">&#x1F4C5; On This Day</div>'
+      +'<div style="font-size:0.88rem;font-weight:600;line-height:1.5;">'+mwEsc(pick.event||pick.fact||'')+'</div>'
+      +(pick.year?'<div style="font-size:0.7rem;color:var(--text-dim);margin-top:4px;">'+pick.year+'</div>':'')
+      +'</div>';
+  }
+  // Monday quote
+  if(eng.monday_quote){
+    var q=eng.monday_quote;
+    html+='<div class="card" style="background:var(--bg-elev);">'
+      +'<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--warn);margin-bottom:8px;">&#x1F4AC; Quote</div>'
+      +'<div style="font-size:0.9rem;font-style:italic;line-height:1.6;color:var(--text);">"'+mwEsc(q.quote||'')+'"</div>'
+      +(q.author?'<div style="font-size:0.72rem;color:var(--text-muted);margin-top:6px;font-weight:600;">&mdash; '+mwEsc(q.author)+'</div>':'')
+      +'</div>';
+  }
+  // World Cup fact
+  if(false&&eng.world_cup_fact){
+    var wc=eng.world_cup_fact;
+    html+='<div class="card">'
+      +'<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--orange);margin-bottom:6px;">&#x1F3C6; World Cup Fact</div>'
+      +'<div style="font-size:0.85rem;line-height:1.5;">'+mwEsc(wc.fact||wc.text||'')+'</div>'
+      +'</div>';
+  }
+  return html;
+}
+
+// ── Zone 4: Guess the Player ───────────────────────────────────────────────────
+function renderGuessPlayer(eng){
+  var html=sectionHdr('Daily Game: Guess the Player');
+  if(!eng||!eng.guess_player){return html+'<div class="card"><div class="empty-state">No game today.</div></div>';}
+  var gp=eng.guess_player;
+  var key=new Date().toISOString().slice(0,10);
+  var saved=getLS('nmw_guess_'+key,'');
+  var clues=gp.clues||[];
+  var answer=gp.answer||'';
+  var hint=gp.hint||'';
+
+  if(saved){
+    var res=JSON.parse(saved);
+    var scoreLabel={elite:'Elite &#x1F451; 3pts',sharp:'Sharp &#x1F525; 2pts',got:'Got There &#x2705; 1pt',miss:'Missed &#x274C; 0pts'};
+    html+='<div class="card">'
+      +'<div style="text-align:center;padding:10px 0;">'
+      +'<div style="font-size:1.8rem;margin-bottom:6px;">'+(res.score==='miss'?'&#x274C;':'&#x2705;')+'</div>'
+      +'<div style="font-size:0.72rem;color:var(--text-muted);margin-bottom:4px;">The answer was</div>'
+      +'<div style="font-size:1.1rem;font-weight:800;color:var(--accent);">'+mwEsc(answer)+'</div>'
+      +'<div style="font-size:0.8rem;font-weight:700;margin-top:8px;">'+(scoreLabel[res.score]||'')+'</div>'
+      +'</div>';
+    // Community results
+    html+='<div id="me-guess-community" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);"><div style="font-size:0.72rem;color:var(--text-dim);">Loading community results...</div></div>';
+    html+='</div>';
+    setTimeout(function(){loadGuessCommunity(gp._key||key);},200);
+    return html;
+  }
+
+  // Active game — show clues progressively
+  var clueState=parseInt(getLS('nmw_guess_clue_'+key,'0'));
+  html+='<div class="card">'
+    +'<div style="font-size:0.72rem;color:var(--text-dim);margin-bottom:10px;">Fewer clues used = more points. One attempt only.</div>';
+  for(var i=0;i<=Math.min(clueState,clues.length-1);i++){
+    html+='<div style="padding:8px 12px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;font-size:0.85rem;">'
+      +'<span style="font-size:0.6rem;color:var(--text-dim);font-weight:700;text-transform:uppercase;letter-spacing:1px;">Clue '+(i+1)+'</span><br>'+mwEsc(clues[i])+'</div>';
+  }
+  if(clueState<clues.length-1){
+    html+='<button onclick="var k=\'nmw_guess_clue_'+key+'\';localStorage.setItem(k,'+(clueState+1)+');renderPage();" '
+      +'style="width:100%;padding:9px;border-radius:10px;border:1px solid var(--border);background:none;color:var(--text-muted);font-size:0.8rem;cursor:pointer;font-family:inherit;margin-bottom:8px;">Next Clue (lose a point)</button>';
+  }
+  if(hint&&clueState>=1){
+    html+='<div style="font-size:0.75rem;color:var(--orange);margin-bottom:8px;">&#x1F4A1; Hint: '+mwEsc(hint)+'</div>';
+  }
+  html+='<input id="me-guess-input" type="text" placeholder="Type player name..." autocomplete="off" '
+    +'style="width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg-card);color:var(--text);font-size:0.9rem;font-family:inherit;margin-bottom:8px;">'
+    +'<button onclick="submitGuess(\''+mwEsc(answer)+'\',\''+mwEsc(gp._key||key)+'\','+clueState+')" '
+    +'style="width:100%;padding:11px;border-radius:10px;border:none;background:var(--accent);color:#000;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:inherit;">Submit Answer</button>'
+    +'</div>';
+  return html;
+}
+
+function submitGuess(answer,key,clueUsed){
+  var inp=document.getElementById('me-guess-input');
+  if(!inp)return;
+  var guess=(inp.value||'').trim().toLowerCase();
+  var ans=answer.toLowerCase();
+  function norm(s){return s.toLowerCase().replace(/[^a-z]/g,'');}
+  function fuzzy(a,b){if(a===b)return true;if(b.indexOf(a)!==-1&&a.length>3)return true;var na=norm(a),nb=norm(b);if(na===nb)return true;if(nb.indexOf(na)!==-1&&na.length>3)return true;var dist=0;var len=Math.max(na.length,nb.length);for(var i=0;i<Math.min(na.length,nb.length);i++){if(na[i]!==nb[i])dist++;}dist+=Math.abs(na.length-nb.length);return dist<=2&&na.length>=4;}
+  var correct=fuzzy(guess,ans);
+  var score=correct?(clueUsed===0?'elite':clueUsed===1?'sharp':'got'):'miss';
+  var dateKey=new Date().toISOString().slice(0,10);
+  setLS('nmw_guess_'+dateKey,JSON.stringify({score:score,guess:inp.value,answer:answer}));
+  if(correct){
+    var gc=parseInt(getLS('nmw_guess_correct_count','0'))||0;
+    setLS('nmw_guess_correct_count',gc+1);
+    awardTrophy('guess_correct');
+    if(clueUsed===0){
+      var ec=parseInt(getLS('nmw_guess_elite_count','0'))||0;
+      setLS('nmw_guess_elite_count',ec+1);
+      if(ec+1>=10)awardTrophy('guess_elite_10');
+    }
+  }
+  // Post to community
+  fetch(POLL_API+'/community/guess/'+encodeURIComponent(key),{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({result:score})
+  }).catch(function(){});
+  renderPage();
+}
+
+function loadGuessCommunity(key){
+  var el=document.getElementById('me-guess-community');
+  if(!el)return;
+  fetch(POLL_API+'/community/guess/'+encodeURIComponent(key))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var total=(d.clue1||0)+(d.clue2||0)+(d.clue3||0)+(d.miss||0);
+      if(!total){el.innerHTML='<div style="font-size:0.72rem;color:var(--text-dim);">No community results yet.</div>';return;}
+      var pct=function(n){return total?Math.round(n/total*100):0;};
+      el.innerHTML='<div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px;">Community Results ('+total+' players)</div>'
+        +bar('Elite (clue 1)',pct(d.clue1),'var(--accent)')
+        +bar('Sharp (clue 2)',pct(d.clue2),'var(--warn)')
+        +bar('Got There (clue 3)',pct(d.clue3),'var(--blue)')
+        +bar('Missed',pct(d.miss),'var(--danger)');
+    }).catch(function(){if(el)el.innerHTML='';});
+}
+
+function bar(label,pct,colour){
+  return '<div style="margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-size:0.7rem;margin-bottom:2px;"><span>'+label+'</span><span>'+pct+'%</span></div>'
+    +'<div style="height:4px;background:var(--border-strong);border-radius:2px;"><div style="height:4px;width:'+pct+'%;background:'+colour+';border-radius:2px;"></div></div></div>';
+}
+
+// ── Zone 5: Community Pulse ────────────────────────────────────────────────────
+function renderCommunityPulse(eng){
+  var html=sectionHdr('Community Pulse');
+  if(!eng||!eng.daily_poll){return html+'<div class="card"><div class="empty-state">No poll today.</div></div>';}
+  var poll=eng.daily_poll;
+  var pkey=poll._key||new Date().toISOString().slice(0,10);
+  var voted=getLS('nmw_poll_vote_'+pkey,'');
+  html+='<div class="card" id="me-poll-card">';
+  html+='<div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px;">&#x1F5F3; Daily Poll</div>';
+  html+='<div style="font-size:0.92rem;font-weight:700;line-height:1.4;margin-bottom:14px;">'+mwEsc(poll.question||'')+'</div>';
+  if(voted){
+    html+='<div id="me-poll-results"><div style="font-size:0.72rem;color:var(--text-dim);">Loading results...</div></div>';
+    setTimeout(function(){loadPollResults(pkey);},200);
+  } else {
+    html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'
+      +'<button onclick="submitPoll(\''+mwEsc(pkey)+'\',\'yes\')" style="padding:11px;border-radius:10px;border:1px solid var(--accent);background:var(--accent-dim);color:var(--accent);font-size:0.88rem;font-weight:700;cursor:pointer;font-family:inherit;">&#x2705; Yes</button>'
+      +'<button onclick="submitPoll(\''+mwEsc(pkey)+'\',\'no\')" style="padding:11px;border-radius:10px;border:1px solid var(--danger);background:var(--danger-dim);color:var(--danger);font-size:0.88rem;font-weight:700;cursor:pointer;font-family:inherit;">&#x274C; No</button>'
+      +'</div>';
+  }
+  html+='</div>';
+  return html;
+}
+
+function submitPoll(key,vote){
+  setLS('nmw_poll_vote_'+key,vote);
+  var pc=parseInt(getLS('nmw_poll_count','0'))||0;
+  setLS('nmw_poll_count',pc+1);
+  awardTrophy('first_poll');
+  if(pc+1>=5)awardTrophy('polls_5');
+  fetch(POLL_API+'/community/poll/'+encodeURIComponent(key),{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({vote:vote})
+  }).catch(function(){});
+  var card=document.getElementById('me-poll-card');
+  if(card){
+    card.innerHTML+='<div id="me-poll-results" style="margin-top:10px;"><div style="font-size:0.72rem;color:var(--text-dim);">Loading results...</div></div>';
+    setTimeout(function(){loadPollResults(key);},300);
+  }
+}
+
+function loadPollResults(key){
+  var el=document.getElementById('me-poll-results');
+  if(!el)return;
+  fetch(POLL_API+'/community/poll/'+encodeURIComponent(key))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var yes=d.yes||0;var no=d.no||0;var total=yes+no;
+      var yp=total?Math.round(yes/total*100):0;
+      var np=total?Math.round(no/total*100):0;
+      el.innerHTML='<div style="font-size:0.7rem;font-weight:700;color:var(--text-dim);margin-bottom:8px;">'+total+' votes</div>'
+        +bar('Yes',yp,'var(--accent)')+bar('No',np,'var(--danger)');
+    }).catch(function(){if(el)el.innerHTML='';});
+}
+
+// ── Zone 6: Your Predictions ──────────────────────────────────────────────────
+function mwPredRowHtml(p){
+  var cls=p.result==='W'?'pred-result-w':p.result==='L'?'pred-result-p':p.result===null?'pred-result-p':'';
+  var icon=p.result==='W'?'&#x2705;':p.result==='L'?'&#x274C;':'&#x23F3;';
+  var label=p.match||((p.home&&p.away)?(p.home+' v '+p.away):'');
+  var sub=p.score?('FT '+p.score):(p.result===null?'Awaiting result':'');
+  return '<div class="pred-row"><div class="pred-match">'+mwEsc(label)
+    +(sub?'<div style="font-size:0.66rem;color:var(--text-dim);margin-top:1px;">'+mwEsc(sub)+'</div>':'')+'</div>'
+    +'<div class="pred-pick">'+mwEsc(p.pick||'')+'</div>'
+    +'<div class="'+cls+'" style="margin-left:8px;">'+icon+'</div></div>';
+}
+
+function renderPredTab(tab){
+  var preds=getJSON('nmw_pred_log',[]);
+  var wins=preds.filter(function(p){return p.result==='W';}).reverse();
+  var losses=preds.filter(function(p){return p.result==='L';}).reverse();
+  var list=tab==='losses'?losses:wins;
+  var rowsEl=document.getElementById('predRowsList');
+  var winBtn=document.getElementById('predTabWins');
+  var lossBtn=document.getElementById('predTabLosses');
+  if(winBtn)winBtn.className='pred-tab-btn'+(tab==='wins'?' active':'');
+  if(lossBtn)lossBtn.className='pred-tab-btn'+(tab==='losses'?' active':'');
+  if(!rowsEl)return;
+  if(!list.length){
+    rowsEl.innerHTML='<div class="empty-state" style="padding:18px 0;">No '+(tab==='losses'?'losses':'wins')+' yet.</div>';
+    return;
+  }
+  rowsEl.innerHTML=list.map(mwPredRowHtml).join('');
+  // Reset collapse state on tab switch
+  rowsEl.style.maxHeight='220px';
+  var sm=document.getElementById('predShowMore');
+  var btn=document.getElementById('predExpandBtn');
+  if(sm){sm.style.display=list.length>3?'block':'none';}
+  if(btn){btn.textContent='Show all ('+list.length+')';}
+  window._predExpanded=false;
+}
+
+function togglePredExpand(){
+  var rowsEl=document.getElementById('predRowsList');
+  var btn=document.getElementById('predExpandBtn');
+  var preds=getJSON('nmw_pred_log',[]);
+  if(!rowsEl||!btn)return;
+  window._predExpanded=!window._predExpanded;
+  if(window._predExpanded){
+    rowsEl.style.maxHeight=rowsEl.scrollHeight+'px';
+    btn.textContent='Show less';
+  } else {
+    rowsEl.style.maxHeight='220px';
+    var wins=preds.filter(function(p){return p.result==='W';}).length;
+    var losses=preds.filter(function(p){return p.result==='L';}).length;
+    var active=document.getElementById('predTabLosses')&&document.getElementById('predTabLosses').className.indexOf('active')>-1?losses:wins;
+    btn.textContent='Show all ('+active+')';
+  }
+}
+function renderPredictions(){
+  var preds=getJSON('nmw_pred_log',[]);
+  var html=sectionHdr('Your Predictions');
+  if(!preds.length){return html+'<div class="card"><div class="empty-state">No predictions yet.<br>Head to the <a href="/matches/" style="color:var(--accent);font-weight:700;">Matches</a> page to make your first call.</div></div>';}
+  var correct=preds.filter(function(p){return p.result==='W';}).length;
+  var acc=preds.length?Math.round(correct/preds.length*100):0;
+  html+='<div class="card">'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">'
+    +'<div class="stat-box accent"><div class="stat-box-val">'+acc+'%</div><div class="stat-box-lbl">Accuracy</div></div>'
+    +'<div class="stat-box"><div class="stat-box-val">'+preds.length+'</div><div class="stat-box-lbl">Total</div></div>'
+    +'<div class="stat-box"><div class="stat-box-val">'+correct+'</div><div class="stat-box-lbl">Correct</div></div>'
+    +'</div>'
+    +'<div style="display:flex;gap:8px;margin-bottom:10px;">'
+    +'<button type="button" id="predTabWins" class="pred-tab-btn active" onclick="renderPredTab(\'wins\')" style="flex:1;padding:8px 0;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-dim);font-weight:700;font-size:0.78rem;cursor:pointer;">Wins</button>'
+    +'<button type="button" id="predTabLosses" class="pred-tab-btn" onclick="renderPredTab(\'losses\')" style="flex:1;padding:8px 0;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-dim);font-weight:700;font-size:0.78rem;cursor:pointer;">Losses</button>'
+    +'</div>'
+    +'<div id="predRowsList" style="max-height:220px;overflow:hidden;position:relative;transition:max-height 0.3s ease;"></div>'
+    +'<div id="predShowMore" style="display:none;margin-top:8px;">'
+    +'<button type="button" onclick="togglePredExpand()" id="predExpandBtn" style="width:100%;padding:8px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--accent);font-weight:700;font-size:0.78rem;cursor:pointer;font-family:inherit;">Show all</button>'
+    +'</div>'
+    +'</div>'
+    +'<style>.pred-tab-btn.active{background:var(--accent-dim)!important;color:var(--accent)!important;border-color:var(--accent)!important;}</style>';
+  setTimeout(function(){renderPredTab('wins');},0);
+  return html;
+}
+
+// ── Zone 7: Trivia Deck ────────────────────────────────────────────────────────
+function renderTrivia(eng){
+  var html=sectionHdr('Trivia Deck');
+  if(!eng){return html+'<div class="card"><div class="empty-state">Loading...</div></div>';}
+  var items=[];
+  (eng.trivia||[]).forEach(function(t){items.push({type:'trivia',q:t.q,a:t.a});});
+  (eng.did_you_know||[]).forEach(function(d){items.push({type:'dyk',fact:d.fact,emoji:d.emoji||'&#x1F4A1;'});});
+  if(!items.length){return html+'<div class="card"><div class="empty-state">No cards today.</div></div>';}
+  html+='<div style="display:flex;flex-direction:column;gap:8px;">';
+  items.slice(0,6).forEach(function(it,idx){
+    if(it.type==='trivia'){
+      html+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;cursor:pointer;" onclick="var a=this.querySelector(\'.trivia-answer\'),t=this.querySelector(\'.trivia-tap\');if(a)a.style.display=\'block\';if(t)t.style.display=\'none\';">'
+        +'<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:6px;">&#x1F9E0; Trivia</div>'
+        +'<div style="font-size:0.88rem;font-weight:600;line-height:1.4;margin-bottom:8px;">'+mwEsc(it.q)+'</div>'
+        +'<div class="trivia-tap" style="font-size:0.72rem;color:var(--text-dim);">Tap to reveal answer</div>'
+        +'<div class="trivia-answer" style="display:none;padding:8px 10px;background:var(--accent-dim);border-radius:8px;font-size:0.85rem;font-weight:700;color:var(--accent);">'+mwEsc(it.a)+'</div>'
+        +'</div>';
+    } else {
+      html+='<div style="background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:14px 16px;">'
+        +'<div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--warn);margin-bottom:6px;">'+it.emoji+' Did You Know?</div>'
+        +'<div style="font-size:0.85rem;line-height:1.5;">'+mwEsc(it.fact)+'</div>'
+        +'</div>';
+    }
+  });
+  html+='</div>';
+  awardTrophy('first_trivia');
+  return html;
+}
+
+// ── Zone 8: Leaderboard ────────────────────────────────────────────────────────
+function renderLeaderboard(){
+  var html=sectionHdr('Global Leaderboard');
+  html+='<div class="card" id="me-lb-card">'
+    +'<div style="display:flex;gap:6px;margin-bottom:12px;">'
+    +'<button id="lb-tab-pred" onclick="showLbTab(\'pred\')" style="flex:1;padding:7px;border-radius:8px;border:none;background:var(--accent);color:#000;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Predictions</button>'
+    +'<button id="lb-tab-trophy" onclick="showLbTab(\'trophy\')" style="flex:1;padding:7px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--text-muted);font-size:0.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Trophies</button>'
+    +'</div>'
+    +'<div id="lb-content"><div style="font-size:0.8rem;color:var(--text-dim);">Loading leaderboard...</div></div>'
+    +'</div>';
+  setTimeout(function(){loadLeaderboard('pred');},300);
+  return html;
+}
+
+function showLbTab(tab){
+  var pred=document.getElementById('lb-tab-pred');
+  var trophy=document.getElementById('lb-tab-trophy');
+  // Reset both to inactive state first
+  if(pred){pred.style.background='none';pred.style.color='var(--text-muted)';pred.style.border='1px solid var(--border)';}
+  if(trophy){trophy.style.background='none';trophy.style.color='var(--text-muted)';trophy.style.border='1px solid var(--border)';}
+  // Set active tab
+  var activeBtn=tab==='pred'?pred:trophy;
+  if(activeBtn){activeBtn.style.background='var(--accent)';activeBtn.style.color='#000';activeBtn.style.border='none';}
+  loadLeaderboard(tab);
+}
+window.showLbTab=showLbTab;
+window.addEventListener('popstate',function(e){
+  var p=(e.state&&e.state.mePill)||(location.search.match(/[?&]p=([^&]+)/)||[])[1]||null;
+  if(p&&['trophies','leaderboard','saved'].indexOf(p)>-1){setMePill(p);}
+});
+(function(){
+  var p=(location.search.match(/[?&]p=([^&]+)/)||[])[1];
+  if(p&&['trophies','leaderboard','saved'].indexOf(p)>-1){
+    setTimeout(function(){setMePill(p);},100);
+  }
+})();
+
+function lbFmt(n){try{return Number(n).toLocaleString('en-GB');}catch(e){return String(n);}}
+function loadLeaderboard(tab){
+  var el=document.getElementById('lb-content');
+  if(!el)return;
+  if(!document.getElementById('lb-css')){
+    var st=document.createElement('style');st.id='lb-css';
+    st.textContent=[
+      '.lb-ban{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;margin-bottom:12px;background:var(--accent-dim);border:1px solid var(--accent);border-radius:12px}',
+      '.lb-ban .k{font-size:.68rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--accent)}',
+      '.lb-ban small{display:block;margin-top:3px;font-size:.72rem;color:var(--text-muted)}',
+      '.lb-ban .r{font-size:1.4rem;font-weight:900;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums;text-align:right}',
+      '.lb-ban .rr{text-align:right}',
+      '.lb-off{background:var(--bg-elev);border-color:var(--border-strong)}',
+      '.lb-off .k{color:var(--text-muted)}',
+      '.lb-prog{height:6px;border-radius:3px;background:var(--border-strong);overflow:hidden;margin-top:8px}',
+      '.lb-prog i{display:block;height:100%;background:var(--accent);border-radius:3px}',
+      '.lb-h,.lb-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:10px;padding:9px 6px}',
+      '.lb-h{font-size:.64rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border-strong)}',
+      '.lb-h span:last-child{text-align:right}',
+      '.lb-row{min-height:44px;border-bottom:1px solid var(--border)}',
+      '.lb-rk{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:800;color:var(--text-muted);font-variant-numeric:tabular-nums}',
+      '.lb-m1{background:var(--warn-dim);color:var(--warn)}.lb-m2{background:var(--border-strong);color:var(--text)}.lb-m3{background:var(--orange-dim);color:var(--orange)}',
+      '.lb-nm{font-size:.86rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+      '.lb-nm em{font-style:normal;font-size:.6rem;font-weight:800;margin-left:8px;padding:2px 7px;border-radius:999px;background:var(--accent);color:#000;text-transform:uppercase;letter-spacing:.4px;vertical-align:1px}',
+      '.lb-v{text-align:right}',
+      '.lb-v b{display:block;font-size:.9rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}',
+      '.lb-v small{display:block;font-size:.64rem;color:var(--text-dim)}',
+      '.lb-me{background:var(--accent-dim);border-radius:10px;border-bottom-color:transparent}',
+      '.lb-me .lb-nm{color:var(--accent);font-weight:800}',
+      '.lb-gap{text-align:center;color:var(--text-dim);letter-spacing:5px;font-size:.8rem;line-height:1;padding:2px 0}',
+      '.lb-note{margin-top:10px;font-size:.68rem;color:var(--text-dim)}',
+      '.lb-retry{margin-left:8px;padding:5px 12px;border-radius:8px;border:1px solid var(--border-strong);background:none;color:var(--text);font:inherit;font-size:.72rem;font-weight:700;cursor:pointer}'
+    ].join('');
+    document.head.appendChild(st);
+  }
+  var uid=getLS('nmw_uid','');
+  fetch(POLL_API+'/leaderboard?uid='+encodeURIComponent(uid),{cache:'no-cache'})
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(function(d){
+      var me=d.me||{},isPred=(tab==='pred');
+      var list=(isPred?d.predictions:d.trophies)||[];
+      if(!isPred)list=list.filter(function(u){return (u.trophyPoints||0)>0;});
+      var log=getJSON('nmw_pred_log',[]);
+      var myN=log.length,myC=log.filter(function(p){return p.result==='W';}).length;
+      var myPts=(typeof getTrophyPoints==='function')?(getTrophyPoints()||0):0;
+      var myName=getLS('nmw_username','You');
+      var myRank=isPred?me.pred_rank:(myPts>0?me.trophy_rank:null);
+      var total=isPred?me.pred_of:me.trophy_of;
+      if(isPred&&myRank){setLS('nmw_leaderboard_rank',String(myRank));}
+      var myIdx=-1;
+      for(var i=0;i<list.length;i++){if(me.pid&&list[i].pid===me.pid){myIdx=i;break;}}
+      function val(u){return isPred?(u.predictions?Math.round(u.correct/u.predictions*100)+'%':'--'):lbFmt(u.trophyPoints);}
+      function sub(u){return isPred?(u.correct||0)+'/'+(u.predictions||0)+' correct':'points';}
+      function row(u,rank,isMe){
+        return '<div class="lb-row'+(isMe?' lb-me':'')+'"><span class="lb-rk'+(rank<=3?' lb-m'+rank:'')+'">'+rank+'</span>'
+          +'<span class="lb-nm">'+mwEsc(u.name||'Anonymous')+(isMe?'<em>You</em>':'')+'</span>'
+          +'<span class="lb-v"><b>'+val(u)+'</b><small>'+sub(u)+'</small></span></div>';
+      }
+      var html='',mine=null;
+      if(myRank){
+        mine=(myIdx>=0)?list[myIdx]:{name:myName,predictions:myN,correct:myC,trophyPoints:myPts};
+        html+='<div class="lb-ban"><div><div class="k">Your global rank</div><small>'
+          +(isPred?(mine.correct||0)+' of '+(mine.predictions||0)+' correct ('+val(mine)+')':lbFmt(mine.trophyPoints)+' trophy points')
+          +'</small></div><div class="rr"><div class="r">#'+lbFmt(myRank)+'</div><small>of '+lbFmt(total)+(isPred?' qualified':' players')+'</small></div></div>';
+      }else if(isPred){
+        var need=Math.max(0,10-myN);
+        html+=need>0
+          ?'<div class="lb-ban lb-off"><div style="flex:1"><div class="k">Join the table</div><small>Make '+need+' more pick'+(need===1?'':'s')+' to get a rank ('+myN+' of 10 so far).</small><div class="lb-prog"><i style="width:'+Math.min(100,myN*10)+'%"></i></div></div></div>'
+          :'<div class="lb-ban lb-off"><div><div class="k">Join the table</div><small>Your rank appears once your picks have been counted. Check back after the next full-time whistle.</small></div></div>';
+      }else{
+        html+='<div class="lb-ban lb-off"><div><div class="k">Join the table</div><small>Earn your first trophy to appear here.</small></div></div>';
+      }
+      if(!list.length){el.innerHTML=html+'<div class="lb-note">No ranked players yet. Be the first!</div>';return;}
+      html+='<div class="lb-h"><span>#</span><span>Player</span><span>'+(isPred?'Accuracy':'Points')+'</span></div>';
+      list.slice(0,20).forEach(function(u,i){html+=row(u,i+1,i===myIdx);});
+      if(myRank&&(myIdx<0||myIdx>=20)){html+='<div class="lb-gap">&middot;&middot;&middot;</div>'+row(mine,myRank,true);}
+      html+='<div class="lb-note">'+(isPred?'Ranked by accuracy. You need 10 picks to qualify.':'Ranked by trophy points.')+' Top 20 shown.</div>';
+      el.innerHTML=html;
+    })
+    .catch(function(){el.innerHTML='<div class="lb-note">Could not load the leaderboard.<button class="lb-retry" onclick="loadLeaderboard(&quot;'+tab+'&quot;)">Retry</button></div>';});
+}
+
+// ── Zone 9: Trophy Cabinet ────────────────────────────────────────────────────
+function toggleTrophyAll(){
+  var d=document.getElementById('trophy-all');
+  var btn=document.getElementById('trophy-toggle-btn');
+  if(!d||!btn)return;
+  var open=d.style.display!=='none';
+  d.style.display=open?'none':'block';
+  btn.textContent=open?'Show all trophies':'Hide';
+}
+function renderTrophyCabinet(){
+  var earned=getEarnedTrophies();
+  var pts=getTrophyPoints();
+  var html=sectionHdr('Trophy Cabinet');
+  var earnedList=TROPHIES.filter(function(t){return earned.indexOf(t.id)!==-1;});
+  var totalTrophies=TROPHIES.filter(function(t){return !t.hidden;}).length;
+  html+='<div class="card" style="padding:14px 16px;">';
+  html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">'
+    +'<div style="font-size:0.78rem;font-weight:700;">&#x1F3C6; '+earnedList.length+' / '+totalTrophies+' earned</div>'
+    +'<div style="font-size:0.78rem;color:var(--accent);font-weight:700;">'+pts+' pts</div>'
+    +'</div>';
+  if(earnedList.length){
+    html+='<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;">';
+    earnedList.forEach(function(tr){
+      var colour=TIER_COLOURS[tr.tier]||'var(--accent)';
+      html+='<div title="'+mwEsc(tr.name)+'" style="display:flex;align-items:center;gap:5px;background:var(--bg-elev);border:1px solid '+colour+'44;border-radius:20px;padding:5px 10px;font-size:0.72rem;font-weight:700;color:'+colour+';">'
+        +'<span style="font-size:1.1rem;">'+tr.icon+'</span>'
+        +'<span>'+mwEsc(tr.name)+'</span>'
+        +'</div>';
+    });
+    html+='</div>';
+  }else{
+    html+='<div style="font-size:0.78rem;color:var(--text-dim);">No trophies yet — keep exploring!</div>';
+  }
+  html+='</div>';
+  html+='<button id="trophy-toggle-btn" onclick="toggleTrophyAll()" '
+    +'style="width:100%;margin:4px 0 8px;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-dim);font-size:0.78rem;font-weight:700;cursor:pointer;font-family:inherit;">Show all trophies</button>';
+  html+='<div id="trophy-all" style="display:none;">';
+  var byTier={common:[],uncommon:[],rare:[],elite:[],legendary:[]};
+  TROPHIES.forEach(function(t){if(byTier[t.tier])byTier[t.tier].push(t);});
+  ['common','uncommon','rare','elite','legendary'].forEach(function(tier){
+    var items=byTier[tier];if(!items.length)return;
+    var colour=TIER_COLOURS[tier];
+    html+='<div style="font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:'+colour+';padding:8px 2px 4px;">'+TIER_LABELS[tier]+' &mdash; '+items[0].pts+'pt each</div>';
+    html+='<div class="trophy-grid">';
+    items.forEach(function(tr){
+      var isEarned=earned.indexOf(tr.id)!==-1;
+      var isHidden=tr.hidden&&!isEarned;
+      html+='<div class="trophy-item'+(isEarned?'':' trophy-locked')+'" style="border-left:2px solid '+colour+';">'
+        +'<div class="trophy-icon">'+(isHidden?'&#x2753;':tr.icon)+'</div>'
+        +'<div><div class="trophy-name">'+(isHidden?'???':mwEsc(tr.name))+'</div>'
+        +'<div class="trophy-desc">'+(isHidden?'Hidden trophy':mwEsc(tr.desc))+'</div>'
+        +(isEarned?'<div style="font-size:0.6rem;color:'+colour+';margin-top:2px;font-weight:700;">EARNED &bull; '+tr.pts+'pt</div>':'')
+        +'</div></div>';
+    });
+    html+='</div>';
+  });
+  html+='</div>';
+  return html;
+}
+
+// ── Zone 10: Saved Items ──────────────────────────────────────────────────────
+function mwFavLabel(f){var t=String(f.title||f.label||'Saved item'),full=t.length,tag='';var m=t.match(/^([A-Z][A-Z \-]{2,24}):\s*(.+)$/);if(m){tag=m[1];t=m[2];}if(full>=48&&!/[.!?)'"]$/.test(t))t=t.replace(/\s+\S*$/,'')+'\u2026';return '<div class="fav-label">'+(tag?'<span style="display:block;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;color:var(--accent);margin-bottom:2px">'+mwEsc(tag)+'</span>':'')+mwEsc(t)+'</div>';}
+function renderSaved(){
+  var html=sectionHdr('Saved');
+  if(typeof window.nmwSavedHTML==='function')return html+window.nmwSavedHTML();   // NMW_ACTIONS_20261024
+  if(typeof window.getFavourites==='function'){
+    var favs=window.getFavourites()||[];
+    if(!favs.length){return html+'<div class="card"><div class="empty-state">Nothing saved yet.<br>Tap the bookmark icon on any card.</div></div>';}
+    html+='<div class="fav-list">';
+    favs.slice(0,10).forEach(function(f){
+      html+='<div class="fav-item"><div class="fav-icon">&#x1F4CE;</div>'
+        +mwFavLabel(f)
+        +(f.url?'<a class="fav-link" href="'+mwEsc(f.url)+'">View</a>':'')
+        +'</div>';
+    });
+    html+='</div>';
+  } else {
+    html+='<div class="card"><div class="empty-state">Saved items will appear here.</div></div>';
+  }
+  return html;
+}
+
+// ── Zone 11: Settings ─────────────────────────────────────────────────────────
+function renderSettings(){
+  var html=sectionHdr('Settings');
+  var club=getLS('nmw_followed_team','None');
+  var country=getLS('nmw_followed_country','None');
+  var theme=localStorage.getItem('theme')||'dark';
+  html+='<div class="card">'
+    +'<div class="setting-row"><span class="setting-label">Username</span><div style="display:flex;align-items:center;gap:8px;"><span class="setting-value">'+mwEsc(getLS('nmw_username','FootballFan'))+'</span></div></div>'
+    +'<div class="setting-row"><span class="setting-label">Club</span><span class="setting-value">'+mwEsc(club)+'</span></div>'
+    +'<div class="setting-row"><span class="setting-label">Country</span><span class="setting-value">'+mwEsc(country)+'</span></div>'
+    +'<div class="setting-row"><span class="setting-label">Theme</span><button class="setting-btn" onclick="toggleTheme()">Toggle '+( theme==='dark'?'Light':'Dark')+'</button></div>'
+    +'<div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;justify-content:space-between;width:100%;"><span class="setting-label">Push Notifications</span><div style="display:flex;align-items:center;gap:8px;"><span class="setting-value" id="push-status">Loading...</span><button class="setting-btn" id="push-btn" onclick="togglePushNotifications()">Enable</button></div></div>'
+    +'<button type="button" onclick="var d=document.getElementById(\'push-info-detail\'),a=document.getElementById(\'push-info-arrow\');if(d){var open=d.style.display!==\'none\';d.style.display=open?\'none\':\'\';if(a)a.textContent=open?\'▾\':\'▴\';}" style="background:none;border:none;color:var(--text-dim);font-size:0.7rem;font-weight:600;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px;">What you\'ll receive <span id="push-info-arrow">▾</span></button>'
+    +'<div id="push-info-detail" style="display:none;width:100%;padding:10px 12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);">'
+    +'<div id="push-types-list" style="display:""><div style="display:flex;flex-direction:column;gap:7px"><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">⚽</span><span><b>Goals</b> — instant alert when your team scores</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">🔴</span><span><b>Kick-off</b> — reminder when your match starts</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">🏁</span><span><b>Full Time</b> — final score as the whistle blows</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">🗳️</span><span><b>MOTM Poll</b> — 1-hour vote window opens at full time</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">⭐</span><span><b>MOTM Result</b> — community verdict with your pick vs winner</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">🎯</span><span><b>Predictions</b> — correct or not when the match ends</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">🏆</span><span><b>Trophies</b> — when you unlock a new achievement</span></div><div style="display:flex;align-items:flex-start;gap:8px;font-size:0.78rem"><span style="flex-shrink:0">📰</span><span><b>For You</b> — breaking news about your club</span></div></div><p style="font-size:0.63rem;color:var(--text-dim);margin-top:10px;line-height:1.5">Only alerts relevant to you — your team, your votes, your predictions. No spam, ever.</p></div>'
+    +'</div></div>'
+    +'<div class="setting-row"><span class="setting-label">Export Data</span><button class="setting-btn" onclick="mwExportData()">Download JSON</button></div>'
+    +'<div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><span class="setting-label">Recovery Code</span>'
+    +'<p style="font-size:0.72rem;color:var(--text-dim);line-height:1.4;margin:0;">Use this to recover your trophies and predictions if you switch devices or reinstall the app.</p>'
+    +'<div style="display:flex;align-items:center;gap:8px;width:100%;margin-top:4px;">'
+    +'<code id="recoveryCodeDisplay" style="font-size:1rem;font-weight:800;letter-spacing:0.12em;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:7px 12px;flex:1;text-align:center;">------</code>'
+    +'<button class="setting-btn" onclick="mwCopyRecoveryCode()">Copy</button>'
+    +'</div></div>'
+    +'<div class="setting-row" style="flex-direction:column;align-items:flex-start;gap:6px;"><span class="setting-label">Restore from Code</span>'
+    +'<div style="display:flex;align-items:center;gap:8px;width:100%;">'
+    +'<input id="restoreCodeInput" type="text" maxlength="6" placeholder="ABC123" style="font-size:0.9rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:7px 12px;flex:1;color:var(--text);">'
+    +'<button class="setting-btn" onclick="mwRestoreFromCode()">Restore</button>'
+    +'</div><span id="restoreStatusMsg" style="font-size:0.7rem;color:var(--text-dim);"></span></div>'
+    +'<div class="setting-row" style="border-bottom:none;"><span class="setting-label" style="color:var(--danger);">Reset Profile</span>'
+    +'<button class="setting-btn danger" onclick="if(confirm(\'Reset all your 90minWaffle data? This cannot be undone.\')){var keep=[\'nmw_uid\',\'nmw_recovery_code\'];var keys=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf(\'nmw\')===0&&keep.indexOf(k)===-1)keys.push(k);}keys.forEach(function(k){localStorage.removeItem(k);});location.reload();}">Reset</button></div>'
+    +'</div>'
+    +'';
+  return html;
+}
+
+// ── Main render ───────────────────────────────────────────────────────────────
+function renderPage(){
+  var streak=mwStreak();
+  checkTrophies();
+  var page=document.getElementById('page');
+  if(!page)return;
+  // Render structure first (sync), fill engagement async
+  var html='';
+  html+=renderIdentity(streak);
+  html+=renderClubCountry();
+  html+=renderPredictions();
+  // Me pills
+  html+='<div class="me-pills" id="mePills">'
+    +'<button class="me-pill active" onclick="setMePill(\'trophies\')">&#x1F3C6; Trophies</button>'
+    +'<button class="me-pill" onclick="setMePill(\'leaderboard\')">&#x1F30D; Leaderboard</button>'
+    +'<button class="me-pill" onclick="setMePill(\'saved\')">&#x1F516; Saved</button>'
+    +'</div>'
+    +'<div id="me-pill-content"></div>';
+  page.innerHTML=html;
+  setMePill('trophies');
+  document.getElementById('me-pill-content').insertAdjacentHTML('afterend','<div id="me-settings-zone">'+renderSettings()+'</div>');
+  postLeaderboard();
+  if(typeof mwLoadRecoveryCode==='function') setTimeout(mwLoadRecoveryCode,0);
+}
+var _mePill='trophies';
+function setMePill(pill){
+  _mePill=pill;
+  document.querySelectorAll('.me-pill').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('onclick').indexOf("'"+pill+"'")!==-1);
+  });
+  try{history.replaceState({mePill:pill},'',"?p="+pill+(location.hash||''));}catch(e){}   // NMW_ACTIONS_20261024: keep #alerts/#saved, one history entry
+  var el=document.getElementById('me-pill-content');
+  if(!el)return;
+  if(pill==='trophies') el.innerHTML=renderTrophyCabinet();
+  else if(pill==='leaderboard'){el.innerHTML=renderLeaderboard();postLeaderboard();}
+  else if(pill==='saved') el.innerHTML=renderSaved();
+  else if(pill==='settings'){ el.innerHTML=renderSettings(); if(typeof mwLoadRecoveryCode==='function') setTimeout(mwLoadRecoveryCode,0); }
+}
+window.renderPage=renderPage;
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',renderPage);}
+else{renderPage();}
+</script>
+<script>
+function toggleTheme(){
+  var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+
+var ALL_TROPHIES=[
+  {id:'first_match',icon:'&#128270;',name:'First Look',desc:'Viewed first match detail',trigger:'view_match',target:1},
+  {id:'match_watcher',icon:'&#128250;',name:'Match Watcher',desc:'Viewed 10 match details',trigger:'view_match',target:10},
+  {id:'first_prediction',icon:'&#127919;',name:'Bold Call',desc:'Made first prediction',trigger:'prediction',target:1},
+  {id:'predictor',icon:'&#128302;',name:'Predictor',desc:'Made 5 predictions',trigger:'prediction',target:5},
+  {id:'edge_follower',icon:'&#9889;',name:'Edge Follower',desc:'Visited the Edges page',trigger:'view_edges',target:1},
+  {id:'regular',icon:'&#127942;',name:'Regular',desc:'Visited 5 days in a row',trigger:'daily_visit',target:5},
+  {id:'true_colours',icon:'&#11088;',name:'True Colours',desc:'Followed your team',trigger:'follow',target:1},
+];
+
+function getLS(key,def){try{return localStorage.getItem(key)||def;}catch(e){return def;}}
+function getTrophies(){try{return JSON.parse(localStorage.getItem('nmw_trophies')||'[]');}catch(e){return[];}}
+function getActionCount(action){return parseInt(getLS('nmw_trophy_'+action,'0'));}
+
+function mwStreak(){var today=new Date().toISOString().slice(0,10);var last=getLS("nmw_last_visit","");var cur=parseInt(getLS("nmw_streak","0"))||0;if(last!==today){var y=new Date(Date.now()-86400000).toISOString().slice(0,10);cur=(last===y)?cur+1:1;try{localStorage.setItem("nmw_streak",cur);localStorage.setItem("nmw_last_visit",today);var lng=parseInt(getLS("nmw_longest_streak","0"))||0;if(cur>lng)localStorage.setItem("nmw_longest_streak",cur);localStorage.setItem("nmw_trophy_daily_visit",cur);}catch(e){}}return cur;}
+function mwExportData(){try{var out={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&k.indexOf("nmw")===0)out[k]=localStorage.getItem(k);}var blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="90minwaffle-my-data.json";a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);}catch(e){}}
+window.mwExportData=mwExportData;
+// ===== Tier 1 additions: Your Club + Closest Trophy =====
+
+function mwEsc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function mwFixtureWhen(iso){
+  if(!iso)return '';
+  try{
+    var dt=new Date(iso);
+    if(isNaN(dt.getTime()))return '';
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(dt).forEach(function(x){p[x.type]=x.value;});return p.weekday+' '+p.day+' '+p.month+', '+p.hour+':'+p.minute;
+  }catch(e){return '';}
+}
+
+// Closest trophy: nearest unearned by completion percent
+function closestTrophyHTML(){
+  var trophies=getTrophies();
+  var best=null;var bestPct=-1;
+  ALL_TROPHIES.forEach(function(tr){
+    if(trophies.includes(tr.id))return;
+    var count=getActionCount(tr.trigger);
+    if(count>=tr.target)return;
+    var pct=Math.min(100,count/tr.target*100);
+    if(pct>bestPct){bestPct=pct;best=tr;best._count=count;best._pct=Math.round(pct);}
+  });
+  if(!best){
+    return '<div class="sec-hdr">Closest Trophy</div><div class="card">'+
+      '<div class="ct-row"><div class="ct-icon">&#127942;</div>'+
+      '<div style="flex:1;min-width:0;"><div class="ct-label" style="color:var(--warn)">Complete</div>'+
+      '<div class="ct-name">All trophies unlocked</div>'+
+      '<div class="ct-desc">You have earned every badge. More coming soon.</div></div></div></div>';
+  }
+  var remain=best.target-best._count;
+  return '<div class="sec-hdr">Closest Trophy</div><div class="card">'+
+    '<div class="ct-row"><div class="ct-icon">'+best.icon+'</div>'+
+    '<div style="flex:1;min-width:0;"><div class="ct-label">Almost there</div>'+
+    '<div class="ct-name">'+best.name+'</div>'+
+    '<div class="ct-desc">'+best.desc+'</div></div></div>'+
+    '<div class="progress-bar"><div class="progress-fill" style="width:'+best._pct+'%"></div></div>'+
+    '<div class="progress-lbl">'+best._count+' / '+best.target+' &middot; '+remain+' to go</div></div>';
+}
+
+// Your Club: placeholder now, fetch fills it
+function clubCardShellHTML(followed){
+  if(!followed)return '';
+  return '<div class="sec-hdr">Your Club</div><div class="card" id="club-card">'+
+    '<div class="club-row"><div class="club-badge" id="club-badge-ph" style="display:flex;align-items:center;justify-content:center;background:var(--bg-elev);border-radius:10px;">&#9917;</div>'+
+    '<div><div class="club-name">'+mwEsc(followed)+'</div>'+
+    '<div class="club-league" id="club-league">Loading...</div></div></div>'+
+    '<div class="club-fixture" id="club-fixture" style="display:none;"></div>'+
+    '<div class="club-actions">'+
+    '<a class="club-btn primary" href="/matches/">View fixtures</a>'+
+    '<a class="club-btn" href="/matches/">Change team</a>'+
+    '</div></div>';
+}
+
+function fillClubCard(followed){
+  if(!followed)return;
+  fetch('/data/clubs.json').then(function(r){return r.json();}).then(function(d){
+    var clubs=(d&&d.all)?d.all:[];
+    var club=null;
+    for(var i=0;i<clubs.length;i++){if(clubs[i].name===followed){club=clubs[i];break;}}
+    if(club){
+      var ph=document.getElementById('club-badge-ph');
+      if(ph&&club.badge_url){
+        var img=document.createElement('img');
+        img.className='club-badge';
+        img.src=club.badge_url;
+        img.alt='';
+        img.onerror=function(){this.style.display='none';};
+        ph.parentNode.replaceChild(img,ph);
+      }
+      var lg=document.getElementById('club-league');
+      if(lg)lg.textContent=club.league_name||'';
+    } else {
+      var lg2=document.getElementById('club-league');
+      if(lg2)lg2.textContent='';
+    }
+  }).catch(function(e){
+    var lg=document.getElementById('club-league');
+    if(lg)lg.textContent='';
+  });
+  fetch('/data/fixtures.json').then(function(r){return r.json();}).then(function(d){
+    var live=(d&&d.live)?d.live:[];
+    var upcoming=(d&&d.upcoming)?d.upcoming:[];
+    var fx=null;var isLive=false;
+    for(var i=0;i<live.length;i++){if(live[i].home===followed||live[i].away===followed){fx=live[i];isLive=true;break;}}
+    if(!fx){for(var j=0;j<upcoming.length;j++){if(upcoming[j].home===followed||upcoming[j].away===followed){fx=upcoming[j];break;}}}
+    var box=document.getElementById('club-fixture');
+    if(!box)return;
+    if(fx){
+      var label=isLive?'Live now':'Next up';
+      var when=mwFixtureWhen(fx.kickoff_utc);
+      box.innerHTML=label+': <b>'+mwEsc(fx.home||'')+' vs '+mwEsc(fx.away||'')+'</b>'+(when?'<br>'+mwEsc(when):'');
+      fetch('/data/tip_upcoming.json?t='+Date.now()).then(function(r){return r.json();}).then(function(T){var t=T[(String(fx.home)+'|'+String(fx.away)).toLowerCase()];if(t){box.innerHTML+='<br><a href="'+t.path+'" style="display:inline-block;margin-top:6px;color:#22d3ee;font-weight:700;text-decoration:none"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true" style="vertical-align:-1px;margin-right:3px"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>StatIQ · '+mwEsc(t.label)+(t.odds?' @ '+mwEsc(t.odds):'')+' ›</a>';}}).catch(function(){}); /* ME_TIP_20261108 */
+      box.style.display='block';
+    } else {
+      box.innerHTML='No upcoming fixture scheduled';
+      box.style.display='block';
+    }
+  }).catch(function(e){});
+}
+
+// ===== Trophy award sweep: award any trophy whose count has reached target =====
+function mwAwardTrophies(){
+  var earned=getTrophies();
+  var changed=false;
+  ALL_TROPHIES.forEach(function(tr){
+    if(earned.includes(tr.id))return;
+    var count=getActionCount(tr.trigger);
+    if(count>=tr.target){
+      earned.push(tr.id);
+      changed=true;
+    }
+  });
+  if(changed){
+    try{localStorage.setItem('nmw_trophies',JSON.stringify(earned));}catch(e){}
+  }
+  return changed;
+}
+
+// ===== Avatar picker =====
+var MW_AVATARS=['&#9917;','&#129349;','&#128095;','&#129508;','&#127942;','&#128226;','&#128293;','&#11088;'];
+
+function mwGetAvatar(){return getLS('nmw_avatar','&#9917;');}
+
+function mwOpenAvatar(){
+  var ov=document.getElementById('avatar-overlay');
+  if(ov){ov.style.display='flex';return;}
+  ov=document.createElement('div');
+  ov.id='avatar-overlay';
+  ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+  ov.onclick=function(e){if(e.target===ov)mwCloseAvatar();};
+  var cur=mwGetAvatar();
+  var grid='';
+  for(var i=0;i<MW_AVATARS.length;i++){
+    var ic=MW_AVATARS[i];
+    var sel=(ic===cur);
+    grid+='<button onclick="mwPickAvatar('+i+')" style="aspect-ratio:1;border-radius:14px;border:2px solid '+(sel?'var(--accent)':'var(--border)')+';background:'+(sel?'var(--accent-dim)':'var(--bg-elev)')+';font-size:1.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;">'+ic+'</button>';
+  }
+  ov.innerHTML='<div style="background:var(--bg-card);border:1px solid var(--border-strong);border-radius:18px;max-width:340px;width:100%;padding:22px;">'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">'+
+    '<div style="font-size:1rem;font-weight:800;color:var(--text);">Choose your avatar</div>'+
+    '<button onclick="mwCloseAvatar()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:0.78rem;font-family:inherit;">Close</button></div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">'+grid+'</div></div>';
+  document.body.appendChild(ov);
+}
+
+function mwCloseAvatar(){
+  var ov=document.getElementById('avatar-overlay');
+  if(ov)ov.style.display='none';
+}
+
+function mwPickAvatar(idx){
+  var ic=MW_AVATARS[idx];
+  if(!ic)return;
+  try{localStorage.setItem('nmw_avatar',ic);}catch(e){}
+  mwCloseAvatar();
+  if(typeof renderPage==='function'){renderPage();}
+}
+
+function renderProfile(){
+  // Legacy — delegate to unified renderPage()
+  if(typeof renderPage==='function'){renderPage();return;}
+}
+
+function resetUsername(){
+  var ADJECTIVES=['Tactical','Clinical','Direct','Rapid','Composed','Pressing','Creative','Fluid','Compact','Dynamic','Technical','Physical','Aerial','Pacey','Tenacious','Silky','Robust','Incisive','Disciplined','Ruthless'];
+  var NOUNS=['Midfielder','Striker','Keeper','Winger','Sweeper','Libero','Playmaker','Finisher','Anchor','Target','Poacher','Creator','Enforcer','Distributor','Runner'];
+  var a=ADJECTIVES[Math.floor(Math.random()*ADJECTIVES.length)];
+  var n=NOUNS[Math.floor(Math.random()*NOUNS.length)];
+  var newName=a+n;
+  localStorage.setItem('nmw_username',newName);
+  if(typeof renderPage==='function'){renderPage();}
+}
+
+function clearFollow(){
+  localStorage.removeItem('nmw_followed_team');
+  if(typeof renderPage==='function'){renderPage();}
+}
+
+function resetAll(){
+  if(!confirm('Reset all your 90minWaffle data? This cannot be undone.'))return;
+  ['nmw_uid','nmw_username','nmw_followed_team','nmw_trophies'].forEach(function(k){localStorage.removeItem(k);});
+  ALL_TROPHIES.forEach(function(tr){localStorage.removeItem('nmw_trophy_'+tr.trigger);});
+  window.location.reload();
+}
+
+async function initPushStatus(){
+  if(!('Notification' in window)||!('serviceWorker' in navigator)){
+    var el=document.getElementById('push-status');
+    var btn=document.getElementById('push-btn');
+    if(el)el.textContent='Add to home screen to enable';
+    if(btn)btn.style.display='none';
+    return;
+  }
+  var perm=Notification.permission;
+  var el=document.getElementById('push-status');
+  var btn=document.getElementById('push-btn');
+  if(perm==='granted'){
+    var reg=await navigator.serviceWorker.ready;
+    var sub=await reg.pushManager.getSubscription();
+    if(sub){
+      if(el)el.textContent='Enabled';
+      if(btn)btn.textContent='Disable';
+      var ptl=document.getElementById('push-types-list');if(ptl)ptl.style.display='';
+      return;
+    }
+    if(window.PushManager90min){if(el)el.textContent='Reconnecting...';await window.PushManager90min.subscribeToPush({breaking_news:true,transfers:true,goals:true,kickoff:true,ft:true,motm_open:true,motm_result:true,prediction_result:true,trophies:true});var sub2=await reg.pushManager.getSubscription();if(sub2){if(el)el.textContent='Enabled';if(btn)btn.textContent='Disable';return;}}
+  }
+  if(perm==='denied'){
+    if(el)el.textContent='Blocked in browser';
+    if(btn)btn.style.display='none';
+    return;
+  }
+  if(el)el.textContent='Disabled';
+  if(btn)btn.textContent='Enable';
+  var ptl=document.getElementById('push-types-list');if(ptl)ptl.style.display='none';
+}
+async function togglePushNotifications(){
+  var btn=document.getElementById('push-btn');
+  var el=document.getElementById('push-status');
+  if(!window.PushManager90min){
+    alert('Push notifications not available.');
+    return;
+  }
+  var perm=await window.PushManager90min.getNotificationState();
+  if(perm==='granted'){
+    var reg=await navigator.serviceWorker.ready;
+    var sub=await reg.pushManager.getSubscription();
+    if(sub){
+      await window.PushManager90min.unsubscribeFromPush();
+      if(el)el.textContent='Disabled';
+      if(btn)btn.textContent='Enable';
+      return;
+    }
+  }
+  if(btn)btn.textContent='Enabling...';
+  var ok=await window.PushManager90min.subscribeToPush({breaking_news:true,transfers:true,goals:true,kickoff:true,ft:true,motm_open:true,motm_result:true,prediction_result:true,trophies:true});
+  if(ok){
+    if(el)el.textContent='Enabled';
+    if(btn)btn.textContent='Disable';
+  } else {
+    if(el)el.textContent='Failed — check browser permissions';
+    if(btn)btn.textContent='Enable';
+  }
+}
+// Init push status on load
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initPushStatus);
+} else {
+  initPushStatus();
+}
+// Track edges view
+try{
+  var ev=parseInt(localStorage.getItem('nmw_trophy_view_edges')||'0')+1;
+  localStorage.setItem('nmw_trophy_view_edges',ev);
+  var earned=JSON.parse(localStorage.getItem('nmw_trophies')||'[]');
+  if(ev>=1&&!earned.includes('edge_follower')){
+    earned.push('edge_follower');
+    localStorage.setItem('nmw_trophies',JSON.stringify(earned));
+  }
+}catch(e){}
+
+
+async function settlePredictions(){
+  try{
+    var log=JSON.parse(localStorage.getItem('nmw_pred_log')||'[]');
+    if(!log.length)return;
+    var res=await fetch('/data/results.json?'+Date.now());
+    if(!res||!res.ok)return;
+    var rData=await res.json();
+    var changed=false;
+    log.forEach(function(entry){
+      if(entry.result!==null)return;
+      if(!entry.match_id)return;
+      var rx=rData.find(function(r){return r.match_id===entry.match_id;});
+      if(!rx)return;
+      var hg=rx.home_goals,ag=rx.away_goals;
+      var winner=hg>ag?rx.home:(ag>hg?rx.away:'Draw');
+      entry.result=winner.toLowerCase()===entry.pick.toLowerCase()?'W':'L';
+      changed=true;
+    });
+    if(changed)localStorage.setItem('nmw_pred_log',JSON.stringify(log));
+  }catch(e){}
+}
+(async function(){await settlePredictions();renderPage();})();
+</script>
+
+<div id="bottom-nav-mount"></div>
+<script defer src="/js/bottom-nav.js"></script>
+<script src="/js/push-manager.js?v=20261024"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(reg){ console.log('SW registered:', reg.scope); })
+      .catch(function(err){ console.log('SW failed:', err); });
+  });
+}
+</script>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:16px;width:40px;height:40px;border-radius:50%;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.25s;z-index:90;box-shadow:0 2px 12px rgba(0,0,0,0.3)" aria-label="Back to top"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script>var _btt=document.getElementById('btt');window.addEventListener('scroll',function(){_btt.style.opacity=window.scrollY>400?'1':'0';_btt.style.pointerEvents=window.scrollY>400?'auto':'none';},{passive:true});</script>
+<script defer src="/js/action-bar.js?v=20261024m"></script>
+<script defer src="/js/hscroll.js?v=20260612"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){initIntroCard("me","Your profile — follow a club and country to personalise everything on the site.");});</script>
+<div style="text-align:center;padding:24px 16px 8px;font-size:0.72rem;color:var(--text-dim,#5C6562);line-height:2;">
+  <div style="margin-bottom:6px;">
+    <a href="/analysis/" style="color:var(--text-dim,#5C6562);text-decoration:none;">Analysis</a> &middot;
+    <a href="/edges/" style="color:var(--text-dim,#5C6562);text-decoration:none;">StatIQ</a> &middot;
+    <a href="/footballiq/" style="color:var(--text-dim,#5C6562);text-decoration:none;">FootballIQ</a> &middot;
+    <a href="/matches/" style="color:var(--text-dim,#5C6562);text-decoration:none;">Scores</a> &middot;
+    <a href="/tournaments/" style="color:var(--text-dim,#5C6562);text-decoration:none;">Tournaments</a> &middot;
+    <a href="/nations/" style="color:var(--text-dim,#5C6562);text-decoration:none;">Nations</a> &middot;
+    <a href="/about/" style="color:var(--text-dim,#5C6562);text-decoration:none;">About</a>
+  </div>
+  <div>
+    <a href="/legal/privacy" style="color:var(--text-dim,#5C6562);text-decoration:none;">Privacy</a> &middot;
+    <a href="/legal/terms" style="color:var(--text-dim,#5C6562);text-decoration:none;">Terms</a> &middot;
+    <a href="/legal/cookies" style="color:var(--text-dim,#5C6562);text-decoration:none;">Cookies</a>
+  </div>
+  <div style="margin-top:6px;">&copy; 2026 90minWaffle</div>
+</div>
+<script src="/js/social-footer.js?v=9" defer></script>
+<script>setTimeout(function(){var e=document.getElementById('push-status');if(e&&/Loading/.test(e.textContent)){e.textContent=('Notification' in window)?(Notification.permission==='granted'?'Enabled':'Off'):'Add to Home Screen to enable';var b=document.getElementById('push-btn');if(b&&e.textContent==='Enabled')b.textContent='Disable';}},5000);</script>
+<script>document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('#recoveryCodeDisplay');if(t)t.classList.toggle('rv');});</script>
+<script src="/js/link-upgrade.js?v=2" defer></script><script src="/js/me-hub.js?v=9" defer></script><!-- ME_HUB_20261023 -->
+<script src="/js/tidy-text.js?v=1" defer></script>
+<script src="/js/nmw-me-extras.js?v=1"></script>
+<!-- BOLT_SVG_20261108 --></body>
+</html>

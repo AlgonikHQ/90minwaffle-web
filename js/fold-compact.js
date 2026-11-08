@@ -1,3 +1,4 @@
+function __fxUid(b){var S=window.__fxIds||(window.__fxIds={}),id=b,n=2;while(S[id]||document.getElementById(id)){id=b+'-'+(n++);}S[id]=1;return id;} /* QFIX_UID_20261108 */
 /* FX1: fold long pages - About (dropdowns), Corrections (dropdowns, newest open), Weekly reports (tabs with URLs) */
 (function(){
   var IMP=' '+String.fromCharCode(33)+'important';
@@ -37,7 +38,7 @@
   }
   function accordion(){
     secs.forEach(function(s,i){
-      var d=document.createElement('details'); d.className='fx-acc'; d.id='fx-'+slug(s.title); if(i<cfg.open) d.open=true;
+      var d=document.createElement('details'); d.className='fx-acc'; d.id=__fxUid('fx-'+slug(s.title)); if(i<cfg.open) d.open=true;
       var sm=document.createElement('summary'); s.parent.insertBefore(d, s.h); sm.appendChild(s.h); d.appendChild(sm);
       var body=document.createElement('div'); body.className='fx-body'; s.nodes.forEach(function(n){ body.appendChild(n); }); d.appendChild(body);
     });
@@ -69,7 +70,7 @@
   }
   function mini(p){
     var h=p.querySelector('h3'), note=p.querySelector('.th-note');
-    var d=document.createElement('details'); d.className='fx-acc fx-mini'; d.id='fx-'+slug(txt(h));
+    var d=document.createElement('details'); d.className='fx-acc fx-mini'; d.id=__fxUid('fx-'+slug(txt(h)));
     var sm=document.createElement('summary'), w=document.createElement('span'); w.className='fx-st';
     var date = note ? txt(note).split(' \u00b7 ')[0] : '';
     w.appendChild(h);

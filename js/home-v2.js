@@ -109,7 +109,7 @@
       if (meta) meta.textContent = meta.textContent.replace(/\d+ live/, all.length + ' live').replace(/updated \d\d:\d\d/, 'updated ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' }));
     }).catch(function () {});
   }
-  setInterval(live, 60000);
+  setInterval(live, 15000);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) live(); });
   if (row) row.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.hv2-live[data-fid]');
@@ -260,3 +260,4 @@
     });
   });
 })();
+;(function(){ /* H5_LIVE_SYNC_20261108: Home live rows follow live_now.json every 15s, the same feed as Matches */ function lab(m){var s=m.status;if(s==="HT")return "HT";if(s==="FT"||s==="AET"||s==="PEN")return "FT";return m.minute?m.minute+"\u2032":(s||"");} function put(e,t){if(e==null||e.textContent==t)return false;e.textContent=t;return true} function glow(e){e.style.textShadow="0 0 10px #22d3ee";setTimeout(function(){e.style.textShadow=""},5000)} function sync(){if(document.hidden)return;var rows=document.querySelectorAll(".h5-lr[data-mid]");if(rows.length===0)return; fetch("/data/live_now.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){var by={};(d.matches||[]).forEach(function(m){if(m.bsd_id)by[String(m.bsd_id)]=m}); rows.forEach(function(r){var k=(r.getAttribute("data-mid").match(/BSD_([0-9]+)$/)||[])[1];var m=k?by[k]:null;if(m==null)return; put(r.querySelector(".h5-lm"),lab(m));var sc=r.querySelectorAll(".h5-ls > span"); if(sc.length===2){if(put(sc[0],String(m.home_score==null?0:m.home_score)))glow(sc[0]);if(put(sc[1],String(m.away_score==null?0:m.away_score)))glow(sc[1]);}})}).catch(function(){})} sync();setInterval(sync,15000);document.addEventListener("visibilitychange",function(){if(document.hidden==false)sync()}); })();

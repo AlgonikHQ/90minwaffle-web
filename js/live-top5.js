@@ -16,13 +16,13 @@
     });
     groups.forEach(function (g) {
       var btn = g.p.querySelector(':scope > .lt5-btn');
-      if (mq.matches == false || g.items.length <= CAP) { g.items.forEach(function (x) { x.classList.remove('lt5-x'); }); if (btn) btn.remove(); return; }
-      g.items.forEach(function (x, j) { var h = (open == false && j >= CAP); if (x.classList.contains('lt5-x') === h) {} else x.classList.toggle('lt5-x', h); });
+      var cap = mq.matches ? CAP : 6; /* LIVETOP_DESK6_20261108: desktop shows the top 6, then See more live */ if (g.items.length <= cap) { g.items.forEach(function (x) { x.classList.remove('lt5-x'); }); if (btn) btn.remove(); return; }
+      g.items.forEach(function (x, j) { var h = (open == false && j >= cap); if (x.classList.contains('lt5-x') === h) {} else x.classList.toggle('lt5-x', h); });
       if (btn == null) {
         btn = document.createElement('button'); btn.type = 'button'; btn.className = 'lt5-btn';
         btn.addEventListener('click', function (e) { e.preventDefault(); open = (open == false); apply(); if (open == false) g.p.scrollIntoView({ block: 'start', behavior: 'smooth' }); });
       }
-      var txt = open ? 'Show fewer live games \u25B4' : 'Show all ' + g.items.length + ' live games \u25BE';
+      var txt = open ? 'Show fewer live games \u25B4' : (mq.matches ? 'Show all ' + g.items.length + ' live games \u25BE' : 'See more live (' + (g.items.length - cap) + ') \u25BE');
       if (btn.textContent === txt) {} else btn.textContent = txt;
       var last = g.items[g.items.length - 1], n = last.nextElementSibling, ok = false;
       for (var k = 0; k < 3 && n; k++) { if (n === btn) { ok = true; break; } if (n.classList.contains('lc-more') || n.classList.contains('lc-x')) { n = n.nextElementSibling; } else break; }
