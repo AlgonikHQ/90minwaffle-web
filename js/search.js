@@ -39,6 +39,7 @@ function css(){
  "@media (max-width:600px){#nmws-overlay{padding:0}.nmws-box{max-width:none;max-height:100vh;height:100%;border-radius:0;border:0}}"].join("");
  document.head.appendChild(s);
 }
+var _lt=null;function logq(){var q=_in.value.trim();if(q.length>=2){fetch(API+"?q="+encodeURIComponent(q)+"&n=1&log=1").catch(function(){});}}
 function build(){
  css();
  var old=document.getElementById("nmws-overlay");if(old)old.parentNode.removeChild(old);
@@ -46,7 +47,7 @@ function build(){
  _ov.innerHTML='<div class="nmws-box"><div class="nmws-top"><input id="nmws-input" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search players, clubs, nations, tools\u2026" aria-label="Search"><button id="nmws-close" type="button" aria-label="Close search">Esc</button></div><div id="nmws-pills"></div><div id="nmws-results"></div><div id="nmws-foot"><span>Every stat labelled with its season</span><span id="nmws-at"></span></div></div>';
  document.body.appendChild(_ov);
  _in=document.getElementById("nmws-input");_res=document.getElementById("nmws-results");_pills=document.getElementById("nmws-pills");
- _in.addEventListener("input",function(){clearTimeout(_timer);_timer=setTimeout(run,120);});
+ _in.addEventListener("input",function(){clearTimeout(_timer);_timer=setTimeout(run,120);clearTimeout(_lt);_lt=setTimeout(logq,1500);});
  _in.addEventListener("keydown",key);
  document.getElementById("nmws-close").addEventListener("click",close);
  _ov.addEventListener("click",function(e){if(e.target===_ov)close();});
