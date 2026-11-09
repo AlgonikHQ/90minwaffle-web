@@ -23,7 +23,7 @@
     var rows = D.getElementById('predRowsList'), wb = D.getElementById('predTabWins'); if (!rows) return;
     var fresh = !(wb && wb.parentNode && wb.parentNode.className === 'nmwmx-bar');   // the page redraws its list with 'wins' - keep the fan's own filter
     if (tab) F.tab = fresh && tab === 'wins' ? F.tab : tab;
-    var all = log().slice().reverse(), bar = wb && wb.parentNode;
+    var all = log().slice().sort(function (a, b) { return (Date.parse(a.kickoff_utc || a.ts) || 0) - (Date.parse(b.kickoff_utc || b.ts) || 0); }).reverse(), bar = wb && wb.parentNode;  /* PREDSORT_20261109: newest match first */
     var lgs = {}; all.forEach(function (p) { lgs[lgName(p)] = 1; });
     var inLg = all.filter(function (p) { return !F.lg || lgName(p) === F.lg; });
     var n = { all: inLg.length, wins: 0, losses: 0, pending: 0 }; inLg.forEach(function (p) { n[res(p)]++; });
@@ -53,11 +53,15 @@
 
   // ---------- 2. notification choices ----------
   var T = [
+    // NMWN_GOALS_20261109: goals, kick-off and team news can be switched off too
+    ['goals', ['goals'], 'Goals', 'When your club or country scores'],
+    ['kickoff', ['kickoff'], 'Kick-off', 'When a game for your club or country starts'],
+    ['lineups', ['lineups'], 'Team news', 'Line-ups, as soon as they are confirmed before kick-off'],
     ['ft', ['ft'], 'Your team at full time', 'The final score when your club or country finishes'],
     ['predictions', ['predictions', 'prediction_result'], 'Your picks', 'Voting closes soon, and whether you called it'],
     ['motm', ['motm', 'motm_open', 'motm_result'], 'Man of the Match', 'When voting opens, and the winner'],
     ['trophies', ['trophies'], 'Trophies', 'When you unlock one'],
-    ['news', ['news'], 'Breaking news', 'The biggest football stories']
+    ['news', ['news'], 'Breaking news', 'Big stories, and news about your club or country']
   ];
   function prefs() { try { return JSON.parse(ls('nmw_push_prefs') || '{}') || {}; } catch (e) { return {}; } }
   function isOn(p, t) { return p[t[1][0]] !== false; }

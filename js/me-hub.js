@@ -588,9 +588,16 @@
         var t = (d.teams || {})[slug(COUNTRY)] || null;
         if (!t) for (var k in (d.teams || {})) if (core(d.teams[k].name) === core(COUNTRY)) t = d.teams[k];
         if (t) tmNat(t);
-        if (!t || !t.next) return;
-        var n = t.next, el = document.createElement('a'); el.className = 'mh-next'; el.href = '/nations/' + slug(COUNTRY) + '/';
-        el.innerHTML = '<div class="mh-lab"><span>' + esc(t.name || COUNTRY) + '</span><small>' + esc(n.competition || n.league || '') + '</small></div><div class="mh-vs"><span>' + esc(n.home) + '</span><span class="mh-lbl">' + esc(ukWhen(n.kickoff_utc)) + '</span><span style="text-align:right">' + esc(n.away) + '</span></div>';
+        if (!t) return;  /* MECOUNTRY_20261109: the country card is always there, with or without a fixture */
+        var n = t.next || null, ls = t.last || null, el = document.createElement('a'); el.className = 'mh-next'; el.href = '/nations/' + slug(COUNTRY) + '/';
+        var fs = (Array.isArray(t.form) ? t.form.join('') : String(t.form || '')).replace(/[^WDL]/g, '').slice(-5), pills = '';
+        fs.split('').forEach(function (x) { var bg = x === 'W' ? '#22c55e' : x === 'L' ? '#f87171' : '#475569'; pills += '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;font-size:12px;font-weight:700;background:' + bg + ';color:#06131f">' + x + '</span>'; });
+        el.innerHTML = '<div class="mh-lab"><span>' + esc(t.name || COUNTRY) + ' \u00b7 national team</span><small>' + esc(n ? (n.competition || n.league || '') : '') + '</small></div>'
+          + (pills ? '<div style="display:flex;align-items:center;gap:6px;margin:8px 0 6px"><span class="mh-lbl">Form</span>' + pills + '</div>' : '')
+          + (n ? '<div class="mh-vs"><span>' + esc(n.home) + '</span><span class="mh-lbl">' + esc(ukWhen(n.kickoff_utc)) + '</span><span style="text-align:right">' + esc(n.away) + '</span></div>'
+               : '<div class="mh-lbl">No game scheduled yet</div>')
+          + (ls && ls.score ? '<div class="mh-lbl" style="margin-top:6px">Last: ' + esc(t.name || COUNTRY) + ' ' + esc(String(ls.score).replace('-', '\u2013')) + ' ' + esc(ls.opponent) + ' \u00b7 ' + esc(ukWhen(ls.kickoff_utc)) + '</div>' : '')
+          + '<div class="mh-lbl" style="margin-top:6px;color:#22d3ee">Country page \u203a</div>';
         box.appendChild(el);
       }).catch(function () {});
     }

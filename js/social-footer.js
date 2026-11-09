@@ -33,5 +33,5 @@ function build(){if(document.getElementById('nmw-foot'))return;hideOld();
  +'<div class="nf-legal">18+ &middot; Tips are opinions, not guarantees &middot; <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> &middot; <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener">GamStop</a> &middot; &copy; '+y+' 90minWaffle</div></footer>';
  var d=document.createElement('div');d.innerHTML=h;document.body.appendChild(d.firstChild);
  fetch('/data/record.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(r){if(!r||!r.checks_passed||!r.verified_roi)return;var v=r.verified_roi;
-  document.getElementById('nf-rec').innerHTML='Verified record <b>'+v.wins+'&ndash;'+v.losses+'</b> &middot; ROI <b>'+(v.roi_pct>=0?'+':'')+Number(v.roi_pct).toFixed(1)+'%</b> &rsaquo;';}).catch(function(){});}
+  document.getElementById('nf-rec').innerHTML='Priced record <b>'+v.wins+'&ndash;'+v.losses+'</b> &middot; ROI <b>'+(v.roi_pct>=0?'+':'')+Number(v.roi_pct).toFixed(1)+'%</b> &rsaquo;';}).catch(function(){});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();})();

@@ -17,7 +17,7 @@
     'winrate':    {term:'Win Rate',    text:'Percentage of matches won out of all played this season.'},
     'units':      {term:'Units',       text:'One unit is your normal stake, whatever that is for you. Counting in units lets anyone compare results fairly.'},
     'void':       {term:'Void',        text:'A match that did not produce a result, for example postponed. The stake is returned, so it counts as neither a win nor a loss.'},
-    'verified':   {term:'Verified record', text:'Only tips with a real bookmaker price recorded before kick-off. These are the ones counted in profit and ROI.'},
+    'verified':   {term:'Priced record', text:'Only tips with a real bookmaker price recorded before kick-off. These are the ones counted in profit and ROI.'},
     'price':      {term:'Price (odds)', text:'What the bookmaker pays. A price of 2.00 returns £2 for every £1 staked, including your stake back.'},
     'allcalls':   {term:'All calls',   text:'Every tip, including stats edges with no bookmaker price and early beta tips. Those count as a win or a loss, but never in profit or ROI.'},
   };
@@ -102,7 +102,7 @@
       {sel:'.fstat', terms:{BTTS:'btts', 'Win rate':'winrate', 'Clean sheets':'cs', 'xG for':'xg'}},
       {sel:'.stat-lbl', terms:{ROI:'roi','ROI (priced)':'roi'}},
     ];
-    var EXACT={'Voids':'void','Void':'void','Yield (ROI)':'roi','Verified ROI':'roi','Return (ROI)':'roi','Profit':'units','StatIQ verified record':'verified','Verified real bookmaker odds':'verified','Average odds (last 200)':'price','All calls':'allcalls'};
+    var EXACT={'Voids':'void','Void':'void','Yield (ROI)':'roi','Verified ROI':'roi','Return (ROI)':'roi','Profit':'units','StatIQ verified record':'verified','StatIQ priced record':'verified','Verified real bookmaker odds':'verified','Priced record: real bookmaker odds':'verified','Average odds (last 200)':'price','All calls':'allcalls'};
     document.querySelectorAll('main span,main div,main td,main th,main dt,main b,main h2,main h3,aside span,aside div,aside h2').forEach(function(el){if(el.children.length)return;var k=EXACT[(el.textContent||'').trim()];if(k)el.innerHTML=el.innerHTML+window.ttIcon(k);});
     map.forEach(function(m){
       document.querySelectorAll(m.sel).forEach(function(el){

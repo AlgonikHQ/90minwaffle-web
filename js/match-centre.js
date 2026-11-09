@@ -183,7 +183,7 @@
     }
     if (T.length) out += '<div style="margin-top:10px"><div class="mc-sub">Our tips</div>' + T.map(function (t) {
       var r = String(t.result || '').toUpperCase(), c = r === 'WIN' || r === 'WON' ? 'w' : (r === 'LOSS' || r === 'LOSE' || r === 'LOST') ? 'l' : 'p';
-      return '<div class="tp"><span>' + e(t.label || '') + (t.odds ? ' <span class="mc-sub">@ ' + e(t.odds) + '</span>' : '') + '</span><span class="rs rs-' + c + '">' + e(r || 'Pending') + '</span></div>';
+      return '<div class="tp"><span>' + '<a href="/tips/go/#' + ((d.home || '') + '-' + (d.away || '') + '-' + (t.market || t.label || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') + '" style="color:#22d3ee;text-decoration:none;font-weight:700">' + e(t.label || '') + ' ›</a>' /* SHEET_TIP_LINK_20261108 */ + (t.odds ? ' <span class="mc-sub">@ ' + e(t.odds) + '</span>' : '') + '</span><span class="rs rs-' + c + '">' + e(r || 'Pending') + '</span></div>';
     }).join('') + '</div>';
     return card(fin ? 'How we called it' : 'Our forecast', out, 'Model forecast');
   }
