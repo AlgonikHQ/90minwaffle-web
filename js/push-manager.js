@@ -57,7 +57,7 @@ async function subscribeToPush(preferences = {}) {
     try { localStorage.setItem('nmw_vapid_pub', VAPID_PUBLIC_KEY); } catch (e) {}
     const payload = {
       subscription: sub.toJSON(),
-      preferences,
+      preferences: Object.assign({}, preferences, {extra_teams: (function(){try{return JSON.parse(localStorage.getItem("nmw_extra_teams")||"[]").slice(0,3)}catch(e){return []}})()}),
       uid: localStorage.getItem('nmw_uid') || '',
       followed_team: localStorage.getItem('nmw_followed_team') || '',
       followed_country: localStorage.getItem('nmw_followed_country') || ''

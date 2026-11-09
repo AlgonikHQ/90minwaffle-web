@@ -35,7 +35,7 @@ if (typeof window.POLL_API === 'undefined') { window.POLL_API = ''; }
 
 (function () {
   var SYNC_FIELDS = [
-    'nmw_pred_log', 'nmw_followed_team', 'nmw_followed_country',
+    'nmw_pred_log', 'nmw_followed_team', 'nmw_followed_country', 'nmw_extra_teams',
     'nmw_avatar', 'nmw_avatar_photo', 'nmw_username', 'theme',
     'nmw_trophies', 'nmw_streak', 'nmw_longest_streak', 'nmw_last_visit',
     'nmw_guess_correct_count', 'nmw_guess_elite_count', 'nmw_poll_count',
