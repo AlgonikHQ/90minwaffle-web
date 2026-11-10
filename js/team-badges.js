@@ -4,10 +4,13 @@
   window._badgeCallbacks = [];
   window._badgeLoading = false;
 
+  var NSTOP = ' fc afc sc cf cd ud ac as ss us sk fk sv kv fsv tsv vfb bsc cp sd ad ';
+  function nmz(x, short) { var t = String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w && NSTOP.indexOf(' ' + w + ' ') < 0 && (!short || w.length > 3); }); return t.join(' '); }
   function lookup(name) {
     if (!name || !window._teamBadges) return null;
     return _teamBadges[name]
       || _teamBadges[name.replace(/ FC$| AFC$| SC$| CF$| United$/,'')]
+      || _teamBadges['~' + nmz(name, 0)] || _teamBadges['~' + nmz(name, 1)]
       || null;
   }
 

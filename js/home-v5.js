@@ -52,7 +52,7 @@
         h = hd('YOUR COUNTRY \u00b7 FULL TIME') + '<div class="h5-cl"><b>' + esc(c.n) + ' ' + esc(last.sc) + ' ' + esc(last.opp) + '</b><span class="h5-mut">' + (last.ih ? 'home' : 'away') + (cp(last.c) ? ' \u00b7 ' + esc(cp(last.c)) : '') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '');
       } else {
         top = false;
-        h = hd('YOUR COUNTRY') + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (fx ? 'Next: ' + esc(fx.h) + ' v ' + esc(fx.a) + ' \u00b7 ' + uk(fx.ko) : 'No game scheduled yet') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '') + (last && last.sc ? '<div class="h5-mut">Last: ' + esc(c.n) + ' ' + esc(last.sc) + ' ' + esc(last.opp) + ' \u00b7 ' + uk(last.ko) + '</div>' : '');
+        h = hd('YOUR COUNTRY') + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (fx ? 'Next: ' + esc(fx.h) + ' v ' + esc(fx.a) + ' \u00b7 ' + uk(fx.ko) : 'Next game not confirmed in our data yet') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '') + (last && last.sc ? '<div class="h5-mut">Last: ' + esc(c.n) + ' ' + esc(last.sc) + ' ' + esc(last.opp) + ' \u00b7 ' + uk(last.ko) + '</div>' : '');
       }
       [].forEach.call(cb, function (b) { var el = document.createElement('div'); el.className = 'h5-card h5-ctry'; el.setAttribute('style', 'margin:12px 0'); el.innerHTML = h; b.parentNode.insertBefore(el, top ? b : b.nextSibling); });
     });
