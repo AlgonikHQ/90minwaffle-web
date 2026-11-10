@@ -555,7 +555,7 @@
             html += '<div class="mh-vs"><span>' + esc(nf.home.replace(/\s+A?FC$/i, '')) + '</span><span class="mh-lbl">' + esc(ukWhen(nf.kickoff_utc)) + '</span><span style="text-align:right">' + esc(nf.away.replace(/\s+A?FC$/i, '')) + '</span></div>';
             html += '<a class="mh-link" id="mh-prev" href="/clubs/' + s + '/">Club page &rsaquo;</a>';
           }
-          tmClub(c, s);
+          tmClub(c, s); try { if (window.NMWWeekly) window.NMWWeekly(c, s, box); } catch (e) {} /* WEEKLY */
           var el = document.createElement('div'); el.className = 'mh-next'; el.id = 'mh-c-next'; el.innerHTML = html; box.insertBefore(el, box.firstChild); /* CLUBFIRST */ getJ('/data/club_home.json').then(function(d){var r=d[s]||Object.keys(d).map(function(k){return d[k]}).filter(function(x){return x.slug===s})[0];if(r&&r.win!=null){var w=document.createElement('div');w.className='mh-lbl';w.textContent='Model: '+Math.round(r.win)+'% to win';var pv=el.querySelector('.mh-vs');if(pv)pv.insertAdjacentElement('afterend',w)}}).catch(function(){}); /* CLUBWIN */
           if (nf && nf.home && nf.kickoff_utc) withPredict(function (P) {
             var f = { home: nf.home, away: nf.away, kickoff_utc: nf.kickoff_utc, league: c.league_code || '', fixture_id: nf.id || '' };
@@ -721,4 +721,48 @@
     try { if (o && String(o.method || '').toUpperCase() === 'POST' && /\/poll\/vote/.test(String((u && u.url) || u))) {
       var b = JSON.parse(o.body || '{}'); if (b.poll_id && b.answer) r.then(function (x) { if (x && x.ok) sync(b.poll_id, b.answer); }).catch(function () {}); } } catch (e) {}
     return r; };
+})();
+
+/* WAFFLE_WEEKLY_20261110: personal weekly card on Me - last 7 days, table, next 7 days, model win chance. */
+(function () {
+  var TZ = 'Europe/London';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function nm(n) { return String(n || '').toLowerCase().replace(/\s+a?fc$/i, '').replace(/^fc\s+/, '').replace(/[^a-z0-9]/g, ''); }
+  function sh(n) { return String(n || '').replace(/\s+A?FC$/i, ''); }
+  function when(iso) { try { return new Date(iso).toLocaleString('en-GB', { timeZone: TZ, weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).replace(',', ' \u00b7'); } catch (e) { return ''; } }
+  function day(iso) { try { return new Date(iso).toLocaleDateString('en-GB', { timeZone: TZ, weekday: 'short', day: 'numeric', month: 'short' }); } catch (e) { return ''; } }
+  function ord(n) { var v = n % 100; return n + (['th', 'st', 'nd', 'rd'][(v > 10 && v < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)]); }
+  function badge(r) { var m = { W: '#22c55e', D: '#94a3b8', L: '#f87171' }[r] || '#94a3b8'; return '<span style="display:inline-block;min-width:22px;text-align:center;border-radius:6px;padding:1px 7px;font-weight:700;font-size:12px;background:' + m + ';color:#04111f">' + r + '</span>'; }
+  function weekStart() { var d = new Date(), p = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, weekday: 'short' }).format(d), i = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(p); return new Date(d.getTime() - Math.max(i, 0) * 864e5); }
+  window.NMWWeekly = function (c, slug, box) {
+    try {
+      if (!c || !box || document.getElementById('mh-weekly')) return;
+      var now = Date.now(), W7 = 7 * 864e5, me = nm(c.name);
+      var res = (c.recent_results || []).filter(function (r) { return r.status === 'FINISHED' && r.home_score != null && r.away_score != null; }).sort(function (a, b) { return a.kickoff_utc < b.kickoff_utc ? 1 : -1; });
+      var recent = res.filter(function (r) { return now - new Date(r.kickoff_utc).getTime() <= W7; });
+      var shown = recent.length ? recent.slice(0, 3) : res.slice(0, 1);
+      var up = (c.upcoming || []).filter(function (u) { return u.kickoff_utc && new Date(u.kickoff_utc).getTime() > now; }).sort(function (a, b) { return a.kickoff_utc < b.kickoff_utc ? -1 : 1; });
+      var soon = up.filter(function (u) { return new Date(u.kickoff_utc).getTime() < now + W7; });
+      var st = c.standing || {};
+      var h = '<div class="mh-lab"><span>Waffle Weekly &middot; ' + esc(sh(c.name)) + '</span></div><div class="mh-lbl">Week of ' + esc(day(weekStart())) + '</div>';
+      h += '<div class="mh-lbl" style="margin-top:10px">' + (recent.length ? 'Last 7 days' : 'Last game') + '</div>';
+      if (shown.length) shown.forEach(function (r) {
+        var home = nm(r.home) === me, gf = home ? r.home_score : r.away_score, ga = home ? r.away_score : r.home_score, o = gf > ga ? 'W' : (gf < ga ? 'L' : 'D');
+        h += '<div class="mh-vs" style="margin-top:4px;align-items:center"><span>' + esc(sh(r.home)) + '</span><span><b>' + r.home_score + '&ndash;' + r.away_score + '</b> ' + badge(o) + '</span><span style="text-align:right">' + esc(sh(r.away)) + '</span></div><div class="mh-lbl">' + esc(day(r.kickoff_utc)) + '</div>';
+      }); else h += '<div class="mh-lbl">No result in our data yet.</div>';
+      if (st.position) h += '<div class="mh-lbl" style="margin-top:10px">Table</div><div>' + ord(st.position) + (c.league_name ? ' &middot; ' + esc(c.league_name) : '') + ' &middot; ' + st.points + ' pts &middot; ' + st.played + ' played</div>';
+      h += '<div class="mh-lbl" style="margin-top:10px">Next 7 days</div>';
+      if (soon.length) soon.slice(0, 3).forEach(function (u) { h += '<div class="mh-vs" style="margin-top:4px"><span>' + esc(sh(u.home)) + '</span><span class="mh-lbl">' + esc(when(u.kickoff_utc)) + '</span><span style="text-align:right">' + esc(sh(u.away)) + '</span></div>'; });
+      else h += '<div>No game in the next 7 days.' + (up[0] ? ' Next: ' + esc(sh(up[0].home)) + ' v ' + esc(sh(up[0].away)) + ', ' + esc(when(up[0].kickoff_utc)) + '.' : '') + '</div>';
+      h += '<a class="mh-link" href="/clubs/' + esc(slug) + '/">Club page &rsaquo;</a>';
+      var el = document.createElement('div'); el.className = 'mh-next'; el.id = 'mh-weekly'; el.innerHTML = h; box.appendChild(el);
+      fetch('/data/club_home.json').then(function (r) { return r.json(); }).then(function (d) {
+        var e = d[slug]; if (!e) { for (var k in d) if (d[k] && d[k].slug === slug) { e = d[k]; break; } }
+        if (!e || e.win == null) return;
+        var n = document.createElement('div'); n.className = 'mh-lbl'; n.style.marginTop = '6px';
+        n.textContent = 'Model: ' + Math.round(e.win) + '% to win ' + (e.ha === 'H' ? 'at home' : 'away') + ' vs ' + sh(e.opp) + ' (' + e.ko + ')';
+        el.insertBefore(n, el.querySelector('.mh-link'));
+      }).catch(function () {});
+    } catch (e) {}
+  };
 })();
