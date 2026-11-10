@@ -55,7 +55,7 @@
   var T = [
     // NMWN_GOALS_20261109: goals, kick-off and team news can be switched off too
     ['goals', ['goals'], 'Goals', 'When your club or country scores'],
-    ['kickoff', ['kickoff'], 'Kick-off', 'When a game for your club or country starts'],
+    ['kickoff', ['kickoff'], 'Kick-off', 'A heads-up on matchday morning, and again when the game starts'],
     ['lineups', ['lineups'], 'Team news', 'Line-ups, as soon as they are confirmed before kick-off'],
     ['ft', ['ft'], 'Your team at full time', 'The final score when your club or country finishes'],
     ['predictions', ['predictions', 'prediction_result'], 'Your picks', 'Voting closes soon, and whether you called it'],
