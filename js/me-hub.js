@@ -513,7 +513,7 @@
     }).catch(function () { return slug(TEAM) + '-fc'; });
   }
   function ord(n) { var v = n % 100; return n + (['th', 'st', 'nd', 'rd'][(v > 10 && v < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)]); }
-  function formRow(f) { return f.length ? '<div style="display:flex;align-items:center;gap:8px"><span class="mh-lbl">Form</span><span class="mh-form" role="img" aria-label="Last ' + f.length + ' results, oldest first: ' + f.join(', ') + '">' + f.map(function (r) { return '<b class="' + esc(r) + '">' + esc(r) + '</b>'; }).join('') + '</span></div>' : ''; }
+  function formRow(f) { return f.length ? '<div style="display:flex;align-items:center;gap:8px"><span class="mh-lbl">League form</span><span class="mh-form" role="img" aria-label="Last ' + f.length + ' results, oldest first: ' + f.join(', ') + '">' + f.map(function (r) { return '<b class="' + esc(r) + '">' + esc(r) + '</b>'; }).join('') + '</span></div>' : ''; }
   function tmClub(c, s) {
     var st = c.standing || {}, nf = c.next_fixture, form = (c.form && c.form.last5) || [];
     $('mh-tm-club').innerHTML = '<div class="mh-box">' +
@@ -550,7 +550,7 @@
           var nf = c.next_fixture, st = c.standing || {}, form = (c.form && c.form.last5) || [];
           var head = esc(c.name || TEAM) + (st.position ? ' · ' + st.position + (['th', 'st', 'nd', 'rd'][(st.position % 100 > 10 && st.position % 100 < 14) ? 0 : (st.position % 10 < 4 ? st.position % 10 : 0)]) + (c.league_name ? ' in the ' + esc(c.league_name) : '') + (st.points != null ? ' · ' + st.points + ' pts' : '') : '');
           var html = '<div class="mh-lab"><span>' + head + '</span></div>';
-          if (form.length) html += '<div style="display:flex;align-items:center;gap:8px"><span class="mh-lbl">Form</span><span class="mh-form" role="img" aria-label="Last ' + form.length + ' results, oldest first: ' + form.join(', ') + '">' + form.map(function (r) { return '<b class="' + esc(r) + '">' + esc(r) + '</b>'; }).join('') + '</span></div>';
+          if (form.length) html += '<div style="display:flex;align-items:center;gap:8px"><span class="mh-lbl">League form</span><span class="mh-form" role="img" aria-label="Last ' + form.length + ' results, oldest first: ' + form.join(', ') + '">' + form.map(function (r) { return '<b class="' + esc(r) + '">' + esc(r) + '</b>'; }).join('') + '</span></div>';
           if (nf && nf.home) {
             html += '<div class="mh-vs"><span>' + esc(nf.home.replace(/\s+A?FC$/i, '')) + '</span><span class="mh-lbl">' + esc(ukWhen(nf.kickoff_utc)) + '</span><span style="text-align:right">' + esc(nf.away.replace(/\s+A?FC$/i, '')) + '</span></div>';
             html += '<a class="mh-link" id="mh-prev" href="/clubs/' + s + '/">Club page &rsaquo;</a>';
@@ -593,7 +593,7 @@
         var fs = (Array.isArray(t.form) ? t.form.join('') : String(t.form || '')).replace(/[^WDL]/g, '').slice(-5), pills = '';
         fs.split('').forEach(function (x) { var bg = x === 'W' ? '#22c55e' : x === 'L' ? '#f87171' : '#475569'; pills += '<span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;font-size:12px;font-weight:700;background:' + bg + ';color:#06131f">' + x + '</span>'; });
         el.innerHTML = '<div class="mh-lab"><span>' + esc(t.name || COUNTRY) + ' \u00b7 national team</span><small>' + esc(n ? (n.competition || n.league || '') : '') + '</small></div>'
-          + (pills ? '<div style="display:flex;align-items:center;gap:6px;margin:8px 0 6px"><span class="mh-lbl">Form</span>' + pills + '</div>' : '')
+          + (pills ? '<div style="display:flex;align-items:center;gap:6px;margin:8px 0 6px"><span class="mh-lbl">League form</span>' + pills + '</div>' : '')
           + (n ? '<div class="mh-vs"><span>' + esc(n.home) + '</span><span class="mh-lbl">' + esc(ukWhen(n.kickoff_utc)) + '</span><span style="text-align:right">' + esc(n.away) + '</span></div>'
                : '<div class="mh-lbl">No game scheduled yet</div>')
           + (ls && ls.score ? '<div class="mh-lbl" style="margin-top:6px">Last: ' + esc(t.name || COUNTRY) + ' ' + esc(String(ls.score).replace('-', '\u2013')) + ' ' + esc(ls.opponent) + ' \u00b7 ' + esc(ukWhen(ls.kickoff_utc)) + '</div>' : '')

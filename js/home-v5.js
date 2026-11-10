@@ -16,7 +16,7 @@
         String(c.f || '').split('').forEach(function (x) { pills += '<span class="h5-p h5-p' + x + '">' + x + '</span>'; });
         h = '<div class="h5-hd"><span class="h5-lbl">YOUR CLUB</span><a href="' + (c.slug ? '/clubs/' + esc(c.slug) + '/' : '/me/') + '">Club page →</a></div>'
           + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (c.opp ? 'Next: ' + (c.ha === 'H' ? 'v ' : 'at ') + esc(c.opp) + ' · ' + esc(c.ko) : 'No game in the next two weeks') + '</span></div>'
-          + (pills ? '<div class="h5-pills" title="Last 5 league games, latest on the right">Form ' + pills + '</div>' : '')
+          + (pills ? '<div class="h5-pills" title="Last 5 league games, latest on the right">League form ' + pills + '</div>' : '')
           + (c.pts != null ? '<div class="h5-mut">' + esc(c.pl) + ' played · ' + esc(c.pts) + ' pts</div>' : '')
           + (c.win ? '<div class="h5-mut">Model: ' + Math.round(c.win) + '% to win</div>' : '')
           + (c.o && c.o.p ? (function () { var xs = (c.o.x || []).filter(function (r) { return r[1] >= 1 && r[1] <= 99; }).slice(0, 3).map(function (r) { return esc(String(r[0]).replace(/ \(.*\)/, '')) + ' ' + Math.round(r[1]) + '%'; }), pn = Math.round(c.o.p), sf = (pn % 100 > 10 && pn % 100 < 14) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[pn % 10] || 'th'); return '<div class="h5-mut">Model forecast: finishes about ' + pn + sf + (xs.length ? ' · ' + xs.join(' · ') : '') + '</div>'; })() : '');
