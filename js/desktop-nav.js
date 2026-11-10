@@ -248,4 +248,4 @@ try{if(/^\/(edges\/?)?$/.test(location.pathname)){var _tl=document.createElement
 
 /* NMWSAVEALL */ (function(){var s=document.createElement('script');s.src='/js/nmw-save-all.js?v=20261110d';s.defer=true;document.head.appendChild(s);})();
 
-/* NMWMATCHDAY */ (function(){var s=document.createElement('script');s.src='/js/nmw-matchday.js?v=20261110a';s.defer=true;document.head.appendChild(s);})();
+/* NMWMATCHDAY */ (function(){var s=document.createElement('script');s.src='/js/nmw-matchday.js?v=20261110b';s.defer=true;document.head.appendChild(s);})();
