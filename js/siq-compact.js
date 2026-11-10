@@ -31,7 +31,7 @@
     var all = [].slice.call(document.querySelectorAll('section.sq2-sec'));
     var how = all.filter(function (s) { return s.querySelector('#sq2-how'); })[0];
     if (how && how.getAttribute('data-siqc') === null) { how.setAttribute('data-siqc', '1'); var hd = how.querySelector('details.sq2-acc'); if (hd) hd.open = false; }
-    var map = [[/month/i, 'Months'], [/bad run/i, 'Bad runs'], [/market/i, 'Markets'], [/profit/i, 'Profit']], secs = [];
+    var map = [[/month/i, 'Months'], [/bad run/i, 'Bad runs'], [/market/i, 'Markets'], [/running/i, 'Profit'], [/league/i, 'Leagues']], secs = [];
     map.forEach(function (m) {
       var s = all.filter(function (x) { var d = x.querySelector('details.sq2-acc'); return d && x.querySelector('#sq2-how') == null && m[0].test(txt(d.querySelector('h2') || d)); })[0];
       if (s) secs.push([m[1], s]);

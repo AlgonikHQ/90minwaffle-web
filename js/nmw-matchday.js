@@ -22,7 +22,13 @@
     var w = document.getElementById('nmw-mdw'); if (w) return w;
     var host = null, ref = null;
     if (ON_ME) { ref = document.getElementById('mh-c-next'); var box = document.getElementById('mh-next'); if (ref) host = ref.parentNode; else if (force && box) { host = box; ref = box.firstChild; } }
-    else { var m = document.querySelector('main') || document.getElementById('main'); if (m) { host = m; ref = m.firstChild; } }
+    else {
+      var hs = document.querySelectorAll('.h5-sec .h5-hd h2'), tgt = null, i;
+      for (i = 0; i < hs.length; i++) if (hs[i].textContent.trim() === 'Today') { tgt = hs[i].closest('.h5-sec'); break; }
+      if (!tgt) { var all = document.querySelectorAll('.h5-sec'); tgt = all[1] || null; }
+      if (tgt && tgt.parentNode) { host = tgt.parentNode; ref = tgt; }
+      else { var m = document.querySelector('main') || document.getElementById('main'); if (m) { host = m; ref = m.firstChild; } }
+    }
     if (!host) return null;
     w = document.createElement('div'); w.id = 'nmw-mdw'; host.insertBefore(w, ref); return w;
   }

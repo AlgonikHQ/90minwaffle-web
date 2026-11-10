@@ -38,8 +38,8 @@
       }
     } catch (e) {}
   }
-  function mk(url, label, type, dl) {
-    var id = hid(url), b = D.createElement('div');
+  function mk(url, label, type, dl, ph) {
+    var id = hid(url), b = ph || D.createElement('div');
     b.className = 'nmwa-compact nmw-sa'; b.setAttribute('data-abid', id); b.setAttribute('data-nmw-url', dl || url);
     b.innerHTML = W.actionBar(id, label, type); return b;
   }
@@ -50,7 +50,7 @@
       for (i = 0; i < as.length; i++) if (as[i].textContent.trim().length > 12 && !/\/(clubs|league|nations)\//.test(as[i].getAttribute('href'))) { a = as[i]; break; }
       if (!a) a = as[0]; if (!a || !a.href) return;
       var img = el.querySelector('img[alt]'), label = a.textContent.trim() || (img && img.alt) || '';
-      el.setAttribute('data-nmw-sa', '1'); var b = mk(a.href, label, 'story', deep(a.href, label)); el.appendChild(b); ids.push(b.getAttribute('data-abid'));
+      el.setAttribute('data-nmw-sa', '1'); var ph = el.querySelector(':scope > .nmw-ph'), b = mk(a.href, label, 'story', deep(a.href, label), ph); if (!ph) el.appendChild(b); ids.push(b.getAttribute('data-abid'));
     });
   }
   function news(ids) {
@@ -60,18 +60,18 @@
       if (p.getAttribute('data-nmw-sa')) return;
       var anc = p.closest('a'), a = anc || p.querySelector('a[href]') || t.closest('a');
       if (!a || !a.href) return;
-      p.setAttribute('data-nmw-sa', '1'); var b = mk(a.href, t.textContent.trim(), 'story', deep(a.href, t.textContent.trim()));
-      if (anc) anc.parentNode.insertBefore(b, anc.nextSibling); else p.appendChild(b);
+      p.setAttribute('data-nmw-sa', '1'); var ph = p.querySelector(':scope > .nmw-ph'), b = mk(a.href, t.textContent.trim(), 'story', deep(a.href, t.textContent.trim()), ph);
+      if (ph) { } else if (anc) anc.parentNode.insertBefore(b, anc.nextSibling); else p.appendChild(b);
       ids.push(b.getAttribute('data-abid'));
     });
   }
   function page(ids) {
-    var m = location.pathname.match(/^\/(preview|clubs)\/[^/]+/); if (!m) return;
+    var m = location.pathname.match(/^\/(preview)\/[^/]+/); if (!m) return;
     if (D.querySelector('.nmwa, [data-abid]')) return;
     var h = D.querySelector('main h1') || D.querySelector('h1'); if (!h) return;
     var vs = D.querySelector('.vs'), after = (vs && vs.parentNode === h.parentNode) ? vs : h;
-    var b = mk(location.origin + location.pathname, h.textContent.trim(), m[1] === 'preview' ? 'preview' : 'club');
-    after.parentNode.insertBefore(b, after.nextSibling); ids.push(b.getAttribute('data-abid'));
+    var ph = D.querySelector('.nmw-ph-page'), b = mk(location.origin + location.pathname, h.textContent.trim(), 'preview', undefined, ph);
+    if (!ph) after.parentNode.insertBefore(b, after.nextSibling); ids.push(b.getAttribute('data-abid'));
   }
   function run() {
     if (!mapReady) return; var ids = []; try { stories(ids); news(ids); page(ids); } catch (e) {}
