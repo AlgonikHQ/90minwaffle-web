@@ -556,7 +556,7 @@
             html += '<a class="mh-link" id="mh-prev" href="/clubs/' + s + '/">Club page &rsaquo;</a>';
           }
           tmClub(c, s);
-          var el = document.createElement('div'); el.className = 'mh-next'; el.id = 'mh-c-next'; el.innerHTML = html; box.appendChild(el);
+          var el = document.createElement('div'); el.className = 'mh-next'; el.id = 'mh-c-next'; el.innerHTML = html; box.insertBefore(el, box.firstChild); /* CLUBFIRST */ getJ('/data/club_home.json').then(function(d){var r=d[s]||Object.keys(d).map(function(k){return d[k]}).filter(function(x){return x.slug===s})[0];if(r&&r.win!=null){var w=document.createElement('div');w.className='mh-lbl';w.textContent='Model: '+Math.round(r.win)+'% to win';var pv=el.querySelector('.mh-vs');if(pv)pv.insertAdjacentElement('afterend',w)}}).catch(function(){}); /* CLUBWIN */
           if (nf && nf.home && nf.kickoff_utc) withPredict(function (P) {
             var f = { home: nf.home, away: nf.away, kickoff_utc: nf.kickoff_utc, league: c.league_code || '', fixture_id: nf.id || '' };
             var d1 = document.createElement('div');
@@ -595,7 +595,7 @@
         el.innerHTML = '<div class="mh-lab"><span>' + esc(t.name || COUNTRY) + ' \u00b7 national team</span><small>' + esc(n ? (n.competition || n.league || '') : '') + '</small></div>'
           + (pills ? '<div style="display:flex;align-items:center;gap:6px;margin:8px 0 6px"><span class="mh-lbl">League form</span>' + pills + '</div>' : '')
           + (n ? '<div class="mh-vs"><span>' + esc(n.home) + '</span><span class="mh-lbl">' + esc(ukWhen(n.kickoff_utc)) + '</span><span style="text-align:right">' + esc(n.away) + '</span></div>'
-               : '<div class="mh-lbl">No game scheduled yet</div>')
+               : '<div class="mh-lbl">Next game not confirmed in our data yet</div>')
           + (ls && ls.score ? '<div class="mh-lbl" style="margin-top:6px">Last: ' + esc(t.name || COUNTRY) + ' ' + esc(String(ls.score).replace('-', '\u2013')) + ' ' + esc(ls.opponent) + ' \u00b7 ' + esc(ukWhen(ls.kickoff_utc)) + '</div>' : '')
           + '<div class="mh-lbl" style="margin-top:6px;color:#22d3ee">Country page \u203a</div>';
         box.appendChild(el);
