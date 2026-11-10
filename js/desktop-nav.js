@@ -245,3 +245,5 @@ try{if(/^\/(edges\/?)?$/.test(location.pathname)){var _tl=document.createElement
   setTimeout(run, 1500);
 })();
 (function(){function fix(t){if(t&&t.tagName==="IMG"&&t.dataset.fb!=="1"&&!/icon-192|badge|crest|flag|logo/i.test(t.src)&&t.getBoundingClientRect().width>=90){t.dataset.fb="1";t.removeAttribute("srcset");t.src="/img/icon-192-v2.png"}}document.addEventListener("error",function(e){fix(e.target)},true);window.addEventListener("load",function(){[].forEach.call(document.images,function(i){if(i.complete&&i.naturalWidth===0&&i.src)fix(i)})})})(); /* IMGFALLBACK */
+
+/* NMWSAVEALL */ (function(){var s=document.createElement('script');s.src='/js/nmw-save-all.js?v=20261110d';s.defer=true;document.head.appendChild(s);})();

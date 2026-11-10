@@ -119,7 +119,7 @@
       cardsHTML=open.slice(0,4).map(function(t){return card(t,false);}).join('');note='';
     }else{
       var done=S.filter(function(x){return x.kickoff_utc;}).sort(function(a,b){return String(b.kickoff_utc).localeCompare(String(a.kickoff_utc));}).slice(0,4);
-      cardsHTML=done.length?done.map(function(t){return card(t,true);}).join(''):'<div class="hh-empty">No tips yet today. <a href="/edges/" style="color:var(--accent,#3DDC84)">See all tips</a></div>';
+      cardsHTML=done.length?done.map(function(t){return card(t,true);}).join(''):'<div class="hh-empty">No tips yet today: we only publish when the numbers clear the bar, so quiet days happen. <a href="/edges/" style="color:var(--accent,#3DDC84)">See the full record</a></div>';
       note=done.length?'No open edges right now. Showing our latest settled tips.':'';
     }
     render();

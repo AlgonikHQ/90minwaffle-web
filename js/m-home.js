@@ -46,7 +46,7 @@
     var open=S.filter(function(x){return String(x.result||'PENDING').toUpperCase()==='PENDING';});
     if(open.length){open.sort(function(a,b){var ea=edge(a),eb=edge(b);return(eb?eb.e:-99)-(ea?ea.e:-99);});edgesHTML=open.slice(0,3).map(function(t){return row(t,false);}).join('');title='StatIQ';note='';}
     else{var d=S.filter(function(x){return x.kickoff_utc;}).sort(function(a,b){return String(b.kickoff_utc).localeCompare(String(a.kickoff_utc));}).slice(0,3);
-      edgesHTML=d.map(function(t){return row(t,true);}).join('')||'<div class="mh-note">No tips yet today.</div>';title='Latest Edges';note=d.length?'No open edges right now. Showing our latest settled tips.':'';}
+      edgesHTML=d.map(function(t){return row(t,true);}).join('')||'<div class="mh-note">No tips yet today: we only publish when the numbers clear the bar, so quiet days happen. <a href="/edges/">See the full record</a></div>';title='Latest Edges';note=d.length?'No open edges right now. Showing our latest settled tips.':'';}
     render();
   }).catch(function(){edgesHTML='<div class="mh-note">Edges unavailable right now.</div>';render();});
 })();

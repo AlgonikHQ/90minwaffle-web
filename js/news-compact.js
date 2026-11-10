@@ -22,16 +22,17 @@
 /* NWSTORY_20261109: a tapped push lands on /news/for-you/?story=<id> and shows that story first */
 (function () {
   try {
-    var id = new URLSearchParams(location.search).get('story'); if (!id) return;
+    var qs = new URLSearchParams(location.search), id = qs.get('story') || '', su = qs.get('u') || ''; if (!id && !su) return;
     function run() {
       var list = document.getElementById('nw-list'); if (!list || document.getElementById('nw-story')) return;
       fetch('/data/content.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (d) {
         var items = Array.isArray(d) ? d : (d.items || []), it = null;
         for (var i = 0; i < items.length; i++) { if (String(items[i].id) === id) { it = items[i]; break; } }
+        if (!it && su && /^https?:/.test(su)) it = { title: qs.get('t') || '', source: qs.get('s') || '', url: su };
         if (!it) return;
         var box = document.createElement('section'); box.id = 'nw-story';
         box.style.cssText = 'background:var(--nw-c1,#101c30);border:1px solid var(--nw-ac,#22d3ee);border-radius:14px;padding:14px;margin:6px 0 18px;';
-        var tag = document.createElement('div'); tag.textContent = 'FROM YOUR NOTIFICATION';
+        var tag = document.createElement('div'); tag.textContent = su ? 'SAVED STORY' : 'FROM YOUR NOTIFICATION';
         tag.style.cssText = 'font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--nw-ac,#22d3ee);margin-bottom:8px;'; box.appendChild(tag);
         var img = it.image || it.image_url;
         if (img) { var im = document.createElement('img'); im.src = img; im.alt = ''; im.style.cssText = 'width:100%;max-height:220px;object-fit:cover;border-radius:10px;margin-bottom:10px;display:block;'; box.appendChild(im); }

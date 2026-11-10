@@ -79,7 +79,7 @@
     if (el) {
       var card = el.closest('[data-card-id],article,a[href],[onclick],.card,.card-link,li');   // NMW_ACTIONS2_20261024
       var a = card && (card.matches('a[href]') ? card : card.querySelector('a[href]:not([href^="#"]):not([href^="javascript"])'));
-      if (a) url = a.href;
+      if (el.getAttribute('data-nmw-url')) url = el.getAttribute('data-nmw-url'); else if (a) url = a.href;
       else if (card && card.getAttribute('onclick')) { var m = card.getAttribute('onclick').match(/location(?:\.href)?\s*=\s*['"]([^'"]+)/); if (m) url = new URL(m[1], location.href).href; }
       if (!title && card) { var h = card.querySelector('.hv2-stt,h1,h2,h3,h4,.title,.take-text,b,strong') || card.querySelector('img[alt]'); if (h) title = (h.getAttribute('alt') && !h.textContent ? h.getAttribute('alt') : h.textContent).trim(); }
     }
