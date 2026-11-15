@@ -1,4 +1,21 @@
 /* HOME_V5_20261030 */
+/* DESKBARS_20261111 */
+(function () {
+  var els = [].slice.call(document.querySelectorAll('[data-abid][data-dk]')); if (!els.length) return; var n = 0;
+  function go() {
+    if (window.actionBar) {
+      var ids = []; els.forEach(function (b) { var id = b.getAttribute('data-abid'); ids.push(id); b.innerHTML = window.actionBar(id, b.getAttribute('data-t'), 'desk'); });
+      fetch('/api/react/bulk?ids=' + ids.join(','), { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+        window.REACT_COUNTS = window.REACT_COUNTS || {};
+        els.forEach(function (b) { var id = b.getAttribute('data-abid'); if (d && d[id]) { window.REACT_COUNTS[id] = d[id]; b.innerHTML = window.actionBar(id); } });
+      }).catch(function () {});
+    } else if (n++ < 60) {
+      if (n === 2 && !document.querySelector('script[src*="action-bar.js"]')) { var s = document.createElement('script'); s.src = '/js/action-bar.js?v=20261024m'; document.head.appendChild(s); }
+      setTimeout(go, 150);
+    }
+  }
+  go();
+})();
 (function () {
   function ls(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
   function nm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, ''); }
@@ -78,4 +95,28 @@
   function openMatch(el) { var id = el.getAttribute('data-mid'); if (typeof window.nmwOpenSheet === 'function') window.nmwOpenSheet(id); else location.href = '/matches/match/?id=' + encodeURIComponent(id); }
   document.addEventListener('click', function (e) { var el = e.target.closest ? e.target.closest('[data-mid]') : null; if (el == null || e.target.closest('a,button')) return; openMatch(el); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target.hasAttribute && e.target.hasAttribute('data-mid')) openMatch(e.target); });
+})();
+
+/* FOLLOWLIVE_20261111: live card only for the fan's own club or one of up to three extra clubs (the country has its own card) */
+(function () {
+  var boxes = document.querySelectorAll('[data-h5follow]'); if (!boxes.length) return;
+  function ls(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function nm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\b(fc|afc|cf|sc|the)\b/g, '').replace(/[^a-z0-9]/g, ''); }
+  function mt(a, b) { a = nm(a); b = nm(b); return !!a && !!b && (a === b || (Math.min(a.length, b.length) >= 6 && (a.indexOf(b) > -1 || b.indexOf(a) > -1))); }
+  function nmOf(raw) { try { var p = JSON.parse(raw); if (p && typeof p === 'object') raw = p.name || p.team || p.club || p.slug || ''; else if (typeof p === 'string') raw = p; } catch (e) {} return raw; }
+  function mine() { var out = [], t = nmOf(ls('nmw_followed_team')), x = []; try { x = JSON.parse(ls('nmw_extra_teams') || '[]'); } catch (e) {} if (t) out.push(t); (Array.isArray(x) ? x : []).slice(0, 3).forEach(function (e) { e = typeof e === 'string' ? e : (e && (e.name || e.team || e.slug)) || ''; if (e) out.push(e); }); return out; }
+  function lab(m) { var s = String(m.status || ''), n = parseInt(m.minute, 10); if (s === 'HT') return 'HT'; if (isNaN(n)) return s || 'LIVE'; if (n > 90) return '90+\u2032'; if (s === '1H' && n > 45) return '45+\u2032'; return n + '\u2032'; }
+  function paint(d) {
+    var me = mine(), rows = [];
+    if (me.length && d && d.matches && Date.now() - Date.parse(d.generated_at) < 15 * 60000) d.matches.forEach(function (m) { if (/^(FT|AET|PEN)$/.test(String(m.status || ''))) return; if (me.some(function (t) { return mt(t, m.home) || mt(t, m.away); })) rows.push(m); });
+    [].forEach.call(boxes, function (b) {
+      if (!rows.length) { b.hidden = true; b.innerHTML = ''; return; }
+      var h = '<div class="h5-hd"><span class="h5-lbl h5-red">\u25cf LIVE \u00b7 YOUR TEAMS</span><a class="h5-alllive" href="/matches/">All live \u2192</a></div><div class="h5-card h5-live">';
+      rows.forEach(function (m) { h += '<div class="h5-lr"' + (m.bsd_id ? ' data-mid="BSD_' + esc(m.bsd_id) + '" tabindex="0" role="button"' : '') + '><span class="h5-lm">' + esc(lab(m)) + '</span><span class="h5-lt"><span>' + esc(m.home) + '</span><span>' + esc(m.away) + '</span></span><span class="h5-ls"><span>' + esc(m.home_score == null ? 0 : m.home_score) + '</span><span>' + esc(m.away_score == null ? 0 : m.away_score) + '</span></span></div>'; });
+      b.innerHTML = h + '</div>'; b.hidden = false;
+    });
+  }
+  function tick() { if (document.hidden) return; fetch('/data/live_now.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(paint).catch(function () {}); }
+  tick(); setInterval(tick, 15000); document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
 })();

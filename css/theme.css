@@ -1,6 +1,6 @@
 /* THEME_20261012 shared theme, loaded last. Phones: pitch grid only. Desktop layout from 1100px. */
 :root{--nmw-rail:96px;--nmw-col:760px}
-body{background-image:linear-gradient(rgba(61,220,132,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(61,220,132,.035) 1px,transparent 1px);background-size:44px 44px}
+body{background-image:linear-gradient(rgb(var(--a-rgb,61 220 132) / 0.04) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--a-rgb,61 220 132) / 0.04) 1px,transparent 1px);background-size:44px 44px}
 @media (min-width:1100px){
 body{padding-left:var(--nmw-rail);padding-bottom:24px}
 .header{left:var(--nmw-rail)}
@@ -15,11 +15,11 @@ body{padding-left:var(--nmw-rail);padding-bottom:24px}
 .stat-card{border-radius:14px;background:linear-gradient(180deg,var(--bg-card),var(--bg-elev));min-width:84px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.22)}
 .stat-val{font-size:1.25rem;letter-spacing:-.01em}
 .stat-lbl{font-size:.6rem;letter-spacing:.09em}
-.pulse-wrap{background:linear-gradient(90deg,rgba(61,220,132,.07),transparent 45%),var(--bg-elev)}
+.pulse-wrap{background:linear-gradient(90deg,rgb(var(--a-rgb,61 220 132) / 0.07),transparent 45%),var(--bg-elev)}
 .section-label{letter-spacing:.14em}
 .chip{letter-spacing:.09em}
 .bottom-nav .nav-item.active{color:var(--accent)}
-@media (hover:hover){.card{transition:border-color .15s,transform .15s}.card:hover{border-color:rgba(61,220,132,.28);transform:translateY(-1px)}}
+@media (hover:hover){.card{transition:border-color .15s,transform .15s}.card:hover{border-color:rgb(var(--a-rgb,61 220 132) / 0.28);transform:translateY(-1px)}}
 @media (min-width:1100px){
 .stats-row{display:grid;grid-template-columns:repeat(5,1fr);max-width:var(--nmw-col);margin:0 auto;overflow:visible;padding:12px 12px 4px}
 .stats-row>a{display:block}
@@ -137,7 +137,7 @@ body{padding-left:var(--nmw-rail);padding-bottom:24px}
 
 /* THEME_V6_20261013: skeleton + data wiring */
 .poll-option:hover {
-  background:rgba(61,220,132,0.15) !important;
+  background:rgb(var(--a-rgb,61 220 132) / 0.15) !important;
 }
 
 /* THEME_V7_20261013: readability polish */

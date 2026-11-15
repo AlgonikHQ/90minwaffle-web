@@ -26,7 +26,7 @@
 #mwHero .hh-live-l{display:flex;gap:22px;flex:1;overflow:hidden;font-size:.82rem;color:var(--text,#F2F2F0)}
 #mwHero .hh-live-l span{white-space:nowrap}
 #mwHero .hh-live-l small{color:var(--text-muted,#9CA3A0);margin-left:6px}
-#mwHero .hh-btn{white-space:nowrap;padding:8px 14px;border-radius:8px;border:1px solid var(--border,#2a3340);color:var(--text,#F2F2F0);text-decoration:none;font-weight:700;font-size:.82rem}
+#mwHero .hh-btn{white-space:nowrap;padding:8px 14px;border-radius:8px;border:1px solid var(--border,#2A2A2E);color:var(--text,#F2F2F0);text-decoration:none;font-weight:700;font-size:.82rem}
 #mwHero .hh-btn:hover{border-color:var(--accent,#3DDC84)}
 #mwHero .hh-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px}
 #mwHero .hh-tool{padding:18px;border-radius:12px;background:var(--bg-card,#141b18);border:1px solid var(--border,#1f2a26);color:var(--text,#F2F2F0);text-decoration:none}
@@ -39,7 +39,7 @@
 #mwHero .hh-res{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:.04em}
 #mwHero .hh-win{background:rgba(61,220,132,.16);color:#3DDC84}
 #mwHero .hh-loss{background:rgba(255,92,92,.16);color:#ff6b6b}
-#mwHero .hh-void{background:rgba(160,160,160,.16);color:#a0a0a0}
+#mwHero .hh-void{background:rgba(160,160,160,.16);color:var(--t1,#a0a0a0)}
 #mwHero .hh-note{font-size:.8rem;color:var(--text-muted,#9CA3A0);margin:-8px 0 14px}
 #mwHero .hh-lv{cursor:pointer}
 }

@@ -13,9 +13,10 @@
   var saved = read(fullKey()) || read(pathKey());
   var restoring = false;
   var SEL = '[data-mid],.match-card,[data-abid],[id],.h5-card,.h5-story,article,section';
+  function pinned(el) { try { for (var n = el; n && n !== document.documentElement; n = n.parentElement) { var p = getComputedStyle(n).position; if (p === 'fixed' || p === 'sticky') return true; } } catch (e) {} return false; } /* SCROLLKEEP4_20261113 */
   function anchorAt() {
     try {
-      var el = document.elementFromPoint(Math.round(window.innerWidth / 2), 96);
+      var el = null, ys = [96, 150, 210, 280, 360]; for (var yi = 0; yi < ys.length; yi++) { el = document.elementFromPoint(Math.round(window.innerWidth / 2), ys[yi]); if (el && pinned(el) === false) break; el = null; }
       while (el && el !== document.body && (el.matches && el.matches(SEL)) === false) el = el.parentElement;
       if (el == null || el === document.body) return null;
       var key = null, ab = el.classList.contains('match-card') ? el.querySelector('[data-abid]') : null;
@@ -69,7 +70,7 @@
   var cancelled = false, start = Date.now(), lastChange = Date.now(), ro = null;
   restoring = true;
   function want() {
-    if (saved.a) { var el = find(saved.a); if (el) return Math.max(0, el.getBoundingClientRect().top + (window.scrollY || 0) - (saved.o || 0)); }
+    if (saved.a) { var el = find(saved.a); if (el && pinned(el) === false) return Math.max(0, el.getBoundingClientRect().top + (window.scrollY || 0) - (saved.o || 0)); }
     return saved.y;
   }
   function apply() {
