@@ -7,13 +7,13 @@
     'a.details-btn.mx-done .mx-old{display:none}' +
     'a.details-btn.mx-done .ij{width:auto!important;max-width:none!important;flex:none!important;margin:0!important}' +
     '.mx-model{background:var(--bg-card,#0a1020);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;color:var(--text,#e6edf6)}' +
-    '.mx-lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#22d3ee)}' +
-    '.mx-bar{display:flex;gap:2px;height:8px;border-radius:4px;overflow:hidden;background:#1a2540}.mx-bar i{display:block;height:8px}.mx-bar i.h{background:var(--accent,#22d3ee)}.mx-bar i.d{background:#4b5a78}.mx-bar i.a{background:#94a3b8}' +
+    '.mx-lab{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#C9A24B)}' +
+    '.mx-bar{display:flex;gap:2px;height:8px;border-radius:4px;overflow:hidden;background:#1a2540}.mx-bar i{display:block;height:8px}.mx-bar i.h{background:var(--accent,#C9A24B)}.mx-bar i.d{background:#4b5a78}.mx-bar i.a{background:#94a3b8}' +
     '.mx-probs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mx-probs div{display:flex;flex-direction:column;gap:2px;min-width:0}.mx-probs div:nth-child(2){text-align:center}.mx-probs div:nth-child(3){text-align:right}' +
     '.mx-probs span{font-size:12px;color:var(--text-dim,#8aa0b8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mx-probs b{font-size:18px;font-weight:800}' +
     '.mx-chips{display:flex;flex-wrap:wrap;gap:6px}.mx-chips span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:#111a2e;border:1px solid rgba(255,255,255,.1)}' +
     '.mx-fve{font-size:12px;color:var(--text-dim,#8aa0b8);display:flex;flex-wrap:wrap;gap:4px 12px}.mx-fve b{color:var(--text,#e6edf6)}' +
-    '.mx-cta{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px;background:var(--accent,#22d3ee);color:#070b16;font-weight:700;font-size:14px}' +
+    '.mx-cta{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:10px;background:var(--accent,#C9A24B);color:#070b16;font-weight:700;font-size:14px}' +
     '@media(min-width:900px){a.details-btn.mx-done{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}a.details-btn.mx-done .mx-cta{grid-column:1/-1}}';
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function txt(e) { return ((e && e.textContent) || '').replace(/\s+/g, ' ').trim(); }

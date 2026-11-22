@@ -50,7 +50,7 @@
     var f=document.querySelector('.filters');
     if(!f||document.getElementById('nx-q'))return;
     var s=document.createElement('style');
-    s.textContent='.nx-box{padding:14px 16px 0;min-height:82px;box-sizing:border-box}#nx-q{width:100%;min-height:44px;padding:10px 14px;border-radius:14px;border:1px solid #1e3157;background:#14203A;color:#e8eef9;font:inherit;font-size:16px}#nx-q::placeholder{color:#9fb0cc}#nx-q:focus{outline:2px solid #22d3ee;outline-offset:1px}.nx-sum{font-size:12px;color:#9fb0cc;margin:8px 2px 0;min-height:16px}.nx-more{display:block;width:100%;min-height:44px;margin:0 0 8px;border-radius:14px;border:1px solid #1e3157;background:#14203A;color:#22d3ee;font:inherit;font-size:13px;font-weight:600;cursor:pointer}.nx-more:hover{border-color:#22d3ee66}';
+    s.textContent='.nx-box{padding:14px 16px 0;min-height:82px;box-sizing:border-box}#nx-q{width:100%;min-height:44px;padding:10px 14px;border-radius:14px;border:1px solid #1e3157;background:#14203A;color:#e8eef9;font:inherit;font-size:16px}#nx-q::placeholder{color:#9fb0cc}#nx-q:focus{outline:2px solid #C9A24B;outline-offset:1px}.nx-sum{font-size:12px;color:#9fb0cc;margin:8px 2px 0;min-height:16px}.nx-more{display:block;width:100%;min-height:44px;margin:0 0 8px;border-radius:14px;border:1px solid #1e3157;background:#14203A;color:#C9A24B;font:inherit;font-size:13px;font-weight:600;cursor:pointer}.nx-more:hover{border-color:#22d3ee66}';
     document.head.appendChild(s);
     var box=document.querySelector('.nx-box')||document.createElement('div');box.className='nx-box';
     box.innerHTML='<input id="nx-q" type="search" placeholder="Find a nation" aria-label="Find a nation" autocomplete="off" enterkeyhint="search"><div id="nx-sum" class="nx-sum"></div>';

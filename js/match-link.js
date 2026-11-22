@@ -3,8 +3,8 @@
   var q = new URLSearchParams(location.search), fx = q.get('fx'), hl = q.get('hl');
   if (!fx && !hl) return;
   var st = document.createElement('style');
-  st.textContent = '.nmw-hl{outline:2px solid #22d3ee!important;outline-offset:2px;box-shadow:0 0 18px rgba(34,211,238,.45)!important;border-radius:12px;animation:nmwpulse 1.2s ease 2}'
-    + '@keyframes nmwpulse{50%{box-shadow:0 0 4px rgba(34,211,238,.2)}}tr.nmw-hl td{background:rgba(34,211,238,.14)!important;color:#fff}';
+  st.textContent = '.nmw-hl{outline:2px solid #C9A24B!important;outline-offset:2px;box-shadow:0 0 18px rgba(201,162,75,.45)!important;border-radius:12px;animation:nmwpulse 1.2s ease 2}'
+    + '@keyframes nmwpulse{50%{box-shadow:0 0 4px rgba(201,162,75,.2)}}tr.nmw-hl td{background:rgba(201,162,75,.14)!important;color:#fff}';
   document.head.appendChild(st);
   var tries = 0, done = false, tabbed = false;
   function norm(s) { return String(s || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }

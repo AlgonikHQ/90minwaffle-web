@@ -17,7 +17,7 @@
   function ukDay(iso) { return new Date(iso).toLocaleDateString('en-CA', { timeZone: TZ }); }
   function ukTime(iso) { return new Date(iso).toLocaleTimeString('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit' }); }
   function getJ(u) { return fetch(u + '?t=' + Date.now()).then(function (r) { return r.json(); }); }
-  var CARD = 'background:var(--bg-card,#111A2E);border:1px solid var(--accent,#22d3ee);border-radius:14px;padding:14px;margin:12px 0;position:relative;z-index:1;';
+  var CARD = 'background:var(--bg-card,#111A2E);border:1px solid var(--accent,#C9A24B);border-radius:14px;padding:14px;margin:12px 0;position:relative;z-index:1;';
   function wrap(force) {
     var w = document.getElementById('nmw-mdw'); if (w) return w;
     var host = null, ref = null;
@@ -49,7 +49,7 @@
     if (n < 12) setTimeout(function () { show(id, html, n + 1); }, 500);
   }
   function head(tag, l, mid, r, note, links) {
-    return '<div style="font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--accent,#22d3ee)">' + tag + '</div>' +
+    return '<div style="font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--accent,#C9A24B)">' + tag + '</div>' +
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;font-weight:700;font-size:17px"><span>' + esc(l) + '</span><span>' + mid + '</span><span style="text-align:right">' + esc(r) + '</span></div>' +
       (note ? '<div style="font-size:12px;opacity:.8;margin-top:6px">' + note + '</div>' : '') +
       '<div style="margin-top:8px;font-size:13px">' + links + '</div>';

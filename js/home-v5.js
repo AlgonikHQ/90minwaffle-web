@@ -1,3 +1,4 @@
+function h5Lk(u, t, st) { return u ? '<a href="' + String(u).replace(/"/g, '&quot;') + '" style="color:inherit;text-decoration:underline;' + (st || '') + '">' + t + '</a>' : t; }  // HOMELINKS_20261119
 /* HOME_V5_20261030 */
 /* DESKBARS_20261111 */
 (function () {
@@ -32,7 +33,7 @@
         var pills = '';
         String(c.f || '').split('').forEach(function (x) { pills += '<span class="h5-p h5-p' + x + '">' + x + '</span>'; });
         h = '<div class="h5-hd"><span class="h5-lbl">YOUR CLUB</span><a href="' + (c.slug ? '/clubs/' + esc(c.slug) + '/' : '/me/') + '">Club page →</a></div>'
-          + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (c.opp ? 'Next: ' + (c.ha === 'H' ? 'v ' : 'at ') + esc(c.opp) + ' · ' + esc(c.ko) : 'No game in the next two weeks') + '</span></div>'
+          + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (c.opp ? 'Next: ' + (c.ha === 'H' ? 'v ' : 'at ') + h5Lk(c.ou, esc(c.opp)) + ' · ' + esc(c.ko) + (c.mu ? ' · ' + h5Lk(c.mu, esc(c.ml || 'Match preview') + ' ›', 'color:#C9A24B') : '') : 'No game in the next two weeks') + '</span></div>'
           + (pills ? '<div class="h5-pills" title="Last 5 league games, latest on the right">League form ' + pills + '</div>' : '')
           + (c.pts != null ? '<div class="h5-mut">' + esc(c.pl) + ' played · ' + esc(c.pts) + ' pts</div>' : '')
           + (c.win ? '<div class="h5-mut">Model: ' + Math.round(c.win) + '% to win</div>' : '')
@@ -64,12 +65,12 @@
         var mn = live.minute; mn = (mn == null || mn === '') ? '' : (/^\d+(\+\d+)?$/.test(String(mn)) ? mn + '\u2032' : mn);
         h = hd('\u25cf LIVE \u00b7 ' + esc(c.n).toUpperCase()) + '<div class="h5-cl"><b>' + esc(live.home) + ' ' + esc(live.home_score) + '\u2013' + esc(live.away_score) + ' ' + esc(live.away) + '</b><span class="h5-mut">' + esc(mn) + '</span></div>';
       } else if (fx && Date.parse(fx.ko) > now - 3 * 3600000 && Date.parse(fx.ko) < now + 48 * 3600000) {
-        h = hd('YOUR COUNTRY \u00b7 NEXT UP') + '<div class="h5-cl"><b>' + esc(fx.h) + ' v ' + esc(fx.a) + '</b><span class="h5-mut">' + uk(fx.ko) + (cp(fx.c) ? ' \u00b7 ' + esc(cp(fx.c)) : '') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '');
+        h = hd('YOUR COUNTRY \u00b7 NEXT UP') + '<div class="h5-cl"><b>' + h5Lk(fx.hu, esc(fx.h)) + ' v ' + h5Lk(fx.au, esc(fx.a)) + '</b><span class="h5-mut">' + uk(fx.ko) + (cp(fx.c) ? ' \u00b7 ' + esc(cp(fx.c)) : '') + (fx.mu ? ' \u00b7 ' + h5Lk(fx.mu, esc(fx.ml) + ' \u203a', 'color:#C9A24B') : '') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '');
       } else if (last && last.sc && Date.parse(last.ko) < now && Date.parse(last.ko) > now - 24 * 3600000) {
-        h = hd('YOUR COUNTRY \u00b7 FULL TIME') + '<div class="h5-cl"><b>' + esc(c.n) + ' ' + esc(last.sc) + ' ' + esc(last.opp) + '</b><span class="h5-mut">' + (last.ih ? 'home' : 'away') + (cp(last.c) ? ' \u00b7 ' + esc(cp(last.c)) : '') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '');
+        h = hd('YOUR COUNTRY \u00b7 FULL TIME') + '<div class="h5-cl"><b>' + esc(c.n) + ' ' + esc(last.sc) + ' ' + h5Lk(last.ou, esc(last.opp)) + '</b><span class="h5-mut">' + (last.ih ? 'home' : 'away') + (cp(last.c) ? ' \u00b7 ' + esc(cp(last.c)) : '') + (last.mu ? ' \u00b7 ' + h5Lk(last.mu, esc(last.ml) + ' \u203a', 'color:#C9A24B') : '') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '');
       } else {
         top = false;
-        h = hd('YOUR COUNTRY') + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (fx ? 'Next: ' + esc(fx.h) + ' v ' + esc(fx.a) + ' \u00b7 ' + uk(fx.ko) : 'Next game not confirmed in our data yet') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '') + (last && last.sc ? '<div class="h5-mut">Last: ' + esc(c.n) + ' ' + esc(last.sc) + ' ' + esc(last.opp) + ' \u00b7 ' + uk(last.ko) + '</div>' : '');
+        h = hd('YOUR COUNTRY') + '<div class="h5-cl"><b>' + esc(c.n) + '</b><span class="h5-mut">' + (fx ? 'Next: ' + h5Lk(fx.hu, esc(fx.h)) + ' v ' + h5Lk(fx.au, esc(fx.a)) + ' \u00b7 ' + uk(fx.ko) + (fx.mu ? ' \u00b7 ' + h5Lk(fx.mu, esc(fx.ml) + ' \u203a', 'color:#C9A24B') : '') : 'Next game not confirmed in our data yet') + '</span></div>' + (f ? '<div class="h5-pills" title="Last 5 results, latest on the right">Form ' + f + '</div>' : '') + (last && last.sc ? '<div class="h5-mut">Last: ' + esc(c.n) + ' ' + esc(last.sc) + ' ' + h5Lk(last.ou, esc(last.opp)) + ' \u00b7 ' + uk(last.ko) + (last.mu ? ' \u00b7 ' + h5Lk(last.mu, esc(last.ml) + ' \u203a', 'color:#C9A24B') : '') + '</div>' : '');
       }
       [].forEach.call(cb, function (b) { var el = document.createElement('div'); el.className = 'h5-card h5-ctry'; el.setAttribute('style', 'margin:12px 0'); el.innerHTML = h; b.parentNode.insertBefore(el, top ? b : b.nextSibling); });
     });
@@ -119,4 +120,56 @@
   }
   function tick() { if (document.hidden) return; fetch('/data/live_now.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(paint).catch(function () {}); }
   tick(); setInterval(tick, 15000); document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
+})();
+
+(function () {  // HOMECLEAN_20261120: simpler Home - your teams, Today, StatIQ, one Desk piece (staging until HOMECLEAN_LIVE)
+  function txt(e) { return ((e && e.textContent) || '').replace(/\s+/g, ' ').trim(); }
+  function sec(t) { var r = null; [].forEach.call(document.querySelectorAll('.h5-sec'), function (s) { var h = s.querySelector('h2'); if (!r && h && txt(h).toLowerCase().indexOf(t) === 0) r = s; }); return r; }
+  function has() { try { return !!(localStorage.getItem('nmw_followed_team') || localStorage.getItem('nmw_followed_country')); } catch (e) { return false; } }
+  var busy = false;
+  function lay() {
+    if (busy) return; busy = true;
+    try {
+      var hero = document.querySelector('.h5-hero'); if (!hero) return;
+      var P = hero.parentNode;
+      var nav = document.querySelector('nav.h5-routes');  // HOMECLEAN2: the three route cards stay at the top
+      var td = sec('today'), cu = sec('coming up');
+      if (cu) { var a = cu.querySelector('.h5-hd a'); if (a && td && !document.getElementById('h5-allprev')) { var x = document.createElement('a'); x.id = 'h5-allprev'; x.href = a.getAttribute('href') || '/preview/'; x.textContent = 'All previews ›'; x.style.cssText = 'display:inline-block;margin-top:10px;color:var(--accent,#866C32);text-decoration:none;font-weight:600'; td.appendChild(x); } cu.remove(); }
+      ['latest match reports', 'popular this week'].forEach(function (t) { var s = sec(t); if (s) s.remove(); });
+      var dk = sec('the desk'), f = document.getElementById('h5-dkf');
+      if (f && f.children.length > 1) [].slice.call(f.children, 1).forEach(function (c) { c.remove(); });
+      var sq = sec('statiq today');
+      var w = document.getElementById('h5-teams');
+      if (!w) { w = document.createElement('div'); w.id = 'h5-teams'; w.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin:8px 0 4px'; P.insertBefore(w, (nav && nav.parentNode === P ? nav : hero).nextSibling); }
+      function top(el) { while (el && el.parentNode !== P) el = el.parentNode; return el; }
+      var want = [];
+      [].forEach.call(P.querySelectorAll('.h5-lbl, h2, h3, b, span, div'), function (el) {
+        if (el.children.length) return;
+        var t = txt(el).toLowerCase();
+        if (t === 'your club' || t.indexOf('your country') === 0 || t === 'also following') {
+          var c = top(el);
+          if (c && c !== w && c !== hero && c !== dk && c !== td && c !== sq && want.indexOf(c) < 0 && txt(c).length < 3000) want.push(c);
+        }
+      });
+      var order = function (c) { var t = txt(c).toLowerCase(); return t.indexOf('your club') === 0 ? 0 : t.indexOf('your country') === 0 ? 1 : 2; };
+      want.sort(function (p, q) { return order(p) - order(q); }).forEach(function (c) { if (c.parentNode !== w) w.appendChild(c); });
+      w.style.display = w.children.length ? 'flex' : 'none';
+      var last = w;
+      [td, sq, dk].forEach(function (s) { if (s) { if (s.previousElementSibling !== last) P.insertBefore(s, last.nextSibling); last = s; } });
+      if (has()) { hero.style.display = 'none'; var pk = document.getElementById('h5-pick'); if (pk) pk.remove(); }
+      else if (!document.getElementById('h5-pick')) {
+        var b = document.createElement('a'); b.id = 'h5-pick'; b.href = '/me/'; b.textContent = 'Pick your club ›';
+        b.style.cssText = 'display:inline-block;margin-top:12px;padding:10px 18px;border-radius:999px;background:var(--accent,#866C32);color:#fff;font-weight:700;text-decoration:none';
+        hero.appendChild(b);
+      }
+    } catch (e) {} finally { busy = false; }
+  }
+  function go() {
+    lay();
+    var P = (document.querySelector('.h5-hero') || {}).parentNode; if (!P || !window.MutationObserver) return;
+    var t = null, mo = new MutationObserver(function () { if (busy) return; clearTimeout(t); t = setTimeout(lay, 60); });
+    mo.observe(P, { childList: true, subtree: true });
+    setTimeout(function () { mo.disconnect(); lay(); }, 15000);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
 })();

@@ -8,7 +8,7 @@
   var SECTIONS = [ /* NAV_SYNC_V3 - order and links synced to home layout */
     {slug:'all',key:'all',label:'Home',colour:'#8a92a3',emoji:'🏠',
       icon:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>'},
-    {slug:'transfers',key:'transfers',label:'Transfers',colour:'#22D3EE',emoji:'🔄',
+    {slug:'transfers',key:'transfers',label:'Transfers',colour:'#C9A24B',emoji:'🔄',
       icon:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>'},
     {slug:'for-you',key:'for_you',label:'For You',colour:'#FACC15',emoji:'⭐',
       icon:'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'},

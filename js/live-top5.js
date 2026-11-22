@@ -2,7 +2,7 @@
   var CAP = 5, open = false, busy = false, mq = window.matchMedia('(max-width: 768px)'), imp = ' ' + String.fromCharCode(33) + 'important';
   var st = document.createElement('style');
   st.textContent = '.lt5-x{display:none' + imp + '}html.lt5-on .lc-more{display:none' + imp + '}html.lt5-on .mc-item.lc-x:not(.lt5-x){display:revert' + imp + '}' +
-    '.lt5-btn{display:block;width:100%;min-height:46px;margin:10px 0;border:1px solid rgba(34,211,238,.35);border-radius:12px;background:rgba(34,211,238,.07);color:#22d3ee;font-weight:700;font-size:15px;cursor:pointer}';
+    '.lt5-btn{display:block;width:100%;min-height:46px;margin:10px 0;border:1px solid rgba(201,162,75,.35);border-radius:12px;background:rgba(201,162,75,.07);color:#C9A24B;font-weight:700;font-size:15px;cursor:pointer}';
   document.head.appendChild(st);
   document.documentElement.classList.add('lt5-on');
   function isLive(x) { return /\bLIVE\b/i.test(x.textContent || ''); }

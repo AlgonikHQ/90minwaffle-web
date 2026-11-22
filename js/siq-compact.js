@@ -7,7 +7,7 @@
     '.siqc-h{font-size:19px;font-weight:800;margin:6px 0 8px}',
     '.siqc-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 10px}',
     '.siqc-tab{flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #1e3157;background:none;color:#c5d2e8;font:inherit;font-size:13px;cursor:pointer}',
-    '.siqc-tab.on{background:#22d3ee;border-color:#22d3ee;color:#04222a;font-weight:700}',
+    '.siqc-tab.on{background:#C9A24B;border-color:#C9A24B;color:#04222a;font-weight:700}',
     '.siqc-off{display:none' + I + '}', '.siqc-sec details.sq2-acc>summary{display:none' + I + '}',
     'article.tip.siqc{cursor:pointer}',
     'article.tip.siqc>*:not(.tip-header):not(.botd-ribbon):not(.builder-ribbon){display:none' + I + '}',

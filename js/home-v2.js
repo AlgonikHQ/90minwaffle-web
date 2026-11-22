@@ -113,7 +113,7 @@
   document.addEventListener('visibilitychange', function () { if (!document.hidden) live(); });
   if (row) row.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('.hv2-live[data-fid]');
-    if (a && typeof window.openLivePanel === 'function') { e.preventDefault(); window.openLivePanel(a.getAttribute('data-fid')); }
+    if (a && typeof window.openLivePanel === 'function') { e.preventDefault(); /* SHEETFIX_20261121 */ if (typeof window.nmwOpenSheet === 'function') { window.nmwOpenSheet(String(a.getAttribute('data-fid'))); } else { window.openLivePanel(a.getAttribute('data-fid')); } }
   });
 
   /* HV2_MINE: your club (and country) first in Live and today - moved, never copied */
@@ -223,12 +223,12 @@
     var s = document.createElement('script'); s.src = '/js/edge-reasons.js'; s.onload = s.onerror = function () { ok(); }; document.head.appendChild(s); }); }
   function css() { if (document.getElementById('nmw-ts-css')) return; document.head.insertAdjacentHTML('beforeend', '<style id="nmw-ts-css">'
     + '.nmw-ts-bg{position:fixed;inset:0;background:rgba(3,8,20,.6);z-index:10000}'
-    + '.nmw-ts{position:fixed;left:0;right:0;bottom:0;max-height:85vh;overflow:auto;background:#0f1a2e;color:#e6edf5;border:1px solid rgba(34,211,238,.35);border-radius:16px 16px 0 0;padding:18px 16px 24px;z-index:10001;box-shadow:0 -12px 32px rgba(0,0,0,.45)}'
+    + '.nmw-ts{position:fixed;left:0;right:0;bottom:0;max-height:85vh;overflow:auto;background:#0f1a2e;color:#e6edf5;border:1px solid rgba(201,162,75,.35);border-radius:16px 16px 0 0;padding:18px 16px 24px;z-index:10001;box-shadow:0 -12px 32px rgba(0,0,0,.45)}'
     + '@media(min-width:760px){.nmw-ts{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:520px;border-radius:16px}}'
-    + '.nmw-ts-x{position:absolute;top:8px;right:8px;width:44px;height:44px;background:none;border:0;color:#e6edf5;font-size:26px;cursor:pointer;border-radius:8px}.nmw-ts-x:focus-visible{outline:2px solid #22d3ee}'
-    + '.nmw-ts-k{font-size:12px;color:#9fb1c7}.nmw-ts h2{margin:4px 44px 8px 0;font-size:19px}.nmw-ts-m{margin:0 0 12px}.nmw-ts-m b{color:#22d3ee}'
+    + '.nmw-ts-x{position:absolute;top:8px;right:8px;width:44px;height:44px;background:none;border:0;color:#e6edf5;font-size:26px;cursor:pointer;border-radius:8px}.nmw-ts-x:focus-visible{outline:2px solid #C9A24B}'
+    + '.nmw-ts-k{font-size:12px;color:#9fb1c7}.nmw-ts h2{margin:4px 44px 8px 0;font-size:19px}.nmw-ts-m{margin:0 0 12px}.nmw-ts-m b{color:#C9A24B}'
     + '.nmw-ts-s{display:inline-block;margin-left:8px;font-size:12px;padding:2px 8px;border-radius:10px;border:1px solid rgba(255,255,255,.2)}.nmw-ts-s.w{color:#3DDC84;border-color:#3DDC84}.nmw-ts-s.l{color:#ff7a7f;border-color:#ff7a7f}'
-    + '.nmw-ts-r{border-top:1px solid rgba(255,255,255,.1);padding-top:10px}.nmw-ts-n{font-size:12px;color:#9fb1c7;margin:14px 0 10px}.nmw-ts a.nmw-ts-l{color:#22d3ee}</style>'); }
+    + '.nmw-ts-r{border-top:1px solid rgba(255,255,255,.1);padding-top:10px}.nmw-ts-n{font-size:12px;color:#9fb1c7;margin:14px 0 10px}.nmw-ts a.nmw-ts-l{color:#C9A24B}</style>'); }
   function close() { var a = document.querySelector('.nmw-ts'), b = document.querySelector('.nmw-ts-bg'); if (a) a.remove(); if (b) b.remove();
     document.removeEventListener('keydown', key); if (last && last.focus) last.focus(); }
   function key(e) { if (e.key === 'Escape') close(); }
@@ -260,4 +260,4 @@
     });
   });
 })();
-;(function(){ /* H5_LIVE_SYNC_20261108: Home live rows follow live_now.json every 15s, the same feed as Matches */ function lab(m){var s=m.status;if(s==="HT")return "HT";if(s==="FT"||s==="AET"||s==="PEN")return "FT";return m.minute?m.minute+"\u2032":(s||"");} function put(e,t){if(e==null||e.textContent==t)return false;e.textContent=t;return true} function glow(e){e.style.textShadow="0 0 10px #22d3ee";setTimeout(function(){e.style.textShadow=""},5000)} function sync(){if(document.hidden)return;var rows=document.querySelectorAll(".h5-lr[data-mid]");if(rows.length===0)return; fetch("/data/live_now.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){var by={};(d.matches||[]).forEach(function(m){if(m.bsd_id)by[String(m.bsd_id)]=m}); rows.forEach(function(r){var k=(r.getAttribute("data-mid").match(/BSD_([0-9]+)$/)||[])[1];var m=k?by[k]:null;if(m==null)return; put(r.querySelector(".h5-lm"),lab(m));var sc=r.querySelectorAll(".h5-ls > span"); if(sc.length===2){if(put(sc[0],String(m.home_score==null?0:m.home_score)))glow(sc[0]);if(put(sc[1],String(m.away_score==null?0:m.away_score)))glow(sc[1]);}})}).catch(function(){})} sync();setInterval(sync,15000);document.addEventListener("visibilitychange",function(){if(document.hidden==false)sync()}); })();
+;(function(){ /* H5_LIVE_SYNC_20261108: Home live rows follow live_now.json every 15s, the same feed as Matches */ function lab(m){var s=m.status;if(s==="HT")return "HT";if(s==="FT"||s==="AET"||s==="PEN")return "FT";return m.minute?m.minute+"\u2032":(s||"");} function put(e,t){if(e==null||e.textContent==t)return false;e.textContent=t;return true} function glow(e){e.style.textShadow="0 0 10px #C9A24B";setTimeout(function(){e.style.textShadow=""},5000)} function sync(){if(document.hidden)return;var rows=document.querySelectorAll(".h5-lr[data-mid]");if(rows.length===0)return; fetch("/data/live_now.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){var by={};(d.matches||[]).forEach(function(m){if(m.bsd_id)by[String(m.bsd_id)]=m}); rows.forEach(function(r){var k=(r.getAttribute("data-mid").match(/BSD_([0-9]+)$/)||[])[1];var m=k?by[k]:null;if(m==null)return; put(r.querySelector(".h5-lm"),lab(m));var sc=r.querySelectorAll(".h5-ls > span"); if(sc.length===2){if(put(sc[0],String(m.home_score==null?0:m.home_score)))glow(sc[0]);if(put(sc[1],String(m.away_score==null?0:m.away_score)))glow(sc[1]);}})}).catch(function(){})} sync();setInterval(sync,15000);document.addEventListener("visibilitychange",function(){if(document.hidden==false)sync()}); })();

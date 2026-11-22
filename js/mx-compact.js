@@ -10,9 +10,9 @@
     '.match-card.mxc .np-r{font-size:12px' + I + ';margin-top:6px' + I + '}',
     '.mxc-sum{display:flex;align-items:center;gap:10px;padding:8px 12px 2px;font-size:12px;color:#9fb0cc}',
     '.mxc-mb{display:flex;height:6px;border-radius:3px;overflow:hidden;gap:2px;flex:1;max-width:130px}',
-    '.mxc-mb i{display:block;height:100%}.mxc-h{background:#22d3ee}.mxc-d{background:#3a4a6a}.mxc-a{background:#c7d2e6}',
+    '.mxc-mb i{display:block;height:100%}.mxc-h{background:#C9A24B}.mxc-d{background:#3a4a6a}.mxc-a{background:#c7d2e6}',
     '.mxc-nw{margin-left:auto;padding:3px 8px;border-radius:8px;background:#2a2410;color:#f5b942;font-weight:700;font-size:11.5px;white-space:nowrap}',
-    '.mxc-hint{display:block;padding:4px 12px 10px;font-size:12px;color:#22d3ee;text-align:right}',
+    '.mxc-hint{display:block;padding:4px 12px 10px;font-size:12px;color:#C9A24B;text-align:right}',
     '#mxc-bg{position:fixed;inset:0;background:rgba(3,8,20,.62);z-index:9990;opacity:0;transition:opacity .2s}', '#mxc-bg.on{opacity:1}',
     '#mxc-sh{position:fixed;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#0d1a33;border-top:1px solid #2b4573;border-radius:22px 22px 0 0;z-index:9991;transform:translateY(100%);transition:transform .25s ease;padding:8px 0 calc(22px + env(safe-area-inset-bottom))}',
     '#mxc-sh.on{transform:none}', '@media(min-width:900px){#mxc-sh{left:50%;right:auto;width:560px;margin-left:-280px}}',
@@ -21,9 +21,9 @@
     '.mxc-head{padding:0 14px}', '.mxc-head .match-card{margin:0;cursor:default}',
     '.mxc-tabs{display:flex;gap:6px;padding:12px 14px 6px;overflow-x:auto;scrollbar-width:none}',
     '.mxc-tab{flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #1e3157;background:none;color:#c5d2e8;font:inherit;font-size:13px;cursor:pointer}',
-    '.mxc-tab.on{background:#22d3ee;border-color:#22d3ee;color:#04222a;font-weight:700}',
+    '.mxc-tab.on{background:#C9A24B;border-color:#C9A24B;color:#04222a;font-weight:700}',
     '.mxc-body{padding:6px 14px 0}', '.mxc-acts{padding:12px 14px 0}',
-    '.mxc-full{display:block;padding:14px 14px 4px;text-align:center;font-size:13px;color:#22d3ee;text-decoration:none}'
+    '.mxc-full{display:block;padding:14px 14px 4px;text-align:center;font-size:13px;color:#C9A24B;text-decoration:none}'
   ].join('');
   document.head.appendChild(st);
   function txt(e) { return ((e && e.textContent) || '').replace(/\s+/g, ' ').trim(); }
@@ -149,7 +149,7 @@
     var card = e.target.closest ? e.target.closest('.match-card.mxc') : null;
     if (card == null) return;
     if (e.target.closest('a,button,input,select,label,.np,[data-abid],.team-home,.team-away')) return;
-    e.preventDefault(); e.stopPropagation(); open(card);
+    e.preventDefault(); e.stopPropagation(); /* SHEETFIX_20261121 */ var sid = card.getAttribute('data-mid') || card.getAttribute('data-fid') || card.getAttribute('data-id'); if (sid == null) { var se = card.querySelector('[data-mid],[data-fid]'); if (se) sid = se.getAttribute('data-mid') || se.getAttribute('data-fid'); } if (sid && typeof window.nmwOpenSheet === 'function') { window.nmwOpenSheet(String(sid)); } else { open(card); }
   }, true);
   function pass() {
     [].forEach.call(document.querySelectorAll('.match-card'), function (c) {
@@ -161,7 +161,6 @@
   new MutationObserver(function () { if (tm) return; tm = setTimeout(function () { tm = null; pass(); }, 150); }).observe(document.body, { childList: true, subtree: true });
   pass(); setTimeout(pass, 800); setTimeout(pass, 2500);
 })();
-
 /* MCSETTLE_20261031: mark the match cards settled once they stop changing for 350ms */
 (function () {
   var t = null, root = document.documentElement;
@@ -175,7 +174,6 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
-
 
 /* LIVESYNC_20261101: live cards take minute + score from the 1-minute feed every 30s (same 90+/45+ rules as Home) */
 (function(){

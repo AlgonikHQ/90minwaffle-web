@@ -8,7 +8,7 @@
     var s=document.createElement('style');
     s.textContent='.trc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 16px}'+
       '.trc-tabs a{padding:8px 16px;border-radius:999px;border:1px solid #1e3157;color:#c5d2e8;font-weight:600;font-size:14px;text-decoration:none}'+
-      '.trc-tabs a.on{background:#22d3ee;color:#04222a;border-color:#22d3ee;font-weight:700}'+
+      '.trc-tabs a.on{background:#C9A24B;color:#04222a;border-color:#C9A24B;font-weight:700}'+
       '.trc-tabs small{opacity:.75;font-weight:500;margin-left:4px}'+
       '.trc-p{display:none}.trc-p.on{display:block}.trc-p>details{margin-bottom:12px}'+
       '.trc-p[data-t="archive"]>details>summary{display:none}'+

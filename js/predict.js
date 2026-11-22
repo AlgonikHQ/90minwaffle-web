@@ -10,11 +10,11 @@
   function short(n) { return String(n || '').replace(/\s+A?FC$/i, ''); }
   function key(f) { return core(f.home).replace(/ /g, '-') + '-v-' + core(f.away).replace(/ /g, '-') + '-' + String(f.kickoff_utc || '').slice(0, 10); }
   function open(f) { var t = Date.parse(f.kickoff_utc), now = Date.now(); return t - 3e5 > now && t - now <= 24 * 36e5;   /* VOTECLOSE_20261024: closes 5 minutes before kick-off */ }   // NMW_PRED_24H: rolling window - every game in the next 24 hours
-  var CSS = '.np{display:flex;flex-direction:column;gap:8px;background:var(--bg-card,#0a1020);border:1px solid rgba(34,211,238,.3);border-radius:14px;padding:12px 14px;color:var(--text,#e6edf6);text-align:left}' +
-    '.np-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.np-h b{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#22d3ee)}.np-h span{font-size:11px;color:var(--text-dim,#8aa0b8)}' +
+  var CSS = '.np{display:flex;flex-direction:column;gap:8px;background:var(--bg-card,#0a1020);border:1px solid rgba(201,162,75,.3);border-radius:14px;padding:12px 14px;color:var(--text,#e6edf6);text-align:left}' +
+    '.np-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.np-h b{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent,#C9A24B)}.np-h span{font-size:11px;color:var(--text-dim,#8aa0b8)}' +
     '.np-o{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}' +
     '.np-o button{min-height:44px;padding:6px 8px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:#111a2e;color:var(--text,#e6edf6);font-family:inherit;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
-    '.np-o button.on{border-color:var(--accent,#22d3ee);background:rgba(34,211,238,.16)}.np-o button:disabled{cursor:default}.np-o button:disabled:not(.on){opacity:.55}' +
+    '.np-o button.on{border-color:var(--accent,#C9A24B);background:rgba(201,162,75,.16)}.np-o button:disabled{cursor:default}.np-o button:disabled:not(.on){opacity:.55}' +
     '.np-r{font-size:12px;color:#b6c2d1;line-height:1.45}.np-r b{color:var(--text,#e6edf6)}';
   function css() { if (document.getElementById('np-css')) return; var s = document.createElement('style'); s.id = 'np-css'; s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
   var REG = [];

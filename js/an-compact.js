@@ -9,8 +9,8 @@
     var s=document.createElement('style');
     s.textContent='.anx-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 14px}'+
       '.anx-tabs a{min-height:40px;display:inline-flex;align-items:center;padding:8px 16px;border-radius:999px;border:1px solid #1e3157;color:#c5d2e8'+IMP+';font-weight:600;font-size:14px;text-decoration:none'+IMP+'}'+
-      '.anx-tabs a.on{background:#22d3ee;color:#04222a'+IMP+';border-color:#22d3ee;font-weight:700}'+
-      '.anx-tabs a:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}'+
+      '.anx-tabs a.on{background:#C9A24B;color:#04222a'+IMP+';border-color:#C9A24B;font-weight:700}'+
+      '.anx-tabs a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}'+
       'section.sec.anx-off{display:none'+IMP+'}section.sec.anx-p{margin-top:6px'+IMP+'}';
     document.head.appendChild(s);
   }

@@ -5,22 +5,16 @@
   var p=location.pathname.replace(/\/+$/,'')||'/';
   var TABS=[
     ['/','Home',/^\/(index\.html)?$/,'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'],
-    ['/edges/','Tips',/^\/edges/,'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>'],
-    ['/matches/','Scores',/^\/matches/,'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'],
+    ['/matches/','Matches',/^\/matches/,'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'],
     ['/footballiq/','Stats',/^\/(footballiq|player|clubs?)(\/|$)/,'<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/>'],
+    ['/edges/','Tips',/^\/edges/,'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>'],
+    ['/desk/','Desk',/^\/desk(\/|$)/,'<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
     ['/me/','Me',/^\/me(\/|$)/,'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>']
   ];
   var MORE=[ /* NAVNEWS_20261023: News group first, then Explore */
     ['#News'],
     ['Latest news','/news/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
     ['For you','/news/for-you/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Transfers','/news/transfers/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Injuries','/news/injuries/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Match day','/news/match-day/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Premier League','/news/premier-league/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Scottish football','/news/scottish-football/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Women\'s football','/news/womens-football/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
-    ['Off the pitch','/news/off-pitch/','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
     ['All sections','/news/#sections','<path d="M4 4h13v16H6a2 2 0 0 1-2-2z"/><path d="M17 8h3v10a2 2 0 0 1-2 2"/><line x1="8" y1="8" x2="13" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/>'],
     ['#Explore'],
     ['Search',null,'<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/>'],
@@ -31,6 +25,7 @@
     ['Nations','/nations/','<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>'],
     ['Weekend','/weekend/','<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'],  // WEEKEND_HUB_20261018
     ['Corrections','/corrections/','<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'],
+    ['Sealed tips ledger','/edges/ledger/','<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'],
     ['About','/about/','<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>'],
     ['Free Telegram alerts','https://t.me/ninetyminwafflebets','<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/>']
   ];
@@ -62,7 +57,7 @@
     b.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
     var host=document.querySelector('.header .header-row')||document.querySelector('header.fxh')||topRow(); /* NAVME_HOST2: any row-style header at the top of the page */
     if(host){b.style.cssText='width:44px;height:44px;flex:0 0 44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;color:inherit;padding:0;margin-right:4px;cursor:pointer';host.insertBefore(b,host.firstChild);}
-    else{b.style.cssText='position:fixed;top:10px;left:10px;z-index:1000;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:#0A1020;border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#E6EDF6;cursor:pointer';document.body.appendChild(b);}
+    else{/* MNTOPBAR_20261119: no site header - slim top bar in the page flow instead of a floating button */var tb=document.createElement('div');tb.id='mn-topbar';tb.style.cssText='position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:8px;min-height:56px;padding:6px 12px;background:var(--bg,#FAFAF9);border-bottom:1px solid var(--border,#E7E5E0)';b.style.cssText='width:44px;height:44px;flex:0 0 44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;color:var(--text,#0B0F0E);padding:0;cursor:pointer';tb.appendChild(b);var lg=document.createElement('a');lg.href='/';lg.setAttribute('aria-label','90minWaffle home');lg.innerHTML='90Min<i style="color:var(--accent,#866C32)">Waffle</i>';lg.style.cssText='font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--text,#0B0F0E)';tb.appendChild(lg);if(!document.getElementById('mn-topbar-css')){var st=document.createElement('style');st.id='mn-topbar-css';st.textContent='@media(min-width:1024px){#mn-topbar{display:none}}';document.head.appendChild(st);}/* MNTOPGAP */var pt=parseFloat(getComputedStyle(document.body).paddingTop)||0;if(pt)tb.style.marginTop=(-pt)+'px';document.body.insertBefore(tb,document.body.firstChild);}
     b.addEventListener('click',toggle);return b;
   }
   function build(){
@@ -91,3 +86,7 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();
 /* MENUS_20261030 phone bar: Tips, Stats */
+
+/* NAVDESK_20261118: Matches, Stats, Tips, Desk, Me - same order as the bottom bar */
+
+/* SHEETTIDY_20261118: News tiles cut to Latest/For you/All sections (topics and competitions are listed below); ledger added to Explore */

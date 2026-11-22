@@ -11,8 +11,9 @@
   var ITEMS=[
     /* MENUS_20261030: 4 main links; Home is the logo; Weekend and Tournaments live under More */
     ['/matches/','Matches',function(p){return p.startsWith('/matches/');}],
-    ['/edges/','StatIQ tips',function(p){return p.startsWith('/edges/');}],
     ['/footballiq/','FootballIQ stats',function(p){return p.startsWith('/footballiq/')||p.startsWith('/player/')||p.startsWith('/clubs/');}],
+    ['/edges/','StatIQ tips',function(p){return p.startsWith('/edges/');}],
+    ['/desk/','The Desk',function(p){return p.startsWith('/desk/');}],
     ['/analysis/','Analysis',function(p){return p.startsWith('/analysis/');}]
   ];
   var SVG='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
@@ -53,12 +54,12 @@
     (function(){
       var b=document.querySelector('.dn-exb'), pn=document.getElementById('dn-exp'); if(!b||!pn) return;
       if(!document.getElementById('dn-ex-css')) document.head.insertAdjacentHTML('beforeend','<style id="dn-ex-css">'
-        +'.dn-ex{position:relative}.dn-exb{background:none;border:1px solid rgba(34,211,238,.35);color:#e6edf5;font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;cursor:pointer;min-height:36px}'
-        +'.dn-exb:hover,.dn-exb[aria-expanded="true"]{border-color:#22d3ee;color:#22d3ee}.dn-exb:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}'
+        +'.dn-ex{position:relative}.dn-exb{background:none;border:1px solid rgba(201,162,75,.35);color:#e6edf5;font:inherit;font-size:14px;padding:6px 12px;border-radius:8px;cursor:pointer;min-height:36px}'
+        +'.dn-exb:hover,.dn-exb[aria-expanded="true"]{border-color:#C9A24B;color:#C9A24B}.dn-exb:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}'
         +'.dn-exp{position:absolute;right:0;top:calc(100% + 8px);width:520px;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:10px;background:#0f1a2e;'
-        +'border:1px solid rgba(34,211,238,.35);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.45);z-index:9999}.dn-exp[hidden]{display:none}'
-        +'.dn-exp a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:#e6edf5}.dn-exp a:hover,.dn-exp a:focus-visible{background:rgba(34,211,238,.1);outline:none}'
-        +'.dn-exp b{display:block;font-size:14px;color:#22d3ee}.dn-exp span{display:block;font-size:12px;color:#9fb1c7;margin-top:2px;line-height:1.35}</style>');
+        +'border:1px solid rgba(201,162,75,.35);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.45);z-index:9999}.dn-exp[hidden]{display:none}'
+        +'.dn-exp a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:#e6edf5}.dn-exp a:hover,.dn-exp a:focus-visible{background:rgba(201,162,75,.1);outline:none}'
+        +'.dn-exp b{display:block;font-size:14px;color:#C9A24B}.dn-exp span{display:block;font-size:12px;color:#9fb1c7;margin-top:2px;line-height:1.35}</style>');
       function set(o){ pn.hidden=!o; b.setAttribute('aria-expanded',o?'true':'false'); if(o){ var f=pn.querySelector('a'); if(f) f.focus(); } }
       b.addEventListener('click',function(e){ e.stopPropagation(); set(pn.hidden); });
       document.addEventListener('click',function(e){ if(!pn.hidden && !pn.contains(e.target)) set(false); });
@@ -171,7 +172,7 @@ document.addEventListener('click', function (e) {
 (function(){
   if(window.__nmwBar)return;window.__nmwBar=1;
   var b=document.createElement('div');b.setAttribute('aria-hidden','true');
-  b.style.cssText='position:fixed;top:0;left:0;height:3px;width:0;background:#22D3EE;z-index:99999;opacity:0;transition:width 8s cubic-bezier(.1,.7,.1,1),opacity .2s;pointer-events:none';
+  b.style.cssText='position:fixed;top:0;left:0;height:3px;width:0;background:#C9A24B;z-index:99999;opacity:0;transition:width 8s cubic-bezier(.1,.7,.1,1),opacity .2s;pointer-events:none';
   function go(){if(!b.parentNode)document.body.appendChild(b);b.style.transition='none';b.style.width='0';b.style.opacity='1';void b.offsetWidth;b.style.transition='width 8s cubic-bezier(.1,.7,.1,1),opacity .2s';b.style.width='85%';}
   function stop(){b.style.opacity='0';b.style.width='0';}
   document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
@@ -191,7 +192,7 @@ document.addEventListener('click', function (e) {
     o.innerHTML='<div style="background:#111A2E;border:1px solid #1E2A44;border-radius:16px;padding:22px;max-width:380px;width:100%;color:#E8EDF5;font:16px/1.5 Inter,system-ui,sans-serif">'+
       '<div style="font-weight:700;font-size:18px;margin-bottom:6px">Contact us</div><div style="color:#A9B4C6;font-size:15px;margin-bottom:14px">Email us at</div>'+
       '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><b id="nmw-mail-a" style="font-size:17px;word-break:break-all">'+addr+'</b>'+
-      '<button type="button" id="nmw-mail-c" style="min-height:44px;padding:0 16px;border-radius:10px;border:0;background:#22D3EE;color:#062029;font-weight:700;cursor:pointer">Copy</button></div>'+
+      '<button type="button" id="nmw-mail-c" style="min-height:44px;padding:0 16px;border-radius:10px;border:0;background:#C9A24B;color:#062029;font-weight:700;cursor:pointer">Copy</button></div>'+
       '<div style="display:flex;justify-content:space-between;margin-top:16px;gap:12px"><a href="'+href+'" style="color:#7FE3F2;font-weight:600;min-height:44px;display:inline-flex;align-items:center">Open email app</a>'+
       '<button type="button" id="nmw-mail-x" style="min-height:44px;padding:0 14px;border-radius:10px;border:1px solid #2A3756;background:transparent;color:#E8EDF5;cursor:pointer">Close</button></div></div>';
     document.body.appendChild(o);
@@ -249,3 +250,5 @@ try{if(/^\/(edges\/?)?$/.test(location.pathname)){var _tl=document.createElement
 /* NMWSAVEALL */ (function(){var s=document.createElement('script');s.src='/js/nmw-save-all.js?v=20261110e';s.defer=true;document.head.appendChild(s);})();
 
 /* NMWMATCHDAY */ (function(){var s=document.createElement('script');s.src='/js/nmw-matchday.js?v=20261110c';s.defer=true;document.head.appendChild(s);})();
+
+/* NAVDESK_20261118: Matches, FootballIQ, StatIQ, The Desk, Analysis */

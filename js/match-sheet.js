@@ -2,19 +2,19 @@
 (function () {
   if (window.__nmwSheet) return; window.__nmwSheet = 1;
   var CSS = '#nmw-sheet-bg{position:fixed;inset:0;background:rgba(3,7,18,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);z-index:9998;opacity:0;transition:opacity .2s}'
-    + '#nmw-sheet{position:fixed;left:0;right:0;bottom:0;height:88vh;max-width:760px;margin:0 auto;background:#0a1020;border:1px solid rgba(34,211,238,.3);border-bottom:0;border-radius:20px 20px 0 0;'
-    + 'box-shadow:0 -10px 40px rgba(0,0,0,.6),0 0 30px rgba(34,211,238,.12);z-index:9999;transform:translateY(100%);transition:transform .25s ease;display:flex;flex-direction:column;overflow:hidden}'
+    + '#nmw-sheet{position:fixed;left:0;right:0;bottom:0;height:88vh;max-width:760px;margin:0 auto;background:#0a1020;border:1px solid rgba(201,162,75,.3);border-bottom:0;border-radius:20px 20px 0 0;'
+    + 'box-shadow:0 -10px 40px rgba(0,0,0,.6),0 0 30px rgba(201,162,75,.12);z-index:9999;transform:translateY(100%);transition:transform .25s ease;display:flex;flex-direction:column;overflow:hidden}'
     + '#nmw-sheet.on{transform:none}#nmw-sheet-bg.on{opacity:1}'
     + '#nmw-sheet .hd{display:flex;align-items:center;justify-content:center;position:relative;padding:12px 10px 8px;touch-action:none}'
-    + '#nmw-sheet .grip{width:46px;height:5px;border-radius:9px;background:#22d3ee;opacity:.5}'
-    + '#nmw-sheet .x{position:absolute;right:10px;top:6px;background:#0e1628;border:1px solid rgba(34,211,238,.45);color:#22d3ee;border-radius:999px;width:34px;height:34px;font-size:15px;cursor:pointer}'
+    + '#nmw-sheet .grip{width:46px;height:5px;border-radius:9px;background:#C9A24B;opacity:.5}'
+    + '#nmw-sheet .x{position:absolute;right:10px;top:6px;background:#0e1628;border:1px solid rgba(201,162,75,.45);color:#C9A24B;border-radius:999px;width:34px;height:34px;font-size:15px;cursor:pointer}'
     + '#nmw-sheet iframe{flex:1;width:100%;border:0;background:#0a1020}'
-    + '.pc .pc-tap{cursor:pointer;transition:background .15s}.pc .pc-tap:active{background:rgba(34,211,238,.08)}'
-    + '.pc .fx.pc-tap .s:after,.pc .next.pc-tap .vs:after,.pc tr.pc-tap td:last-child:after{content:" \\203A";color:#22d3ee;font-weight:700}';
+    + '.pc .pc-tap{cursor:pointer;transition:background .15s}.pc .pc-tap:active{background:rgba(201,162,75,.08)}'
+    + '.pc .fx.pc-tap .s:after,.pc .next.pc-tap .vs:after,.pc tr.pc-tap td:last-child:after{content:" \\203A";color:#C9A24B;font-weight:700}';
   /* TCARD_TAP: Matches-page team card rows */
-  CSS += '.tcard .pc-tap{cursor:pointer;transition:background .15s}.tcard .pc-tap:active{background:rgba(34,211,238,.08)}'
-    + '.tcard .tc-fx.pc-tap .s:after{content:" \\203A";color:#22d3ee;font-weight:700}'
-    + '.tcard .tc-next.pc-tap{position:relative;cursor:pointer}.tcard .tc-next.pc-tap:after{content:"\\203A";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#22d3ee;font-size:24px;font-weight:700}';
+  CSS += '.tcard .pc-tap{cursor:pointer;transition:background .15s}.tcard .pc-tap:active{background:rgba(201,162,75,.08)}'
+    + '.tcard .tc-fx.pc-tap .s:after{content:" \\203A";color:#C9A24B;font-weight:700}'
+    + '.tcard .tc-next.pc-tap{position:relative;cursor:pointer}.tcard .tc-next.pc-tap:after{content:"\\203A";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#C9A24B;font-size:24px;font-weight:700}';
   var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
   function close(fromPop) {
     var s = document.getElementById('nmw-sheet'), b = document.getElementById('nmw-sheet-bg');

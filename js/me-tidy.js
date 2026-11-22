@@ -12,9 +12,9 @@
       '.mt-x{display:flex;flex-direction:column;gap:0}'+
       '.mt-x-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}'+
       '.mt-x-tabs button{min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid #1e3157;background:transparent;color:#c5d2e8;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}'+
-      '.mt-x-tabs button[aria-pressed="true"]{background:#22d3ee;color:#04222a;border-color:#22d3ee;font-weight:700}'+
+      '.mt-x-tabs button[aria-pressed="true"]{background:#C9A24B;color:#04222a;border-color:#C9A24B;font-weight:700}'+
       '.mt-x>article:not(.mt-on){display:none'+IMP+'}'+
-      '.mt-x-tabs button:focus-visible,#mh .mh-tabs button:focus-visible,#mh-list a.mh-li:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}'+
+      '.mt-x-tabs button:focus-visible,#mh .mh-tabs button:focus-visible,#mh-list a.mh-li:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}'+
       '[data-mt-beta="1"]{display:none'+IMP+'}'+
       '@media (min-width:900px){#page .profile-hero,#page [data-mh-t="settings"] .profile-hero{position:relative'+IMP+';top:auto'+IMP+';z-index:auto'+IMP+'}}'; /* MT2 */
     document.head.appendChild(s);
@@ -173,9 +173,9 @@
       '@media (min-width:900px){#mt-sh .pn{left:auto;top:0;height:auto;width:min(640px,92vw);border-radius:18px 0 0 18px}}'+
       '#mt-sh .hd{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 16px;border-bottom:1px solid #1e3157}'+
       '#mt-sh .hd b{flex:1;min-width:0;font-size:15px;color:#e6edf7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
-      '#mt-sh .hd a{color:#22d3ee;font-size:13px;font-weight:600;text-decoration:none;padding:10px 6px}'+
+      '#mt-sh .hd a{color:#C9A24B;font-size:13px;font-weight:600;text-decoration:none;padding:10px 6px}'+
       '#mt-sh .hd button{min-width:44px;min-height:44px;border-radius:12px;border:1px solid #1e3157;background:transparent;color:#e6edf7;font-size:18px;cursor:pointer}'+
-      '#mt-sh .hd button:focus-visible,#mt-sh .hd a:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}'+
+      '#mt-sh .hd button:focus-visible,#mt-sh .hd a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}'+
       '#mt-sh iframe{flex:1;width:100%;border:0;background:#0a1428}body.mt-lock{overflow:hidden}';
     document.head.appendChild(s);
     sh=document.createElement('div'); sh.id='mt-sh';

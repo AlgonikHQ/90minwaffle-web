@@ -8,11 +8,11 @@
   function log() { try { return JSON.parse(ls('nmw_pred_log') || '[]') || []; } catch (e) { return []; } }
   var css = D.createElement('style'); css.id = 'nmwmx-css';
   css.textContent = '.nmwmx-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.nmwmx-bar .pred-tab-btn{flex:1 1 auto;min-width:64px;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-dim);font-weight:700;font-size:.8rem;cursor:pointer}' +
-    '.nmwmx-bar .pred-tab-btn.active{background:var(--accent-dim);color:#22d3ee;border-color:#22d3ee}.nmwmx-bar select{flex:1 1 100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);font-size:.85rem}' +
-    '.nmwn{display:block!important;padding-top:4px}.nmwn h4{margin:10px 0 4px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#22d3ee}.nmwn p.nmwn-note{margin:0 0 6px;font-size:.78rem;color:var(--text-dim)}' +
+    '.nmwmx-bar .pred-tab-btn.active{background:var(--accent-dim);color:#C9A24B;border-color:#C9A24B}.nmwmx-bar select{flex:1 1 100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);font-size:.85rem}' +
+    '.nmwn{display:block!important;padding-top:4px}.nmwn h4{margin:10px 0 4px;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#C9A24B}.nmwn p.nmwn-note{margin:0 0 6px;font-size:.78rem;color:var(--text-dim)}' +
     '.nmwn-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--border)}.nmwn-row:first-of-type{border-top:0}.nmwn-row div{flex:1;min-width:0}.nmwn-row b{display:block;font-size:.88rem}.nmwn-row small{display:block;color:var(--text-dim);font-size:.75rem;margin-top:2px}' +
     '.nmwn-sw{flex:none;width:46px;height:28px;border-radius:999px;border:1px solid var(--border);background:var(--bg-elev);position:relative;cursor:pointer;padding:0}.nmwn-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#94a3b8;transition:left .15s,background .15s}' +
-    '.nmwn-sw[aria-checked="true"]{background:rgba(34,211,238,.18);border-color:#22d3ee}.nmwn-sw[aria-checked="true"]::after{left:21px;background:#22d3ee}';
+    '.nmwn-sw[aria-checked="true"]{background:rgba(201,162,75,.18);border-color:#C9A24B}.nmwn-sw[aria-checked="true"]::after{left:21px;background:#C9A24B}';
   (D.head || D.documentElement).appendChild(css);
 
   // ---------- 1. picks filters ----------

@@ -17,7 +17,7 @@
     var mid = (hs != null && as != null) ? (hs + ' - ' + as) : (m.time_label || 'vs');
     var st = live ? ('&#9679; ' + (m.minute ? m.minute + '&#39; ' : '') + 'LIVE') : (kind === 'results' ? 'Full time' : e(m.date_label || ''));
     return '<div style="max-width:720px;margin:18px auto;padding:0 16px">'
-      + '<div style="background:#0a1020;border:1px solid rgba(34,211,238,.35);border-radius:16px;padding:18px 14px;text-align:center">'
+      + '<div style="background:#0a1020;border:1px solid rgba(201,162,75,.35);border-radius:16px;padding:18px 14px;text-align:center">'
       + '<div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-bottom:12px">' + e(m.league || '') + '</div>'
       + '<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px">'
       + '<div style="font-weight:800">' + e(m.home) + '</div>'
@@ -25,7 +25,7 @@
       + '<div style="font-weight:800">' + e(m.away) + '</div></div>'
       + (st ? '<div style="margin-top:10px;font-size:.78rem;font-weight:800;color:' + (live ? '#ff5a5f' : '#9aa7b8') + '">' + st + '</div>' : '')
       + '</div><p style="text-align:center;opacity:.7;font-size:.82rem;margin:14px 6px">Detailed stats aren\u2019t available for this competition yet. '
-      + '<a href="/matches/" style="color:#22d3ee">Back to today\u2019s games</a></p></div>';
+      + '<a href="/matches/" style="color:#C9A24B">Back to today\u2019s games</a></p></div>';
   }
   var busy = false;
   function check() {
@@ -40,7 +40,7 @@
       if (!m) { m = find(fb.live || []); }
       if (!m) { m = find(fb.results || []); kind = 'results'; }
       if (!m) { m = find(fb.upcoming || []); kind = 'upcoming'; }
-      el.outerHTML = m ? card(m, kind) : '<div class="empty">This match has finished and isn\u2019t covered in detail. <a href="/matches/" style="color:#22d3ee">Back to today\u2019s games</a></div>';
+      el.outerHTML = m ? card(m, kind) : '<div class="empty">This match has finished and isn\u2019t covered in detail. <a href="/matches/" style="color:#C9A24B">Back to today\u2019s games</a></div>';
       setTimeout(function () { busy = false; }, 3000);
     });
   }

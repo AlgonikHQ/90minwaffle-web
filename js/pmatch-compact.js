@@ -9,7 +9,7 @@
     var s=document.createElement('style');
     s.textContent='.pmx-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:18px 0 12px;padding:2px 0 4px}.pmx-tabs::-webkit-scrollbar{display:none}'+
       '.pmx-tabs a{flex:none;min-height:40px;display:inline-flex;align-items:center;padding:8px 16px;border-radius:999px;border:1px solid #1e3157;color:#c5d2e8'+IMP+';font-weight:600;font-size:14px;text-decoration:none'+IMP+';white-space:nowrap}'+
-      '.pmx-tabs a.on{background:#22d3ee;color:#04222a'+IMP+';border-color:#22d3ee;font-weight:700}.pmx-tabs a:focus-visible{outline:2px solid #22d3ee;outline-offset:2px}'+
+      '.pmx-tabs a.on{background:#C9A24B;color:#04222a'+IMP+';border-color:#C9A24B;font-weight:700}.pmx-tabs a:focus-visible{outline:2px solid #C9A24B;outline-offset:2px}'+
       '.pmx-pane{display:none}.pmx-pane.on{display:block}.pmx-pane>h2:first-child{margin-top:4px}'+
       'a[href^="/clubs/"]{text-decoration:none'+IMP+'}';
     document.head.appendChild(s);

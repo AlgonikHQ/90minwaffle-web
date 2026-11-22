@@ -2,6 +2,25 @@
 
 User-facing changes to [90minwaffle.co.uk](https://90minwaffle.co.uk), newest first. Live version: https://90minwaffle.co.uk/changelog/
 
+## 2026-11-20
+
+- Home: your club and country cards now link to the opponent and to the match preview or report.
+- Nation pages: more players are linked from the most-capped and top-scorer lists.
+- New share images in the site's new look for clubs, tips and matches.
+
+## 2026-11-19
+
+- Club and nation pages now show "Latest from this club" (or team): the latest match report and the next preview.
+- Me: teams and matches on your cards are now tappable.
+- Nation squads are shown as one list, with every player linked to their profile and club.
+- Search shows players at their current club (for example Mohamed Salah at Trabzonspor), and old duplicate entries have been merged.
+- Matches: today's count shows how many games are left to play, and the long list folds away.
+- Fixed broken links to some league pages.
+
+## 2026-11-18
+
+- New look: the site now opens in a light theme with gold accents across every page.
+
 ## 2026-11-07
 
 - StatIQ record checked against independent bookmaker prices (Football-Data.co.uk). 33 old tips with prices no bookmaker offered moved to exclusions with reasons. Record now 102-104, +14.08u, ROI +6.9% - see Corrections.

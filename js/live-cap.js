@@ -2,7 +2,7 @@
   'use strict';
   var CAP = 5, open = {}, busy = false;
   var st = document.createElement('style');
-  st.textContent = '.lc-x{display:none!important}li.lc-more{list-style:none}.lc-more>button,button.lc-more{display:block;width:100%;min-height:44px;margin:8px 0;border:1px solid rgba(34,211,238,.35);border-radius:12px;background:transparent;color:#22d3ee;font:inherit;font-size:14px;font-weight:600;cursor:pointer}';
+  st.textContent = '.lc-x{display:none!important}li.lc-more{list-style:none}.lc-more>button,button.lc-more{display:block;width:100%;min-height:44px;margin:8px 0;border:1px solid rgba(201,162,75,.35);border-radius:12px;background:transparent;color:#C9A24B;font:inherit;font-size:14px;font-weight:600;cursor:pointer}';
   document.head.appendChild(st);
   var LIVE = /\bLIVE\b|\b\d{1,3}(\+\d{1,2})?['\u2032]|\bHT\b/;
   function isLive(x) { if (x.classList.contains('mc-item') && /\bLIVE\b/.test(x.innerText || '')) return true; /* LIVECAP5_20261031: Scores cards say LIVE but have no live class */ return LIVE.test(x.innerText || '') && (x.matches('[class*=live],[class*=Live]') || !!x.querySelector('[class*=live],[class*=Live],[data-status]')); }

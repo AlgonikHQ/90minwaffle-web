@@ -12,7 +12,7 @@
   function mp(t){var f=probs[key(t.home)+'|'+key(t.away)];if(!f)return null;var m={HOME_WIN:f.p_home,DRAW:f.p_draw,AWAY_WIN:f.p_away,BTTS_YES:f.btts,BTTS:f.btts,OVER25:f.o25,OVER_2_5:f.o25,UNDER25:100-f.o25,UNDER_2_5:100-f.o25,OVER35:f.o35,OVER_3_5:f.o35}[String(t.market||'').toUpperCase()];return m==null?null:m;}
   function edge(t){var p=mp(t),o=parseFloat(t.odds);return(p!==null&&o>1)?{p:p,e:p-100/o}:null;}
   function row(t,done){var e=edge(t),r=String(t.result||'').toUpperCase();
-    var right=done?'<b class="'+(r==='WIN'?'mh-w':'mh-l')+'">'+esc(r)+'</b>'+(parseFloat(t.odds)?'@ '+parseFloat(t.odds).toFixed(2):''):
+    var right=done?'<b class="'+(r==='WIN'?'mh-w':(r==='LOSS'?'mh-l':'mh-v'))+'">'+esc(r)+'</b>'+(parseFloat(t.odds)?'@ '+parseFloat(t.odds).toFixed(2):''):
       (e?'<b>'+e.p.toFixed(0)+'%</b>FootballIQ model<br><span class="mh-pos" style="opacity:.7">info only</span>':(parseFloat(t.odds)?'<b>@ '+parseFloat(t.odds).toFixed(2)+'</b>Odds':'<b>Price</b>on match day')/* ODDSLABEL_20261023 */);
     return '<a class="mh-edge" href="/edges/"><div class="mh-ic">&#8599;</div><div class="mh-ec"><div class="mh-em">'+esc(t.market_label||pretty(t.market))+'</div><div class="mh-et">'+esc(t.home)+' vs '+esc(t.away)+'</div></div><div class="mh-er">'+right+'</div></a>';}
   var QA=[['/edges/','StatIQ','<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>'],['/matches/','Scores','<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/>'],['/footballiq/form/','Form','<path d="M3 17l6-6 4 4 8-8"/>'],['/footballiq/sims/','Sims','<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>']];
@@ -44,7 +44,7 @@
     ((r[1]&&r[1].fixtures)||[]).forEach(function(f){probs[key(f.home)+'|'+key(f.away)]=f;});
     var S=((r[0]&&r[0].selections)||[]).filter(function(x){return !x.is_builder;});
     var open=S.filter(function(x){return String(x.result||'PENDING').toUpperCase()==='PENDING';});
-    if(open.length){open.sort(function(a,b){var ea=edge(a),eb=edge(b);return(eb?eb.e:-99)-(ea?ea.e:-99);});edgesHTML=open.slice(0,3).map(function(t){return row(t,false);}).join('');title='StatIQ';note='';}
+    if(open.length){open.sort(function(a,b){var ea=edge(a),eb=edge(b);return(eb?eb.e:-99)-(ea?ea.e:-99);});/* MHTODAY_20261121 */ var tdk=function(s){try{return new Date(s).toLocaleDateString('en-CA',{timeZone:'Europe/London'});}catch(e){return '';}}; var tdy=tdk(Date.now()); var stl=S.filter(function(x){var r=String(x.result||'PENDING').toUpperCase(); return r!=='PENDING' && x.kickoff_utc && tdk(x.kickoff_utc)===tdy;}).sort(function(a,b){return String(b.kickoff_utc).localeCompare(String(a.kickoff_utc));}); edgesHTML=open.slice(0,3).map(function(t){return row(t,false);}).join('')+stl.slice(0,3).map(function(t){return row(t,true);}).join('');title='StatIQ';note='';}
     else{var d=S.filter(function(x){return x.kickoff_utc;}).sort(function(a,b){return String(b.kickoff_utc).localeCompare(String(a.kickoff_utc));}).slice(0,3);
       edgesHTML=d.map(function(t){return row(t,true);}).join('')||'<div class="mh-note">No tips yet today: we only publish when the numbers clear the bar, so quiet days happen. <a href="/edges/">See the full record</a></div>';title='Latest Edges';note=d.length?'No open edges right now. Showing our latest settled tips.':'';}
     render();

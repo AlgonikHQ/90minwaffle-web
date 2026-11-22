@@ -3,9 +3,9 @@
   if (window.__nmwED) return; window.__nmwED = 1;
   var st = document.createElement('style');
   st.textContent = '.ed-hide{display:none!important}'
-    + '.ed-more{display:block;width:100%;margin:12px 0 4px;padding:11px;border-radius:12px;border:1px solid rgba(34,211,238,.35);background:rgba(34,211,238,.06);color:#22d3ee;font-weight:800;font-size:.85rem;cursor:pointer}'
-    + '.ed-note{margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(34,211,238,.25);background:rgba(34,211,238,.05);font-size:.82rem;line-height:1.5;color:#cbd5e1}'
-    + '.ed-note b{color:#22d3ee}.ed-note a{color:#22d3ee}';
+    + '.ed-more{display:block;width:100%;margin:12px 0 4px;padding:11px;border-radius:12px;border:1px solid rgba(201,162,75,.35);background:rgba(201,162,75,.06);color:#C9A24B;font-weight:800;font-size:.85rem;cursor:pointer}'
+    + '.ed-note{margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px solid rgba(201,162,75,.25);background:rgba(201,162,75,.05);font-size:.82rem;line-height:1.5;color:#cbd5e1}'
+    + '.ed-note b{color:#C9A24B}.ed-note a{color:#C9A24B}';
   document.head.appendChild(st);
   var LIMIT = 10;
   try { var nt = ((performance.getEntriesByType('navigation') || [])[0] || {}).type; if (nt !== 'back_forward') sessionStorage.removeItem('ed-open'); } catch (e) {}  /* EDRESET_20261019: refresh = collapsed, Back = as you left it */

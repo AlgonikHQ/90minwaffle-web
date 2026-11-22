@@ -7,7 +7,7 @@
   st.textContent = [
     '.fiqc-bar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:12px 0 14px;padding:2px 0}',
     '.fiqc-tab{flex:0 0 auto;display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid #1e3157;color:#c5d2e8;font-size:14px;text-decoration:none}',
-    '.fiqc-tab.on{background:#22d3ee;border-color:#22d3ee;color:#04222a;font-weight:700}',
+    '.fiqc-tab.on{background:#C9A24B;border-color:#C9A24B;color:#04222a;font-weight:700}',
     '.fiqc-off{display:none' + I + '}', '.fiqc-panel>*{margin-top:0}',
     '@media(min-width:1100px){.fiqc-panel{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px 24px;align-items:start}.fiqc-panel>.fiqc-main{grid-column:1;grid-row:1/span 30}.fiqc-panel>.fiqc-aside{grid-column:2}.fiqc-panel>.fiqc-full{grid-column:1/-1}}',
     '@media(min-width:900px){.fq2-fxlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fq2-fxlist>.fq2-showall,.fq2-fxlist>.fq2-sub,.fq2-fxlist>.fq2-more{grid-column:1/-1}}'
@@ -86,7 +86,7 @@
     var s=document.createElement('style');
     s.textContent='#seg{display:none'+IMP+'}#fiqx-host #view-wc{display:none'+IMP+'}'+
       '#fiqx-host{margin-top:14px}#fiqx-host [id^="view-"]{max-width:none'+IMP+';margin-left:0'+IMP+';margin-right:0'+IMP+'}'+
-      'a.fiqx-on{border-color:#22d3ee'+IMP+';box-shadow:inset 0 0 0 1px #22d3ee}';
+      'a.fiqx-on{border-color:#C9A24B'+IMP+';box-shadow:inset 0 0 0 1px #C9A24B}';
     document.head.appendChild(s);
   }
   function setup(){
